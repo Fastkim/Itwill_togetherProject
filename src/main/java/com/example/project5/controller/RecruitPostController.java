@@ -9,13 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class PostController {
+public class RecruitPostController {
     
     @GetMapping("/")
     public String post() {
         log.info("post()");
         
-        return "/post/test";
+        return "/post/detail";
     }
 
 }
