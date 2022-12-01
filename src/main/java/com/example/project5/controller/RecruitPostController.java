@@ -50,13 +50,24 @@ public class RecruitPostController {
         return "redirect:/";
     }
     
-    @GetMapping("/post/detail")
+    @GetMapping({"/post/detail" , "/post/modify"})
     public void detail(Integer id, Model model) {
         log.info("detail(id={})", id);
         
         RecruitPost post = recruitPostService.read(id);
         
         model.addAttribute("post", post);
+    }
+    
+    @PostMapping("/post/delete")
+    public String delete(Integer id, RedirectAttributes attrs) {
+        log.info("delete(id={})" , id);
+        
+        Integer postId = recruitPostService.delete(id);
+        
+        attrs.addFlashAttribute("deletePostId" , postId);
+        
+        return "redirect:/";
     }
     
      

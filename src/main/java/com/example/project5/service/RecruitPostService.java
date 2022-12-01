@@ -38,4 +38,11 @@ public class RecruitPostService {
         log.info("read(id={})", id);
         return recruitPosrRepository.findById(id).get();
     }
+
+    public Integer delete(Integer id) {
+        log.info("delete(id={})" , id);
+        recruitPosrRepository.deleteById(id);
+        
+        return id;
+    }
 }
