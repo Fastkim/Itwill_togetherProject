@@ -13,15 +13,16 @@ public class RecruitPostCreateDto {
     private String content;
     private String author;
     private String place;
+
     private LocalDateTime meetingDate;
+
+    private LocalDateTime closeDate;
+
     private Integer totalMember;
-    private Integer joinMember;
-    
+
     public RecruitPost toEntity() {
-        return RecruitPost.builder().title(title).content(content).author(author).place(place)
-                .meetingDate(meetingDate).totalMember(totalMember).joinMember(joinMember).build();
-                
-                
+        return RecruitPost.builder().title(title).content(content).author(author).place(place).meetingDate(meetingDate)
+                .totalMember(totalMember).closeDate(closeDate).build();
     }
-    
+
 }
