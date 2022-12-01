@@ -2,12 +2,13 @@ package com.example.project5.domain;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,13 +28,13 @@ public class RecruitPost extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RECRUITPOSTS_SEQ_GEN")
     private Integer id;
     
-    @Column(unique = true , nullable = false)
+    @Column(nullable = false)
     private String title;
     
-    @Column(unique = true , nullable = false)
+    @Column(nullable = false)
     private String content;
     
-    @Column(unique = true , nullable = false)
+    @Column(nullable = false)
     private String author;
     
     @Column(nullable = false)
@@ -66,5 +67,5 @@ public class RecruitPost extends BaseTimeEntity {
         
         return this;
     }
-    
+
 }

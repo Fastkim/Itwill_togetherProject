@@ -50,6 +50,15 @@ public class RecruitPostController {
         return "redirect:/";
     }
     
+    @GetMapping("/post/detail")
+    public void detail(Integer id, Model model) {
+        log.info("detail(id={})", id);
+        
+        RecruitPost post = recruitPostService.read(id);
+        
+        model.addAttribute("post", post);
+    }
     
+     
 
 }

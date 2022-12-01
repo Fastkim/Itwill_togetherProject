@@ -18,8 +18,8 @@
                     <tr>
                         <th>번호</th>
                         <th>제목</th>
-                        <th>작성자</th>
-                        <th>수정시간</th>
+                        <th>총인원</th>
+                        <th>모임날짜</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,9 +28,10 @@
                         <td><a
                             th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
                             th:text="${post.title}"></a></td>
-                        <td th:text="${post.author}"></td>
+                        <td th:text="${post.totalMember}"></td>
                         <td
-                            th:text="${ post.meetingDate }"></td>
+                            th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
+                            
                     </tr>
                 </tbody>
             </table>

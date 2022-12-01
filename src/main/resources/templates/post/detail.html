@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ layout/layout }">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+    crossorigin="anonymous">
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+    
+<body>
+    <div layout:fragment="content">
+        <div class="m-4 row g-5">
+            <form style="margin-top: 4px;">
+                <div class="card m-4 row g-5">
+                <div class="select_img"><img src="..." /></div>
+                    <div class="my-2">
+                    <input id="id" class="form-control" th:value="${post.id}" type="hidden"/>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="title"
+                            class="col-sm-2 col-form-label">제목</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext"
+                                id="title" name="title" th:value="${post.title}" readonly />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="author"
+                            class="col-sm-2 col-form-label">담당자</label>
+                        <div class="col-sm-10 my-4">
+                            <input type="text" class="form-control-plaintext"
+                                id="author" name="author" th:value="${post.author}" readonly />
+                        </div>
+                    </div>
+                </div>
+            <!-- content 모집내용 시작 -->
+            <div class="card m-4 g-5">
+                <label for="content" class="form-label mt-5 m-2">모집내용</label>
+                    <div class="m-2">
+                        <textarea id="content" name="content"
+                            class="form-control-plaintext" th:text="${post.content}" rows="20" readonly></textarea>
+                    </div>
+                </div>
+
+            <!-- 지도폼 -->
+            <div class="card m-4 row g-5">
+                <div class="mb-3 my-2 row">
+                    <label for="totalMember"
+                        class="col-sm-2 col-form-label">모집인원</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control-plaintext"
+                            id="totalMember" name="totalMember" th:value="${post.totalMember}" readonly/>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="meetingDate"
+                        class="col-sm-2 col-form-label">모임기간</label>
+                    <div class="col-sm-4">
+                        <input type="datetime-local" class="form-control-plaintext"
+                            id="meetingDate" name="meetingDate" th:value="${post.meetingDate}" readonly/>
+                    </div>
+                    <label for="closeDate"
+                        class="col-sm-2 col-form-label">신청마감</label>
+                    <div class="col-sm-4">
+                        <input type="datetime-local" class="form-control-plaintext"
+                            id="closeDate" name="closeDate" th:value="${post.closeDate}" readonly/>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="place" class="col-sm-2 col-form-label">장소</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control-plaintext"
+                            id="place" name="place" th:value="${post.place}" readonly/>
+                    </div>
+                </div>
+                <div class="card my-2">
+                    <h2>지도 들어갈 위치</h2>
+                </div>
+                <div class="my-2">
+                    <!-- 버튼 위치> -->
+                </div>
+                </div>
+            </form>
+        </div>
+        <!-- 메인 div 끝 -->
+    </div>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+</body>
+</html>

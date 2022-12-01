@@ -7,7 +7,8 @@
         <div>
             <form method="post" style="margin-top: 4px;">
                 <div class="card m-4 row g-5">
-                <img alt="..." src="...">
+                <div class="select_img"><img src="..." /></div>
+                <input type="file" id="filePath" name="filePath"/>
                     <div class="mb-3 row">
                         <label for="title"
                             class="col-sm-2 col-form-label">제목</label>
@@ -28,8 +29,8 @@
                 </div>
             <!-- content 모집내용 시작 -->
             <div class="card m-4 g-5">
-                <label for="content" class="form-label mt-5 m-2">모집내용</label>
-                    <div class="m-2">
+                <label for="content" class="form-label mt-5 m-3">모집내용</label>
+                    <div class="mx-4 mb-2">
                         <textarea id="content" name="content"
                             class="form-control" rows="20"></textarea>
                     </div>
@@ -71,12 +72,13 @@
                 </div>
                 <div class="my-2">
                     <input type="submit" value="작성 완료"
-                        class="form-control btn btn-success" />
+                        class="form-control btn btn-outline-primary" />
                 </div>
                 </div>
             </form>
         </div>
         <!-- 메인 div 끝 -->
     </div>
+
 </body>
 </html>
