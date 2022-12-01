@@ -64,7 +64,7 @@ public class RecruitPost extends BaseTimeEntity {
         this.totalMember=totalMember;
         this.filePath=filePath;
         this.closeDate=closeDate;
-        
+         
         return this;
     }
 

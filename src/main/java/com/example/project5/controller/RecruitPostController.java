@@ -34,7 +34,7 @@ public class RecruitPostController {
     
     @GetMapping("/post/create")
     public String post() {
-        log.info("post()");
+        log.info("post()"); 
         
         return "/post/create";
     }
