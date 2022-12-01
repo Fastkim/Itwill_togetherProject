@@ -15,7 +15,7 @@ public class RecruitPostController {
     public String post() {
         log.info("post()");
         
-        return "/post/detail";
+        return "/post/create";
     }
 
 }
