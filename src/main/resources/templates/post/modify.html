@@ -43,8 +43,8 @@
                     <label for="totalMember"
                         class="col-sm-2 col-form-label">모집인원</label>
                     <div class="col-sm-4">
-                        <input type="number" class="form-control-plaintext"
-                            id="totalMember" name="totalMember" th:value="${post.totalMember}" readonly/>
+                        <input type="number" class="form-control"
+                            id="totalMember" name="totalMember" th:value="${post.totalMember}" />
                     </div>
                     <label for="joinMember"
                         class="col-sm-2 col-form-label">모집인원</label>
@@ -91,6 +91,7 @@
     <script layout:fragment="script">
     const formModify = document.querySelector('#formModify')
     
+    // 삭제버튼 이벤트리스너
     const btnDelete = document.querySelector('#btnDelete')
     btnDelete.addEventListener('click' , function(){
     	   const result = confirm('삭제하시겠습니까?');
@@ -101,6 +102,26 @@
     	    }
     });
     
+    // 수정버튼 이벤트리스너
+    const btnUpdate = document.querySelector('#btnUpdate');
+    btnUpdate.addEventListener('click', function() {
+        const title = document.querySelector('#title').value;
+        const content = document.querySelector('#content').value;
+        
+        if(title == '' || content == '') {
+            alert('제목과 내용을 입력하세요')
+            return;
+        }
+        
+        const result = confirm('수정하시겠습니까?');
+        if(result) {
+            formModify.action='/post/update';
+            formModify.method='post';
+            formModify.submit();
+        }
+        
+        
+    })
     </script>
     
     

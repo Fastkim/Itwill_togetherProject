@@ -56,12 +56,11 @@ public class RecruitPost extends BaseTimeEntity {
     
     private final String postGroup="recruitPost";
     
-    public RecruitPost updateRecruitPost(String title, String content, String place, LocalDateTime meetingDate, 
+    public RecruitPost updateRecruitPost(String title, String content, String place, 
             Integer totalMember, String filePath, LocalDateTime closeDate) {
         this.title=title;
         this.content=content;
         this.place=place;
-        this.meetingDate=meetingDate;
         this.totalMember=totalMember;
         this.filePath=filePath;
         this.closeDate=closeDate;
@@ -69,6 +68,7 @@ public class RecruitPost extends BaseTimeEntity {
         return this;
     }
     
+    // joinMember이 null 일때 기본값을 0으로 설정
     @PrePersist
     public void prePersist() {
         this.joinMember = this.joinMember == null ? 0 : this.joinMember;

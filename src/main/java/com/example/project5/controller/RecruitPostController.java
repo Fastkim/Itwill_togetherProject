@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.RecruitPostCreateDto;
+import com.example.project5.dto.RecruitPostUpdateDto;
 import com.example.project5.service.RecruitPostService;
 
 import lombok.RequiredArgsConstructor;
@@ -47,7 +48,7 @@ public class RecruitPostController {
         
         attrs.addFlashAttribute("createId", entity.getId());
         
-        return "redirect:/";
+        return "redirect:/post/list";
     }
     
     @GetMapping({"/post/detail" , "/post/modify"})
@@ -67,7 +68,16 @@ public class RecruitPostController {
         
         attrs.addFlashAttribute("deletePostId" , postId);
         
-        return "redirect:/";
+        return "redirect:/post/list";
+    }
+    
+    @PostMapping("/post/update")
+    public String update(RecruitPostUpdateDto dto) {
+        log.info("update(dto={})" ,dto);
+        
+        Integer postId = recruitPostService.update(dto);
+        
+        return "redirect:/post/detail?id=" + dto.getId();
     }
     
      

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.RecruitPostCreateDto;
+import com.example.project5.dto.RecruitPostUpdateDto;
 import com.example.project5.repository.RecruitPostRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -45,5 +46,15 @@ public class RecruitPostService {
         recruitPosrRepository.deleteById(id);
         
         return id;
+    }
+
+    public Integer update(RecruitPostUpdateDto dto) {
+        log.info("update(dto={})", dto);
+        
+        RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
+        entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
+                dto.getTotalMember(), dto.getFilePath(), dto.getCloseDate());
+        
+        return entity.getId();
     }
 }
