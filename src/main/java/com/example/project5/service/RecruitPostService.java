@@ -41,6 +41,7 @@ public class RecruitPostService {
 
     public Integer delete(Integer id) {
         log.info("delete(id={})" , id);
+        
         recruitPosrRepository.deleteById(id);
         
         return id;

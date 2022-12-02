@@ -13,7 +13,7 @@ import lombok.Getter;
 
 @Getter
 @MappedSuperclass
-@EntityListeners(value = { AuditingEntityListener.class })
+@EntityListeners(value = {AuditingEntityListener.class}) 
 public class BaseTimeEntity {
     
     @CreatedDate

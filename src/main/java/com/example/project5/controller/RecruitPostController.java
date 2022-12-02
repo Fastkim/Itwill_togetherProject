@@ -51,7 +51,7 @@ public class RecruitPostController {
     }
     
     @GetMapping({"/post/detail" , "/post/modify"})
-    public void detail(Integer id, Model model) {
+    public void detail(Integer id, Model  model) {
         log.info("detail(id={})", id);
         
         RecruitPost post = recruitPostService.read(id);
