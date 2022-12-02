@@ -47,11 +47,13 @@ public class RecruitPostService {
         
         return id;
     }
-
+    
+    @Transactional
     public Integer update(RecruitPostUpdateDto dto) {
         log.info("update(dto={})", dto);
         
         RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
+        
         entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
                 dto.getTotalMember(), dto.getFilePath(), dto.getCloseDate());
         
