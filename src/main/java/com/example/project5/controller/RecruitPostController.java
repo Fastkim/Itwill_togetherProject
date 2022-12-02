@@ -2,6 +2,7 @@ package com.example.project5.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,9 @@ public class RecruitPostController {
     
     private final RecruitPostService recruitPostService;
     
-    @GetMapping("/")
+    @GetMapping("/post/list")
     public String list(Model model) {
-        log.info("list()");
+        log.info("list");
         
         List<RecruitPost> list = recruitPostService.read();
         model.addAttribute("list", list);
