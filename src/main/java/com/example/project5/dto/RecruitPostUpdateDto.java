@@ -18,6 +18,7 @@ public class RecruitPostUpdateDto {
     private String place;
     private Integer totalMember;
     private String filePath;
+    private String fileName;
     
     @DateTimeFormat(iso = ISO.DATE_TIME)
     private LocalDateTime closeDate;
@@ -25,8 +26,11 @@ public class RecruitPostUpdateDto {
 
     public RecruitPost toEntity() {
         return RecruitPost.builder()
-                .id(id).title(title).content(content).totalMember(totalMember).place(place).filePath(filePath).closeDate(closeDate)
-                .build();
+                .id(id).title(title).content(content).totalMember(totalMember).place(place)
+                .filePath(filePath).fileName(fileName)
+                .closeDate(closeDate).build();
     }
+
+
 
 }

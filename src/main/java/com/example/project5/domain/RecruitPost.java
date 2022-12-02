@@ -14,12 +14,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 @ToString
 @Entity(name = "RECRUITPOSTS")
 @SequenceGenerator(name="RECRUITPOSTS_SEQ_GEN", sequenceName = "RECRUITPOSTS_SEQ" ,allocationSize = 1)
@@ -51,18 +53,21 @@ public class RecruitPost extends BaseTimeEntity {
     
     private String filePath; // 업로드한 이미지 파일의 경로
     
+    private String fileName; // 파일 이름
+    
     @Column(nullable = false)
     private LocalDateTime closeDate; // 마감 날짜
     
     private final String postGroup="recruitPost";
     
     public RecruitPost updateRecruitPost(String title, String content, String place, 
-            Integer totalMember, String filePath, LocalDateTime closeDate) {
+            Integer totalMember, String filePath, String fileName,LocalDateTime closeDate) {
         this.title=title;
         this.content=content;
         this.place=place;
         this.totalMember=totalMember;
         this.filePath=filePath;
+        this.fileName = fileName;
         this.closeDate=closeDate;
          
         return this;

@@ -1,9 +1,13 @@
 package com.example.project5.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.RecruitPostCreateDto;
@@ -26,12 +30,26 @@ public class RecruitPostService {
         return recruitPosrRepository.findByOrderByIdDesc();
     }
     
-    public RecruitPost create(RecruitPostCreateDto dto) {
+    public RecruitPost create(RecruitPostCreateDto dto, MultipartFile file) throws Exception {
         log.info("create(dto={})", dto);
         
-        RecruitPost entity = recruitPosrRepository.save(dto.toEntity());
+//        RecruitPost entity = recruitPosrRepository.save(dto.toEntity());
+        RecruitPost entity = dto.toEntity();
         
-        return entity;
+        // 파일 저장 경로 설정 
+        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; 
+        
+        
+        UUID uuid = UUID.randomUUID();
+        // 파일 고유 이름 랜덤 생성
+        String fileName = uuid + "_" + file.getOriginalFilename();
+        File saveFile = new File(filePath ,fileName); // 파일 저장소
+        file.transferTo(saveFile); // throws Exception
+        
+        entity.setFileName(fileName);
+        entity.setFilePath("/img/" + fileName);
+        
+        return recruitPosrRepository.save(entity);
     }
     
     @Transactional(readOnly = true)
@@ -55,7 +73,7 @@ public class RecruitPostService {
         RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
         
         entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
-                dto.getTotalMember(), dto.getFilePath(), dto.getCloseDate());
+                dto.getTotalMember(), dto.getFilePath(), dto.getFileName(), dto.getCloseDate());
         
         return entity.getId();
     }
