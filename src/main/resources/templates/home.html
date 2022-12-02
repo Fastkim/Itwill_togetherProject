@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{ layout/layout }">
+    
+<div layout:fragment="content">
+    <div class="my-2">
+        <div class="card-header">
+            <h1>게시판 목록 페이지</h1>
+        </div> 
+        
+        <ul>
+            <li><a th:href="@{ /post/list }">모집 게시판</a></li>
+        </ul>
+        
+        <ul>
+            <li><a th:href="@{ /post/list }">무료 나눔 게시판</a></li>
+        </ul>
+        
+        <ul>
+            <li><a th:href="@{ /post/list }">지역 행사 게시판</a></li>
+        </ul>
+    </div>
+
+</div>
+    
+</html>
