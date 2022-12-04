@@ -20,13 +20,13 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
 		
 	// 내용검색
 	@Query(
-		"select r from RECRUITPOSTS r where lower(r.content) like lowr('%' || :content || '%') order by r.id desc"
+		"select r from RECRUITPOSTS r where lower(r.content) like lower('%' || :content || '%') order by r.id desc"
 			)
 	List<RecruitPost> searchByContent(@Param(value="content") String content);
 
 	// 작성자 검색
 	@Query(
-		"select r from RECRUITPOSTS r where lower(r.author) like lowr('%' || :author || '%') order by r.id desc"
+		"select r from RECRUITPOSTS r where lower(r.author) like lower('%' || :author || '%') order by r.id desc"
 			)
 	List<RecruitPost> searchByAuthor(@Param(value="author") String author);
 
