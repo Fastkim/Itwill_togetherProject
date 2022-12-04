@@ -45,10 +45,10 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/post/create")
-    public String create(RecruitPostCreateDto dto, RedirectAttributes attrs, @RequestParam("imgFile") MultipartFile poster ) throws Exception {
+    public String create(RecruitPostCreateDto dto, RedirectAttributes attrs, @RequestParam("imgFile") MultipartFile postImg ) throws Exception {
         log.info("create(dto={})" , dto);
         
-        RecruitPost entity = recruitPostService.create(dto, poster);
+        RecruitPost entity = recruitPostService.create(dto, postImg);
         
         attrs.addFlashAttribute("createId", entity.getId());
         
