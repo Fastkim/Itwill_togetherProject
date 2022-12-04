@@ -2,6 +2,7 @@ package com.example.project5.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -76,6 +77,27 @@ public class RecruitPostService {
                 dto.getTotalMember(), dto.getFilePath(), dto.getFileName(), dto.getCloseDate());
         
         return entity.getId();
+    }
+    
+    public List<RecruitPost> search(String type, String keyword) {
+        log.info("search(type={}, keyword={}", type, keyword);
+        
+        List<RecruitPost> list = new ArrayList<>();
+        switch(type) {
+        case "t":
+            list = recruitPosrRepository.searchByTitle(keyword);
+            break;
+        case "c":
+            list = recruitPosrRepository.searchByKeyword(keyword);
+            break;
+        case "tc":
+            list = recruitPosrRepository.searchByKeyword(keyword);
+            break;
+        case "a":
+            list = recruitPosrRepository.searchByAuthor(keyword);
+            break;
+        }
+        return list;
     }
 
 }

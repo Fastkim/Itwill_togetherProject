@@ -52,7 +52,7 @@ public class RecruitPostController {
         
         attrs.addFlashAttribute("createId", entity.getId());
         
-        return "redirect:/";
+        return "redirect:/post/list";
     }
     
     @PreAuthorize("hasRole('USER')")
@@ -75,6 +75,16 @@ public class RecruitPostController {
         attrs.addFlashAttribute("deletePostId" , postId);
         
         return "redirect:/";
+    }
+    
+    @GetMapping("/post/search")
+    public String search(String type, String keyword, Model model) {
+        log.info("search(type={}, keyword={}", type, keyword);
+        
+        List<RecruitPost> list = recruitPostService.search(type, keyword); 
+        model.addAttribute("list",list);
+        
+        return "/post/list";
     }
     
      

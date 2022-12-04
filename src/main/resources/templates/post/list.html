@@ -19,6 +19,7 @@
                         <th>번호</th>
                         <th>제목</th>
                         <th>총인원</th>
+                        <th>작성자</th>
                         <th>모임날짜</th>
                     </tr>
                 </thead>
@@ -29,13 +30,30 @@
                             th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
                             th:text="${post.title}"></a></td>
                         <td th:text="${post.totalMember}"></td>
-                        <td
-                            th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
-                            
+                        <td th:text="${post.author}"></td>
+                        <td th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <form th:action="@{ /post/search }">
+         <div class="row">
+             <div class="col-3">
+                 <select name="type" class="form-control">
+                     <option value="t">제목</option>
+                     <option value="c">내용</option>
+                     <option value="tc">제목+내용</option>
+                     <option value="a">작성자</option>
+                 </select>
+             </div>
+             <div class="col-7" >
+                 <input type="text" name="keyword" class="form-control" placeholder="검색어" required autofocus />
+             </div>
+             <div class="col-2" >
+                 <input type="submit" value="검색" class="btn btn-outline-info" />
+             </div>
+         </div>
+     </form>
 </div>
 </html>
