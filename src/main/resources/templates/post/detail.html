@@ -87,6 +87,7 @@
                     <!-- 버튼 위치 -->
                     <button class="btn btn-outline-danger" id="btnDelete">삭제</button>
                     <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
+                    <a class="btn btn-outline-primary" th:href="@{ /post/joinMeeting?id={id} (id = ${ post.id }) }">신청</a>
                 </div>
                 </div>
             </form>

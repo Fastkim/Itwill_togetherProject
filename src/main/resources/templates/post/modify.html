@@ -9,8 +9,12 @@
                 <div class="card m-4 row g-5">
                 <div class="select_img" style="width: 20rem;">
                     <img th:src="${post.filePath}" th:if="${post.filePath != null}" class="card-img-top card-img" name="imgFile"/>
+                    <input type="file" id="imgFileInput" name="imgFile" />
                 </div>
-                <input type="file" id="imgFile" name="imgFile" />
+                <div class="select_img_hidden">
+                    <img th:src="${post.filePath}" th:if="${post.filePath != null}" />
+                    <input type="hidden" name="hiddenImg" th:value="${post.filePath}"/>
+                </div>
                 <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
                     <div class="mb-3 row">
                         <label for="title"
@@ -122,9 +126,23 @@
             formModify.submit();
         }
     })
-
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 댓글 관련 자바스크립트 함수/코드들을 작성한 스크립트 파일 -->
+    <script>
+    $("#imgFileInput").change(function(){
+    	if(this.files && this.files[0]) {
+    		const reader = new FileReader;
+    		reader.onload = function(data) {
+    			$(".select_img_hidden").attr("src", data.target.result).width(500);
+    		}
+    		reader.readAsDataURL(this.files[0]);
+    	}
+    	
+    })
     
+    </script>
     
 
 </body>
