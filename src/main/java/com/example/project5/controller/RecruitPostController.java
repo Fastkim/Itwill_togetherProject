@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.project5.domain.RecruitPost;
@@ -44,10 +46,10 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/post/create")
-    public String create(RecruitPostCreateDto dto, RedirectAttributes attrs) throws IOException {
+    public String create(RecruitPostCreateDto dto, RedirectAttributes attrs, @RequestParam("imgFile") MultipartFile fileName) throws IOException {
         log.info("create(dto={})" , dto);
         
-        RecruitPost entity = recruitPostService.create(dto);
+        RecruitPost entity = recruitPostService.create(dto, fileName);
         
         attrs.addFlashAttribute("createId", entity.getId());
         

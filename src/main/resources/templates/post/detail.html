@@ -7,14 +7,13 @@
 <body>
     <div layout:fragment="content">
         <div class="m-4 row g-5">
-            <form id="formModify" method="post" style="margin-top: 4px;">
+            <form id="formModify" method="post" style="margin-top: 4px;" enctype="multipart/form-data">
                 <div class="card m-4 row g-5">
-                <div class="card" style="width: 15rem;">
-                <img th:src="\/static/images/${}\" 
-                 width="100px" height="100px" class="card-img-top card-img" name="imgFile" alt="..." />
-                </div>
                     <div class="my-2">
                     <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
+                <div class="card" style="width: 15rem;">
+                <img th:src="${post.filePath}" th:if="${post.filePath != null}" class="card-img-top card-img" name="imgFile" alt="..." />
+                </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="title"
