@@ -83,10 +83,12 @@
                 <div class="card my-2">
                     <h2>지도 들어갈 위치</h2>
                 </div>
-                <div class="my-2">
+                <div class="my-2" th:if="${ post.author } == ${ #authentication.name }" >
                     <!-- 버튼 위치 -->
                     <button class="btn btn-outline-danger" id="btnDelete">삭제</button>
                     <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
+                </div >
+                <div class="my-2" th:if="${ post.author } != ${ #authentication.name }">
                     <a class="btn btn-outline-primary" th:href="@{ /post/joinMeeting?id={id} (id = ${ post.id }) }">신청</a>
                 </div>
                 </div>
