@@ -21,57 +21,51 @@
     <header> </header>
 
     <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <div class="container-fluid">
-                <button class="btn btn-primary" id="sidebarToggle">Toggle
-                    Menu</button>
-                <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse"
-                    id="navbarSupportedContent">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand">
+            <img /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{ / }">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div >
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active"><a
-                            class="nav-link" th:href="@{ / }">Home</a></li>
-                        <!-- 로그인하지 않은 상태 -->
-                        <th:block sec:authorize="isAnonymous()">
-                            <li class="nav-item"><a
-                                class="nav-link"
-                                th:href="@{ /member/signup }">회원가입</a></li>
-                            <li class="nav-item"><a
-                                class="nav-link" th:href="@{ /login }">로그인</a></li>
-                        </th:block>
+                            <th:block sec:authorize="isAnonymous()">
+                                <li class="nav-item"><a class="nav-link" th:href="@{ /member/signup }">회원가입</a></li>
+                            </th:block>
+                            <th:block sec:authorize="isAnonymous()">
+                                <li class="nav-item"><a class="nav-link" th:href="@{ /login }">로그인</a></li>
+                            </th:block>
                         <!-- 로그인 상태 -->
-                        <th:block sec:authorize="isAuthenticated()">
-                            <li class="nav-item"><a
-                                class="nav-link" th:href="@{ /logout }">
-                                    <span class="text-info"
-                                    sec:authentication="name"></span>
-                                    로그아웃
-                            </a></li>
-                        </th:block>
-                        <li class="nav-item dropdown"><a
-                            class="nav-link dropdown-toggle"
-                            id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu dropdown-menu-end"
-                                aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#!">Action</a>
-                                <a class="dropdown-item" href="#!">Another
-                                    action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#!">Something
-                                    else here</a>
-                            </div></li>
-                    </ul>
-                </div>
+                            <th:block sec:authorize="isAuthenticated()">
+                                <li class="nav-item "><a
+                                    class="nav-link" th:href="@{ /logout }">
+                                        <span class="text-info"
+                                        sec:authentication="name"></span>
+                                        로그아웃
+                                </a></li>
+                            </th:block>
+                         </ul>
+                    </div>
+                </form>
             </div>
-        </nav>
+        </div>
+    </nav>
     </div>
     <!--/* 메인컨텐트 */-->
     <div>

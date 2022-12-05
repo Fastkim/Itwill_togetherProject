@@ -38,7 +38,7 @@ public class RecruitPostService {
         RecruitPost entity = dto.toEntity();
         
         // 파일 저장 경로 설정 
-        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\img"; 
+        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; 
         
         
         UUID uuid = UUID.randomUUID();
