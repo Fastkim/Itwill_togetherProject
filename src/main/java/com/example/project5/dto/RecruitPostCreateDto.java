@@ -1,9 +1,11 @@
 package com.example.project5.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project5.domain.RecruitPost;
 
@@ -24,6 +26,10 @@ public class RecruitPostCreateDto {
     private LocalDateTime closeDate;
 
     private Integer totalMember;
+    
+    // 파일 업로드 테스트
+    private MultipartFile attachFile;
+    private List<MultipartFile> imageFiles;
 
     public RecruitPost toEntity() {
         return RecruitPost.builder().title(title).content(content).author(author).place(place).meetingDate(meetingDate)

@@ -1,5 +1,6 @@
 package com.example.project5.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.project5.domain.RecruitPost;
@@ -45,10 +44,10 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/post/create")
-    public String create(RecruitPostCreateDto dto, RedirectAttributes attrs, @RequestParam("imgFile") MultipartFile postImg ) throws Exception {
+    public String create(RecruitPostCreateDto dto, RedirectAttributes attrs) throws IOException {
         log.info("create(dto={})" , dto);
         
-        RecruitPost entity = recruitPostService.create(dto, postImg);
+        RecruitPost entity = recruitPostService.create(dto);
         
         attrs.addFlashAttribute("createId", entity.getId());
         
@@ -86,7 +85,4 @@ public class RecruitPostController {
         
         return "/post/list";
     }
-    
-     
-
 }
