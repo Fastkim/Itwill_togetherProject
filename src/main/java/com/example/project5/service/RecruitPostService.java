@@ -31,6 +31,21 @@ public class RecruitPostService {
         return recruitPosrRepository.findByOrderByIdDesc();
     }
     
+    
+    @Transactional(readOnly = true)
+    public RecruitPost read(Integer id) {
+        log.info("read(id={})", id);
+        return recruitPosrRepository.findById(id).get();
+    }
+
+    public Integer delete(Integer id) {
+        log.info("delete(id={})" , id);
+        
+        recruitPosrRepository.deleteById(id);
+        
+        return id;
+    }
+    
     public RecruitPost create(RecruitPostCreateDto dto, MultipartFile file) throws IOException {
         log.info("create(dto={})", dto);
         
@@ -55,28 +70,17 @@ public class RecruitPostService {
         return recruitPosrRepository.save(entity);
     }
     
-    @Transactional(readOnly = true)
-    public RecruitPost read(Integer id) {
-        log.info("read(id={})", id);
-        return recruitPosrRepository.findById(id).get();
-    }
-
-    public Integer delete(Integer id) {
-        log.info("delete(id={})" , id);
-        
-        recruitPosrRepository.deleteById(id);
-        
-        return id;
-    }
-    
     @Transactional
-    public Integer update(RecruitPostUpdateDto dto) {
+    public Integer update(RecruitPostUpdateDto dto, MultipartFile file) throws Exception {
         log.info("update(dto={})", dto);
         
         RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
         
-        entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
-                dto.getTotalMember(), dto.getFilePath(), dto.getFileName(), dto.getCloseDate());
+        if (file.isEmpty()) {
+            entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
+                    dto.getTotalMember(), dto.getFilePath(), dto.getFileName(), dto.getCloseDate());
+        }
+        
         
         return entity.getId();
     }

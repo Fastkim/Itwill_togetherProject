@@ -10,8 +10,8 @@
             <form id="formModify" method="post" style="margin-top: 4px;" enctype="multipart/form-data">
                 <div class="card m-4 row g-5">
                     <div class="my-2">
-                    <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
-                <div class="card" style="width: 15rem;">
+                    <input id="id" name="id" class="form-control" type="hidden"/>
+                <div class="card" style="width: 20rem;">
                 <img th:src="${post.filePath}" th:if="${post.filePath != null}" class="card-img-top card-img" name="imgFile" alt="..." />
                 </div>
                     </div>
