@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec ="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{ layout/layout }">
 
@@ -92,20 +93,29 @@
                     <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
                 </div >
                 
+                
                 <!-- 신청 모달창 -->
                 <div class="my-2" th:if="${ post.author } != ${ #authentication.name }" >
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                신청
-                </button>
+                    <button type="button" id="btnJoin" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    신청
+                    </button>
                 </div>
-                        
-            <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="applyModalLabel">참가신청</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+                
+                <div class="my-2" th:if="${ post.author } != ${ #authentication.name }" >
+                    <button type="button" id="btnNoJoin" class="btn btn-outline-danger disabled"> 신청 취소 </button>
+                </div>
+                
+                
+                
+                <div id="showModal"></div>
+
+                <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="applyModalLabel">참가신청</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                   
                   <div class="modal-body row">
                   <!-- 신청글 제목 -->
@@ -138,7 +148,8 @@
         <!-- 메인 div 끝 -->
          
     </div>
-    <script layout:fragment="script">
+    <th:block layout:fragment="script">
+    <script>
     const formModify = document.querySelector('#formModify')
     
     const btnDelete = document.querySelector('#btnDelete')
@@ -151,7 +162,11 @@
             }
     });
     </script>
-    <script th:src="@{ /js/joinPost.js }"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script th:inline="javascript" >
+    const loginUser = [[ ${ #authentication.name } ]];
+    </script>
+        <script th:src="@{ /js/joinModal.js }"></script>
+    </th:block>
 </body>
 </html>

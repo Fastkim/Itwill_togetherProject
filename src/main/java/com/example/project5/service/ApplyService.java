@@ -1,5 +1,7 @@
 package com.example.project5.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.project5.domain.Apply;
@@ -41,6 +43,20 @@ public class ApplyService {
         applyrepository.deleteById(applyId);
         
         return applyId;
+    }
+        
+    
+    public String checkNickname(String nickname) {
+        log.info("checkUsername(nickname={})", nickname);
+
+        Optional<Apply> result = applyrepository.findByJoinNickname(nickname);
+        if (result.isPresent()) { // 일치한 닉네임이 있는 경우.
+            // 신청불가 
+            return "noJoin";
+        } else { 
+            // 신청가능 
+            return "join";
+        }
     }
     
 }

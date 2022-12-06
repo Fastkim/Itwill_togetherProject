@@ -3,10 +3,12 @@ package com.example.project5.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.project5.dto.ApplyJoinDto;
@@ -18,13 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/apply")
 public class ApplyController {
     
     private final ApplyService applyService;
     
     @PreAuthorize("hasRole('USER')")
-    @PostMapping
+    @PostMapping("/api/apply")
     public ResponseEntity<Integer> joinPostApply(@RequestBody ApplyJoinDto dto) {
         log.info("joinPostApply(dto={})", dto);
         
@@ -34,7 +35,7 @@ public class ApplyController {
     }
     
     @PreAuthorize("hasRole('USER')")
-    @DeleteMapping("/{applyId}")
+    @DeleteMapping("/api/apply/{applyId}")
     public ResponseEntity<Integer> deleteApply(@PathVariable Integer applyId){
         log.info("deleteApply(applyId={})", applyId);
         
@@ -43,5 +44,18 @@ public class ApplyController {
         return ResponseEntity.ok(result);
         
     }
+    
+    @GetMapping("/api/checkid")
+    @ResponseBody
+    // 컨트롤러 메서드가 리턴하는 값이 뷰의 이름이 아니라 클라이언트로 직접 전송되는 데이터인 경우
+    // ->Ajax 요청 처리에 대한 응답을 리턴할 때 사용.
+    public ResponseEntity<String> checkNickname(String nickname){
+        log.info("checkUsername(nickname={})", nickname);
+        
+        String result = applyService.checkNickname(nickname);
+        
+        return ResponseEntity.ok(result);
+    }
+    
 
 }
