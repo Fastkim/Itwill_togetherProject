@@ -60,7 +60,7 @@
                         <input type="number"
                             class="form-control-plaintext"
                             id="joinMember" name="joinMember"
-                            th:value="${post.joinMember}" readonly />
+                            th:value="${ post.joinMember }" readonly />
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -89,7 +89,6 @@
                 </div>
                 <div class="my-2" th:if="${ post.author } == ${ #authentication.name }" >
                     <!-- 버튼 위치 -->
-                    <button class="btn btn-outline-danger" id="btnDelete">삭제</button>
                     <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
                 </div >
                 
@@ -102,7 +101,7 @@
                 </div>
                 
                 <div class="my-2" th:if="${ post.author } != ${ #authentication.name }" >
-                    <button type="button" id="btnNoJoin" class="btn btn-outline-danger disabled"> 신청 취소 </button>
+                    <button type="button" id="btnNoJoin" class="btn btn-outline-danger">신청 취소</button>
                 </div>
                 
                 
@@ -149,19 +148,6 @@
          
     </div>
     <th:block layout:fragment="script">
-    <script>
-    const formModify = document.querySelector('#formModify')
-    
-    const btnDelete = document.querySelector('#btnDelete')
-    btnDelete.addEventListener('click' , function(){
-           const result = confirm('삭제하시겠습니까?');
-            if(result) {
-                formModify.action='/post/delete';
-                formModify.method='post';
-                formModify.submit();
-            }
-    });
-    </script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             <script th:inline="javascript" >
     const loginUser = [[ ${ #authentication.name } ]];

@@ -51,6 +51,7 @@ public class RecruitPost extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer totalMember; // 총 인원 수
     
+//    @Column(columnDefinition = "number(20) default '0'", nullable = false)
     private Integer joinMember; // 현재 인원 수
     
     private String filePath; // 업로드한 이미지 파일의 경로

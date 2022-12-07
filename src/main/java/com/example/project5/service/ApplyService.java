@@ -37,12 +37,12 @@ public class ApplyService {
     }
     
     // 신청 삭제
-    public Integer delete(Integer applyId) {
-        log.info("delete(applyId={})", applyId);
+    public int delete(String joinNickname, Integer recruitPostId) {
+        log.info("delete(joinNickname={}, recruitPostId={})", joinNickname, recruitPostId);
         
-        applyrepository.deleteById(applyId);
+        int result = applyrepository.deleteByjoinNickname(joinNickname, recruitPostId);
         
-        return applyId;
+        return result;
     }
         
     
