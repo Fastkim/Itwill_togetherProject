@@ -99,7 +99,7 @@
                     신청
                     </button>
                 </div>
-                
+                <button type="button" class="btnJoinButton btn-outline-primary">신청하기</button>
                 <div class="my-2" th:if="${ post.author } != ${ #authentication.name }" >
                     <button type="button" id="btnNoJoin" class="btn btn-outline-danger">신청 취소</button>
                 </div>
@@ -153,6 +153,8 @@
     const loginUser = [[ ${ #authentication.name } ]];
     </script>
         <script th:src="@{ /js/joinModal.js }"></script>
+        </script>
+    <script th:src="@{ /js/joinCount.js }"></script>
     </th:block>
 </body>
 </html>

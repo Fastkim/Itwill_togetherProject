@@ -76,6 +76,11 @@ public class RecruitPost extends BaseTimeEntity {
         return this;
     }
     
+    public RecruitPost updateCount(Integer joinMember) {
+        this.joinMember = joinMember;
+        return this;
+    }
+    
     // joinMember이 null 일때 기본값을 0으로 설정
     @PrePersist
     public void prePersist() {

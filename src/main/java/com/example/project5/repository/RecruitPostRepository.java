@@ -37,5 +37,6 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
             + " or lower(r.content) like lower('%' || :keyword || '%') order by r.id desc"
             )
     List<RecruitPost> searchByKeyword(@Param(value = "keyword") String keyword);
-	
+    
+    
 }

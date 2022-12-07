@@ -3,16 +3,22 @@ package com.example.project5.controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.project5.domain.RecruitPost;
+import com.example.project5.dto.CountJoinMemberDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
 import com.example.project5.service.RecruitPostService;
@@ -97,4 +103,5 @@ public class RecruitPostController {
         
         return "/post/list";
     }
+    
 }

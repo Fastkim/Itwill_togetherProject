@@ -22,4 +22,8 @@ public interface ApplyRepository extends JpaRepository<Apply, Integer>{
             "delete from APPLY a where a.joinNickname = :joinNickname and a.recruitPost.id = :recruitPostId"
             )
     int deleteByjoinNickname(@Param(value="joinNickname") String joinNickname, @Param(value="recruitPostId") Integer recruitPostId);
+
+    
+    Integer countByid(@Param(value = "recruitPostId") Integer recruitPostId);
+    
 }

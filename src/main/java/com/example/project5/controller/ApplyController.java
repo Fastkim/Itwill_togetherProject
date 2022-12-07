@@ -47,6 +47,8 @@ public class ApplyController {
         
     }
     
+    
+    
 //    @GetMapping("/api/checkid")
 //    @ResponseBody
 //    // 컨트롤러 메서드가 리턴하는 값이 뷰의 이름이 아니라 클라이언트로 직접 전송되는 데이터인 경우

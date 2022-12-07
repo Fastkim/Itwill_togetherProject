@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(response => {
         console.log(response);
         alert('신청완료! 신청 내용은 마이페이지에서 확인 가능합니다.');
-        countJoinmember()
+        countPlusNumber()
     })
     .catch(error => {
         console.log(error)
@@ -57,6 +57,28 @@ window.addEventListener('DOMContentLoaded', () => {
         
         
     }
+    
+    // 참여중인 인원
+    const joinMember = document.querySelector('#joinMember').value;
+    
+    // 제한 인원
+    const totalMember = document.querySelector('#totalMember').value;
+    function countPlusNumber(){
+        
+        if(joinMember < totalMember ) {
+            axios
+            .put('/post/countMember' + postId)
+            .then(response =>{
+               console.log(response + '증가') 
+            })
+            .catch(err => {console.log(err)})
+        }
+        
+        
+        
+        
+        
+    }
 
 /*
     const btnNoJoin = document.querySelector('#btnNoJoin');
@@ -72,14 +94,6 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {console.log(err)})
             }
-        
-        
-
-    function countJoinmember(){
-        // 현재인원수
-        const joinmember = document.querySelector('#joinMember');
-        
-    }
 
     function showModal(data) {
         const divApply = document.querySelector('#showModal');
