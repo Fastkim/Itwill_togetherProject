@@ -59,6 +59,12 @@ public class RecruitPost extends BaseTimeEntity {
     
     private String fileName; // 파일 이름
     
+    @Column(nullable = true) // 위도 정보
+    private double lat;
+    
+    @Column(nullable = true) // 경도 정보
+	private double lng;
+    
     @Column(nullable = false)
     private LocalDateTime closeDate; // 마감 날짜
     
