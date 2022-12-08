@@ -1,4 +1,4 @@
-package com.example.project5.web.controller;//전 컨트롤러 패키지 이름에 web.controller라고 붙였어요!! 참고하세유~!
+package com.example.project5.controller;//전 컨트롤러 패키지 이름에 web.controller라고 붙였어요!! 참고하세유~!
 
 import java.util.List;
 
