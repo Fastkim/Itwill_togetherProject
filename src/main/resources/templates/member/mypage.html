@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{ layout/layout.html }">
+    
+    <body>
+        <div layout:fragment="content">
+            <h1>마이페이지</h1>
+            
+            <div class="card-body">
+            <input type="text" class="form-control" id="host" name="host" 
+                        th:value="${ #authentication.name }" readonly />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>총인원</th>
+                        <th>작성자</th>
+                        <th>모임날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="post : ${ recruitPostList }">
+                        <td th:text="${post.id}"></td>
+                        <td><a
+                            th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
+                            th:text="${post.title}"></a></td>
+                        <td th:text="${post.totalMember}"></td>
+                        <td th:text="${post.author}"></td>
+                        <td th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <div class="card-body">
+                <ul>
+                    <li class="nav-item active">
+                        <a th:href="@{ /member/update }">개인정보 변경</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    
+</html>

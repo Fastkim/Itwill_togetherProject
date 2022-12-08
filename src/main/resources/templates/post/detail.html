@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec ="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{ layout/layout }">
 
@@ -11,11 +10,8 @@
             <form id="formModify" method="post" style="margin-top: 4px;" enctype="multipart/form-data">
                 <div class="card m-4 row g-5">
                     <div class="my-2">
-                    <!-- 포스트 아이디 hidden으로 숨김 -->
                     <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
-                    
-                    <!-- 이미지가 들어가는 부분 -->
-                <div class="card" style="width: 20rem;">
+                <div class="card" style="width: 15rem;">
                 <img th:src="${post.filePath}" th:if="${post.filePath != null}" class="card-img-top card-img" name="imgFile" alt="..." />
                 </div>
                     </div>
@@ -46,6 +42,7 @@
                 </div>
 
             <!-- 지도폼 -->
+            
             <div class="card m-4 row g-5">
                 <div class="mb-3 my-2 row">
                     <label for="totalMember"
@@ -55,13 +52,14 @@
                             id="totalMember" name="totalMember" th:value="${post.totalMember}" readonly/>
                     </div>
                     <label for="joinMember"
-                        class="col-sm-2 col-form-label">현재인원</label>
+                        class="col-sm-2 col-form-label">모집인원</label>
                     <div class="col-sm-4">
                         <input type="number"
                             class="form-control-plaintext"
-                            id="joinMember" name="joinMember"
-                            th:value="${ post.joinMember }" readonly />
+                            id="joinMember" name="tjoinMember"
+                            th:value="${post.joinMember}" readonly />
                     </div>
+                </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="meetingDate"
@@ -87,21 +85,24 @@
                 <div class="card my-2">
                     <h2>지도 들어갈 위치</h2>
                 </div>
-                <div class="my-2" th:if="${ post.author } == ${ #authentication.name }" >
+                <div class="my-2">
                     <!-- 버튼 위치 -->
+                    <button class="btn btn-outline-danger" id="btnDelete">삭제</button>
                     <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
-                </div >
-                
+                </div>
                 
                 <!-- 신청 모달창 -->
-                <div class="my-2" id="ok" th:if="${ post.author } != ${ #authentication.name }" >
-                    <button type="button" id="btnJoin" class="btn btn-outline-primary  " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <div class="my-2" th:if="${ post.author } != ${ #authentication.name }" >
+                    <button type="button" id="btnJoin" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     신청
                     </button>
                 </div>
-                <div class="my-2" id="nok" th:if="${ post.author } != ${ #authentication.name }" >
-                    <button type="button" id="btnNoJoin" class="btn btn-outline-danger  ">신청 취소</button>
+                <button type="button" class="btnJoinButton btn-outline-primary">신청하기</button>
+                <div class="my-2" th:if="${ post.author } != ${ #authentication.name }" >
+                    <button type="button" id="btnNoJoin" class="btn btn-outline-danger">신청 취소</button>
                 </div>
+                
+                
                 
                 <div id="showModal"></div>
 
@@ -135,21 +136,78 @@
                     <button type="button" class="btn btn-primary" id="btnApplyJoin">신청하기</button>
                   </div>
                 </div>
-              </div>
-            </div>
-            <!-- 모달 끝 -->
+                </div>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
         <!-- 메인 div 끝 -->
+        
+        <hr/>
+        <div class="card my-4">
+            <div class="card-header">
+                <div class="col-4">
+                    <!-- 로그인 아이디로 댓글 작성자 아이디를 자동 삽입. readonly -->
+                    <input type="text" class="form-control" id="writer" 
+                        th:value="${ #authentication.name }" readonly />
+                </div>
+            </div>
+            <div class="card-body row">
+                <div class="col-10">
+                    <textarea class="form-control" id="replyText" placeholder="댓글 작성"></textarea>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-outline-secondary" id="btnReplyRegister">등록</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 댓글 리스트 영역 -->
+        <hr/>
+        <div id="replies"></div>
+
+        <!-- 댓글 수정/삭제 Modal -->
+        <div class="modal fade" id="replyModal" tabindex="-1"
+            aria-labelledby="replyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="replyModalLabel">댓글 수정</h1>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 댓글 아이디 삽입 위치 -->
+                        <input type="hidden" id="modalReplyId" readonly />
+                        <!-- 댓글 내용 삽입 위치 -->
+                        <textarea id="modalReplyText" class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">취소</button>
+                        <button type="button" id="modalBtnDelete"
+                            class="btn btn-outline-danger">삭제</button>
+                        <button type="button" id="modalBtnUpdate"
+                            class="btn btn-outline-success">수정 완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
          
     </div>
+    
+     
     <th:block layout:fragment="script">
+        <!-- Ajax를 사용하기 위한 axios 자바스크립트 라이브러리 추가 -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-            <script th:inline="javascript" >
-    const loginUser = [[ ${ #authentication.name } ]];
-    </script>
-        <script th:src="@{ /js/joinModal.js }"></script>
+        <script th:inline="javascript">
+            // 타임리프 inline 기능을 이용하면 자바스크립트 안에서 타입리프 속성을 이용할 수 있음.
+            // 로그인 사용자 아이디를 자바스크립트 변수에 저장.
+            const loginUser = [[ ${ #authentication.name } ]];
+        </script>
+        <!-- 댓글 관련 자바스크립트 함수/코드들을 작성한 스크립트 파일 -->
+        <script th:src="@{ /js/recruitPostReply.js }"></script>
     </th:block>
+   
+    
 </body>
 </html>
