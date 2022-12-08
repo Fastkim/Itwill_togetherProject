@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
+import com.example.project5.service.ApplyService;
 import com.example.project5.service.RecruitPostService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RecruitPostController {
     
     private final RecruitPostService recruitPostService;
+    private final ApplyService applyService;
     
     @GetMapping("/post/list")
     public String list(Model model) {
@@ -64,6 +66,7 @@ public class RecruitPostController {
         
         RecruitPost post = recruitPostService.read(id);
         
+        
         model.addAttribute("post", post);
         
     }
@@ -74,6 +77,7 @@ public class RecruitPostController {
         log.info("delete(id={})" , id);
         
         Integer postId = recruitPostService.delete(id);
+        
         
         attrs.addFlashAttribute("deletePostId" , postId);
         

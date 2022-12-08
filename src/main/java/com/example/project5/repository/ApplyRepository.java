@@ -13,7 +13,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.project5.domain.Apply;
 
 public interface ApplyRepository extends JpaRepository<Apply, Integer> {
-
+    
     Optional<Apply> findByJoinNicknameAndRecruitPostId(@Param(value = "joinNickname") String joinNickname , @Param(value = "recruitPostId") Integer recruitPostId); 
 
     @Transactional
@@ -21,6 +21,8 @@ public interface ApplyRepository extends JpaRepository<Apply, Integer> {
     @Query("delete from APPLY a where a.joinNickname = :joinNickname and a.recruitPost.id = :recruitPostId")
     int deleteByjoinNickname(@Param(value = "joinNickname") String joinNickname,
             @Param(value = "recruitPostId") Integer recruitPostId);
+    
+
     
     
 }

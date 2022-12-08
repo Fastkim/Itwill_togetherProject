@@ -38,5 +38,9 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
             )
     List<RecruitPost> searchByKeyword(@Param(value = "keyword") String keyword);
     
+    @Query("select r, count(a.id) from RECRUITPOSTS r left join APPLY a on r.id = a.recruitPost.id " 
+            + "where r.id = :id group by r")
+    List<RecruitPost> countMember(@Param(value = "id") String Id);
+    
     
 }

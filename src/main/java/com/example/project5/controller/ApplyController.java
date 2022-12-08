@@ -48,6 +48,7 @@ public class ApplyController {
     
     
     
+    
 //    @GetMapping("/api/checkid")
 //    @ResponseBody
 //    public ResponseEntity<String> checkJoinNickname(String joinNickname) {

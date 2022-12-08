@@ -3,9 +3,8 @@ package com.example.project5.dto;
 import lombok.Data;
 
 @Data
-public class CountIdDto {
+public class countMemberDto {
     
-    private Integer countJoinId;
     
 
 }

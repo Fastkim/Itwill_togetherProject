@@ -1,6 +1,5 @@
 package com.example.project5.service;
 
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -33,10 +32,10 @@ public class ApplyService {
         // 테이블에 저장
         applyrepository.save(apply);
         
-        
         return apply.getId();
     }
     
+
     // 신청 삭제
     public int delete(String joinNickname, Integer recruitPostId) {
         log.info("delete(joinNickname={}, recruitPostId={})", joinNickname, recruitPostId);
@@ -46,10 +45,8 @@ public class ApplyService {
         return result;
     }
 
-    private boolean checkMember(String joinNickname, Integer RecruitPostId) {
-        return applyrepository.findByJoinNicknameAndRecruitPostId(joinNickname, RecruitPostId).isPresent();
-    }
     
+
     
 //    public String checkJoinNickname(String joinNickname) {
 //        log.info("checkJoinNickname(joinNickname={})",joinNickname);
