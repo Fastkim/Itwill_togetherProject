@@ -7,7 +7,7 @@
         <div>
             <form method="post" style="margin-top: 4px;" enctype="multipart/form-data">
                 <div class="card m-4 row g-5">
-                <input type="file" id="imgFile" name="imgFile" />
+                	<input type="file" id="imgFile" name="imgFile" />
                     <div class="mb-3 row">
                         <label for="title"
                             class="col-sm-2 col-form-label">제목</label>
@@ -26,17 +26,17 @@
                         </div>
                     </div>
                 </div>
-            <!-- content 모집내용 시작 -->
-            <div class="card m-4 g-5">
-                <label for="content" class="form-label mt-5 m-3">모집내용</label>
+	            <!-- content 모집내용 시작 -->
+	            <div class="card m-4 g-5">
+                	<label for="content" class="form-label mt-5 m-3">모집내용</label>
                     <div class="mx-4 mb-2">
                         <textarea id="content" name="content"
                             class="form-control" rows="20"></textarea>
                     </div>
                 </div>
 
-            <!-- 지도폼 -->
-            <div class="card m-4 row g-5">
+            	<!-- 지도폼 -->
+            	<div class="card m-4 row g-5">
                     <div>
                         <div class="mb-3 row">
                             <label for="totalMember"
@@ -50,37 +50,95 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                    <label for="meetingDate"
-                        class="col-sm-2 col-form-label">모임기간</label>
-                    <div class="col-sm-4">
-                        <input type="datetime-local" class="form-control"
-                            id="meetingDate" name="meetingDate" required />
-                    </div> 
-                    <label for="closeDate"
-                        class="col-sm-2 col-form-label">신청마감</label>
-                    <div class="col-sm-4">
-                        <input type="datetime-local" class="form-control"
-                            id="closeDate" name="closeDate" required />
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="place" class="col-sm-2 col-form-label">장소</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"
-                            id="place" name="place">
-                    </div>
-                </div>
-                <div class="card my-2">
-                    <h1>지도 들어갈 위치</h1>
-                </div>
-                <div class="my-2">
-                    <input type="submit" value="작성 완료"
-                        class="form-control btn btn-outline-primary" />
-                </div>
+	                    <label for="meetingDate"
+	                        class="col-sm-2 col-form-label">모임기간</label>
+	                    <div class="col-sm-4">
+	                        <input type="datetime-local" class="form-control"
+	                            id="meetingDate" name="meetingDate" required />
+	                    </div> 
+	                    <label for="closeDate"
+	                        class="col-sm-2 col-form-label">신청마감</label>
+	                    <div class="col-sm-4">
+	                        <input type="datetime-local" class="form-control"
+	                            id="closeDate" name="closeDate" required />
+	                    </div>
+                	</div>
+                	<div class="mb-3 row">
+                		<div class="" style="margin-top: 4px;">
+							<input class="col-sm-6" type="text" name="place" id="place" placeholder="주소" value="" readonly>
+							<input type="number" name="Lat" id="lat" placeholder="위도" step="0.000000000000001" style="display:none">
+							<input type="number" name="Lng" id="lng" placeholder="경도" step="0.000000000000001" style="display:none">
+							<input type="button" onclick="execDaumPostcode()" value="주소 검색">
+							<input type="button" id="button1" onclick="button1_click();" value="주소 등록!" />
+							<div id="map" style="width:60%;height:300px;margin-top:10px;display:none"></div>
+						</div>
+                	</div>
+	                <div class="my-2">
+	                    <input type="submit" value="작성 완료"
+	                        class="form-control btn btn-outline-primary" />
+	                </div>
                 </div>
             </form>
         </div>
         <!-- 메인 div 끝 -->
+        
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c08ea52751749a649dc57946541b0336&libraries=services">
+		</script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script>
+			function execDaumPostcode() {
+				new daum.Postcode({ oncomplete : function(data) {
+						var roadAddr = data.roadAddress;
+						document.getElementById("place").value = roadAddr;
+					}
+				}).open();
+			}
+		</script>
+		<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+			mapOption = {
+				center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+				level : 5 // 지도의 확대 레벨
+			};
+	
+			//지도를 미리 생성
+			var map = new daum.maps.Map(mapContainer, mapOption);
+			//주소-좌표 변환 객체를 생성
+			var geocoder = new daum.maps.services.Geocoder();
+			//마커를 미리 생성
+			var marker = new daum.maps.Marker({
+				position : new daum.maps.LatLng(37.537187, 127.005476),
+				map : map
+			});
+			var lat = 0;
+			var lng = 0;
+			
+			function button1_click() {
+				const place = document.getElementById('place').value;
+				console.log('place' + place);
+				// 주소로 상세 정보를 검색
+				geocoder.addressSearch(place, function(result, status) {
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					console.log('coords' + coords);
+					
+					// 지도를 보여준다.
+					mapContainer.style.display = "block";
+					map.relayout();
+					// 지도 중심을 변경한다.
+					map.setCenter(coords);
+					// 마커를 결과값으로 받은 위치로 옮긴다.
+					marker.setPosition(coords)
+	
+					lat = coords.getLat();
+					lng = coords.getLng();
+					console.log('lat : ' + lat,	'lng : ' + lng);
+					document.getElementById("lat").value = lat;
+					document.getElementById("lng").value = lng;
+				});
+			}
+		</script>
     </div>
 
 </body>
