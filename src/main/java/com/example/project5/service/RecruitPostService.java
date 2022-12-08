@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.project5.domain.Apply;
+import com.example.project5.domain.CountMember;
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.CountMemberDto;
+import com.example.project5.dto.JoinmemberCountDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
+import com.example.project5.repository.ApplyRepository;
+import com.example.project5.repository.CountMemberRepository;
 import com.example.project5.repository.RecruitPostRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 public class RecruitPostService {
 
     private final RecruitPostRepository recruitPosrRepository;
+    private final ApplyRepository applyRepository;
+    private final CountMemberRepository countMemberRepository;
     
     @Transactional(readOnly = true)
     public List<RecruitPost> read(){
@@ -39,10 +46,9 @@ public class RecruitPostService {
     }
     
     @Transactional(readOnly = true)
-    public RecruitPost read(Integer id, CountMemberDto dto) {
+    public RecruitPost read(Integer id) {
         log.info("read(id={})", id);
         
-        recruitPosrRepository.countMember(id);
         return recruitPosrRepository.findById(id).get();
     }
 
@@ -114,5 +120,19 @@ public class RecruitPostService {
         return list;
     }
 
+    public void plusJoinmember(JoinmemberCountDto dto) {
+    	log.info("plusJoinmember(dto={}) ", dto);
+    	
+    	RecruitPost recruitPost = recruitPosrRepository.findById(dto.getPostId()).get();
+    	
+    	Apply applymember = applyRepository.findById(dto.getJoinNickname()).get();
+    	
+    	CountMember entity = CountMember.builder().recruitPost(recruitPost).apply(applymember).build();
+    	log.info("entity={}", entity);
+    	
+    	countMemberRepository.save(entity);
+    	
+    	recruitPost.plusJoinMember(recruitPost.getJoinMember()+1); // joinMember 1증가
+    }
     
 }

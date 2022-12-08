@@ -9,14 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.project5.domain.RecruitPost;
-import com.example.project5.dto.CountMemberDto;
+import com.example.project5.dto.JoinmemberCountDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
-import com.example.project5.service.ApplyService;
 import com.example.project5.service.RecruitPostService;
 
 import lombok.RequiredArgsConstructor;
@@ -61,12 +61,11 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @GetMapping({"/post/detail" , "/post/modify"})
-    public void detail(Integer id, Model  model, CountMemberDto dto) {
+    public void detail(Integer id, Model  model ) {
         log.info("detail(id={})", id);
         
-        RecruitPost post = recruitPostService.read(id, dto);
+        RecruitPost post = recruitPostService.read(id);
         
-        model.addAttribute(recruitPostService);
         model.addAttribute("post", post);
         
     }
@@ -89,6 +88,7 @@ public class RecruitPostController {
         
         
         Integer postId = recruitPostService.update(dto, fileName);
+        log.info("postId={}",postId);
         
         return "redirect:/post/detail?id=" + dto.getId();
     }
@@ -109,6 +109,14 @@ public class RecruitPostController {
     	
     	List<RecruitPost> list = recruitPostService.read();
     	model.addAttribute("list",list);
+    }
+    
+    @GetMapping("/post/plusMember")
+    @ResponseBody
+    public void plusMember(JoinmemberCountDto dto) {
+    	log.info("plusMember(dto={})", dto);
+    	
+    	recruitPostService.plusJoinmember(dto);
     }
     
 }

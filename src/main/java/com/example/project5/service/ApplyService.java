@@ -31,6 +31,7 @@ public class ApplyService {
         
         // 테이블에 저장
         applyrepository.save(apply);
+        recruitPost.plusJoinMember(recruitPost.getJoinMember()+1);
         
         return apply.getId();
     }

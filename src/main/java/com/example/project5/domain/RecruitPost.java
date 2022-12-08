@@ -87,6 +87,12 @@ public class RecruitPost extends BaseTimeEntity {
     public void prePersist() {
         this.joinMember = this.joinMember == null ? 0 : this.joinMember;
     }
+    
+    public RecruitPost plusJoinMember(Integer joinMember) {
+    	this.joinMember = joinMember;
+    	return this;
+    }
+    
 
 
 }
