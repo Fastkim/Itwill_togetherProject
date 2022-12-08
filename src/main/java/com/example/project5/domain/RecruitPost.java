@@ -88,4 +88,5 @@ public class RecruitPost extends BaseTimeEntity {
         this.joinMember = this.joinMember == null ? 0 : this.joinMember;
     }
 
+
 }

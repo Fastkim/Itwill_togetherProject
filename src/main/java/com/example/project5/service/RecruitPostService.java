@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project5.domain.RecruitPost;
-import com.example.project5.dto.CountJoinMemberDto;
+import com.example.project5.dto.CountIdDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
 import com.example.project5.repository.RecruitPostRepository;

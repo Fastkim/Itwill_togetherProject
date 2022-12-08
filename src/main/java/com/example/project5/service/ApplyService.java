@@ -1,5 +1,7 @@
 package com.example.project5.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.project5.domain.Apply;
@@ -31,6 +33,7 @@ public class ApplyService {
         // 테이블에 저장
         applyrepository.save(apply);
         
+        
         return apply.getId();
     }
     
@@ -42,20 +45,21 @@ public class ApplyService {
         
         return result;
     }
-        
+
+    private boolean checkMember(String joinNickname, Integer RecruitPostId) {
+        return applyrepository.findByJoinNicknameAndRecruitPostId(joinNickname, RecruitPostId).isPresent();
+    }
     
-//    
-//    public String checkNickname(String nickname) {
-//        log.info("checkUsername(nickname={})", nickname);
-//
-//        Optional<Apply> result = applyrepository.findByJoinNickname(nickname);
-//        if (result.isPresent()) { // 일치한 닉네임이 있는 경우.
-//            // 신청불가 
-//            return "noJoin";
-//        } else { 
-//            // 신청가능 
-//            return "join";
+    
+//    public String checkJoinNickname(String joinNickname) {
+//        log.info("checkJoinNickname(joinNickname={})",joinNickname);
+//        
+//        Optional<Apply> result = applyrepository.findByJoinNickname(joinNickname);
+//        if(result.isPresent()) {
+//            return "nok";
+//        } else {
+//            return "ok";
 //        }
-//    }
+
     
 }

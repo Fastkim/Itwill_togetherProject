@@ -22,12 +22,13 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const data = { postId: postId,
         joinNickname: joinNickname };
-    
+    if (joinNickname != loginUser) {
+        
+    }
     axios.post('/api/apply', data)
     .then(response => {
-        console.log(response);
+        console.log(response, data);
         alert('신청완료! 신청 내용은 마이페이지에서 확인 가능합니다.');
-        countPlusNumber()
     })
     .catch(error => {
         console.log(error)
@@ -57,56 +58,26 @@ window.addEventListener('DOMContentLoaded', () => {
         
         
     }
+    const btnOk = document.querySelector('#ok');
+    const btnNok = document.querySelector('#nok');
+    const joinNicknameInput = document.querySelector('#joinNickname'); 
     
-    // 참여중인 인원
-    const joinMember = document.querySelector('#joinMember').value;
-    
-    // 제한 인원
-    const totalMember = document.querySelector('#totalMember').value;
-    function countPlusNumber(){
-        
-        if(joinMember < totalMember ) {
-            axios
-            .put('/post/countMember' + postId)
-            .then(response =>{
-               console.log(response + '증가') 
-            })
-            .catch(err => {console.log(err)})
-        }
-        
-        
-        
-        
-        
-    }
-
-/*
-    const btnNoJoin = document.querySelector('#btnNoJoin');
-    btnNoJoin.addEventListener('change' ,showDeleteBtn);
-    
-        const joinmember = document.querySelector('#joinNickname').value;
-    function showDeleteBtn(joinmember){
-        axios.get('/api/checkid?joinmember=' + joinmember )
-        .then(response => {
-            if( joinmember == 'join') {
-                btnNoJoin.classList.remove('disabled');
-            }
-        })
+    joinNicknameInput.addEventListener('load', function(){
+    const joinNickname = joinNicknameInput.value; 
+    console.log(joinNickname);
+        axios.get('/api/checkid?joinNickname=' + joinNickname)
+        .then(response => displayCheckResult(response.data))
         .catch(err => {console.log(err)})
-            }
-
-    function showModal(data) {
-        const divApply = document.querySelector('#showModal');
-        
-        let str = ''; 
-            if(data.joinNickname == loginUser) {
-            str += '<div>'
-                + '<button type="button" class="btnJoinButton btn-outline-primary">신청하기</button>'
-                +'</div>'
-            }
-        divApply.innerHTML = str;
-    }
+    });
     
-    */
+    function displayCheckResult(data){
+        if(data.joinNickname == 'ok') { // 신청이력 없음
+            btnOk.classList.remove('disabled');
+            btnNok.classList.add('disabled');
+        } else { // 신청이력이 있음.
+            btnOk.classList.add('disabled');
+            btnNok.classList.remove('disabled');
+        }
+    }
     
 });

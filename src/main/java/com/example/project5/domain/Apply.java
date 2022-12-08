@@ -37,9 +37,5 @@ public class Apply extends BaseTimeEntity{
     // 다대일관계, 신청이 들어갈 달릴 포스트 Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
     private RecruitPost recruitPost;
-    
-    //테스트용
-    @Formula("(select count(1) from APPLY a where a.recruitPostId = recruitPostId)")
-    private Integer countMember;
 
 }
