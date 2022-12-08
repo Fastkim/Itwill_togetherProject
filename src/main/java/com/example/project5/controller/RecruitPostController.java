@@ -99,4 +99,12 @@ public class RecruitPostController {
         return "/post/list";
     }
     
+    @GetMapping("/map/main")
+    public void mapAddress(Model model) {
+    
+    	
+    	List<RecruitPost> list = recruitPostService.read();
+    	model.addAttribute("list",list);
+    }
+    
 }
