@@ -1,7 +1,5 @@
 package com.example.project5.service;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.example.project5.domain.Apply;

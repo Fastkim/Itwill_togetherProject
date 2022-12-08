@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.Formula;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
