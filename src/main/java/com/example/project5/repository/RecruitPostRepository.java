@@ -12,6 +12,8 @@ import com.example.project5.domain.RecruitPost;
 public interface RecruitPostRepository extends JpaRepository<RecruitPost, Integer> {
 
 	List<RecruitPost> findByOrderByIdDesc();
+	
+	List<RecruitPost> findByAuthorOrderByIdDesc(String author);
 
 	// 제목검색
 	@Query(
