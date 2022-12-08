@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.project5.domain.RecruitPost;
+import com.example.project5.dto.CountMemberDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
 import com.example.project5.service.ApplyService;
@@ -27,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 public class RecruitPostController {
     
     private final RecruitPostService recruitPostService;
-    private final ApplyService applyService;
     
     @GetMapping("/post/list")
     public String list(Model model) {
@@ -61,12 +61,12 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @GetMapping({"/post/detail" , "/post/modify"})
-    public void detail(Integer id, Model  model) {
+    public void detail(Integer id, Model  model, CountMemberDto dto) {
         log.info("detail(id={})", id);
         
-        RecruitPost post = recruitPostService.read(id);
+        RecruitPost post = recruitPostService.read(id, dto);
         
-        
+        model.addAttribute(recruitPostService);
         model.addAttribute("post", post);
         
     }
