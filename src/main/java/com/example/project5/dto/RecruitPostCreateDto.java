@@ -24,10 +24,13 @@ public class RecruitPostCreateDto {
     private LocalDateTime closeDate;
 
     private Integer totalMember;
+    
+    private double lat;
+    private double lng;
 
     public RecruitPost toEntity() {
         return RecruitPost.builder().title(title).content(content).author(author).place(place).meetingDate(meetingDate)
-                .totalMember(totalMember).closeDate(closeDate).build();
+                .lat(lat).lng(lng).totalMember(totalMember).closeDate(closeDate).build();
     }
 
 }
