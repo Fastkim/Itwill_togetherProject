@@ -32,6 +32,11 @@ public class RecruitPostService {
         return recruitPosrRepository.findByOrderByIdDesc();
     }
     
+    @Transactional(readOnly = true)
+    public List<RecruitPost> readByAuthor(String author) {
+        log.info("readByAuthor(author={})", author);
+        return recruitPosrRepository.findByAuthorOrderByIdDesc(author);
+    }
     
     @Transactional(readOnly = true)
     public RecruitPost read(Integer id) {
