@@ -44,5 +44,15 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
             + "where r.id = :id group by r")
     List<RecruitPost> countMember(@Param(value = "id") String Id);
     
+//select r.id, r.created_time, r.modifid_time, r.author, r.close_date, 
+//    r.file_name, r.file_path, r.join_member, r.meeting_date,
+//    r.place, r.post_group, r.title, r.total_member, count(a.id)
+//from recruitposts r
+//    left join apply a on r.id = a.recruit_post_id
+//where r.id = 46
+//group by r.id, r.created_time, r.modifid_time, r.author, r.close_date, 
+//    r.file_name, r.file_path, r.join_member, r.meeting_date,
+//    r.place, r.post_group, r.title, r.total_member;
+    
     
 }
