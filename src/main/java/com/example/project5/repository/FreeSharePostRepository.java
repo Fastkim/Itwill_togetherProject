@@ -15,6 +15,7 @@ public interface FreeSharePostRepository extends JpaRepository<FreeSharePost, In
 
     List<FreeSharePost> findByOrderByIdDesc();
     Page<FreeSharePost> findAll(Pageable pageable);
+    List<FreeSharePost> findByAuthorOrderByIdDesc(String author);
     
     // 제목검색
     @Query(
