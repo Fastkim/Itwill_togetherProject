@@ -15,6 +15,8 @@ import com.example.project5.domain.Apply;
 public interface ApplyRepository extends JpaRepository<Apply, Integer> {
     
     Optional<Apply> findByJoinNicknameAndRecruitPostId(@Param(value = "joinNickname") String joinNickname , @Param(value = "recruitPostId") Integer recruitPostId); 
+    
+    List<Apply> findByJoinNicknameOrderByIdDesc(String joinNickname);
 
     @Transactional
     @Modifying
