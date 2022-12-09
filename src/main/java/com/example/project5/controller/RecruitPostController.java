@@ -68,12 +68,17 @@ public class RecruitPostController {
     public void detail(Integer id, Model  model, Principal principal) {
         String username=principal.getName();
         String exist="no";
+        String isFull="no";
         log.info("detail(postId={}, username={})", id, username);
         
         RecruitPost post = recruitPostService.read(id);
         
         List<Apply> applyList=applyService.findByRecruitPostId(id);
         Integer countMember=applyList.size();
+        
+        if (countMember>=post.getTotalMember()) {
+            isFull="yes";
+        }
         
         for (Apply a : applyList) {
             if (username.equals(a.getJoinNickname())) {
@@ -85,6 +90,7 @@ public class RecruitPostController {
         model.addAttribute("post", post);
         model.addAttribute("countMember", countMember);
         model.addAttribute("exist", exist);
+        model.addAttribute("isFull", isFull);
         
     }
     
