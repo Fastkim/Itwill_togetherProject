@@ -27,7 +27,6 @@ public class MyPageController {
     private final RecruitPostService recruitPostService;
     private final FreeSharePostService freeSharePostService;
     private final ApplyService applyService;
-    private final MemberService memberService;
     
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/member/mypage")
