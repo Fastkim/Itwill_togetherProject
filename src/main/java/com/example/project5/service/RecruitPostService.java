@@ -11,14 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project5.domain.Apply;
-import com.example.project5.domain.CountMember;
 import com.example.project5.domain.RecruitPost;
-import com.example.project5.dto.CountMemberDto;
 import com.example.project5.dto.JoinmemberCountDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
-import com.example.project5.repository.ApplyRepository;
-import com.example.project5.repository.CountMemberRepository;
 import com.example.project5.repository.RecruitPostRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -30,8 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 public class RecruitPostService {
 
     private final RecruitPostRepository recruitPosrRepository;
-    private final ApplyRepository applyRepository;
-    private final CountMemberRepository countMemberRepository;
     
     @Transactional(readOnly = true)
     public List<RecruitPost> read(){
