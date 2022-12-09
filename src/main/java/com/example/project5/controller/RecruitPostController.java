@@ -1,6 +1,7 @@
 package com.example.project5.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -64,17 +65,26 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @GetMapping({"/post/detail" , "/post/modify"})
-    public void detail(Integer id, Model  model) {
-        log.info("detail(id={})", id);
+    public void detail(Integer id, Model  model, Principal principal) {
+        String username=principal.getName();
+        String exist="no";
+        log.info("detail(postId={}, username={})", id, username);
         
         RecruitPost post = recruitPostService.read(id);
         
         List<Apply> applyList=applyService.findByRecruitPostId(id);
-        
         Integer countMember=applyList.size();
+        
+        for (Apply a : applyList) {
+            if (username.equals(a.getJoinNickname())) {
+                exist="yes";
+                break;
+            }
+        }
         
         model.addAttribute("post", post);
         model.addAttribute("countMember", countMember);
+        model.addAttribute("exist", exist);
         
     }
     
@@ -85,10 +95,9 @@ public class RecruitPostController {
         
         Integer postId = recruitPostService.delete(id);
         
-        
         attrs.addFlashAttribute("deletePostId" , postId);
         
-        return "redirect:/post/list";
+        return "redirect:/";
     }
     
     @PostMapping("/post/update")
@@ -96,7 +105,6 @@ public class RecruitPostController {
         
         
         Integer postId = recruitPostService.update(dto, fileName);
-        log.info("postId={}",postId);
         
         return "redirect:/post/detail?id=" + dto.getId();
     }
@@ -114,9 +122,9 @@ public class RecruitPostController {
     @GetMapping("/map/main")
     public void mapAddress(Model model) {
     
-    	
-    	List<RecruitPost> list = recruitPostService.read();
-    	model.addAttribute("list",list);
+        
+        List<RecruitPost> list = recruitPostService.read();
+        model.addAttribute("list",list);
     }
     
 }
