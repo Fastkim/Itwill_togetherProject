@@ -33,6 +33,12 @@ public class FreeSharePostService {
 
         return freeSharePostRepository.findByOrderByIdDesc();
     }
+    
+    @Transactional(readOnly = true)
+    public List<FreeSharePost> readByAuthor(String author) {
+        log.info("readByAuthor={}", author);
+        return freeSharePostRepository.findByAuthorOrderByIdDesc(author);
+    }
 
     public FreeSharePost create(FreeSharePostCreateDto dto, MultipartFile file) throws Exception {
         log.info("create(dto={})",dto);
