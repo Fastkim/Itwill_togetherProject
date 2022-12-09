@@ -10,6 +10,8 @@ layout:decorate="~{ layout/layout.html }">
             <div class="card-body">
             <input type="text" class="form-control" id="host" name="host" 
                         th:value="${ #authentication.name }" readonly />
+                        <br/>
+            <h3>나의 지원 게시판 작성목록</h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -32,7 +34,46 @@ layout:decorate="~{ layout/layout.html }">
                     </tr>
                 </tbody>
             </table>
+            <br/>
+            <h3>나의 나눔 게시판 작성목록</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="post2 : ${ freeSharePostList }">
+                        <td th:text="${post2.id}"></td>
+                        <td><a
+                            th:href="@{ /freeshare/detail?id={id} (id = ${post2.id}) }"
+                            th:text="${post2.title}"></a></td>
+                        <td th:text="${post2.author}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <h3>나의 지원 내역</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>지원한 포스트</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="post3 : ${ applyList }">
+                        <td th:text="${post3.id}"></td>
+                        <td><a
+                            th:href="@{ /post/detail?id={id} (id = ${post3.recruitPost.id}) }"
+                            th:text="${post3.recruitPost.id}"></a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <br/>
             <div class="card-body">
                 <ul>
                     <li class="nav-item active">
