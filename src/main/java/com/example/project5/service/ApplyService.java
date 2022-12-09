@@ -25,6 +25,11 @@ public class ApplyService {
         return applyrepository.findByJoinNicknameOrderByIdDesc(username);
     }
     
+    public List<Apply> findByRecruitPostId(Integer recruitPostId) {
+        log.info("findByRecruitPostId(recruitPostId={})", recruitPostId);
+        return applyrepository.findByRecruitPostIdOrderByIdDesc(recruitPostId);
+    }
+    
     public Integer JoinPost(ApplyJoinDto dto) {
         log.info("joinPost(dto={}", dto);
         
