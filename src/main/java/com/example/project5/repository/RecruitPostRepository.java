@@ -40,9 +40,12 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
             )
     List<RecruitPost> searchByKeyword(@Param(value = "keyword") String keyword);
     
-    @Query("select r, count(a.id) from RECRUITPOSTS r left join APPLY a on r.id = a.recruitPost.id " 
-            + "where r.id = :id group by r")
-    List<RecruitPost> countMember(@Param(value = "id") Integer id);
+    // joinmember 구하는거 연습했던 코드... 선생님이 해보라고 하신 방법인데 다른 방법을 찾음. 그래도 나중에 공부가 될까봐서 남겨놓음
+    
+//    @Query("select r, count(a.id) from RECRUITPOSTS r "
+//            + "left join APPLY a on r.id = a.recruitPost.id " 
+//            + "where r.id = :id group by r")
+//    List<RecruitPost> countMember(@Param(value = "id") Integer id);
     
 //select r.id, r.created_time, r.modifid_time, r.author, r.close_date, 
 //    r.file_name, r.file_path, r.join_member, r.meeting_date,

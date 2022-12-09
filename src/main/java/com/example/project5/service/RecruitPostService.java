@@ -119,20 +119,5 @@ public class RecruitPostService {
         }
         return list;
     }
-
-    public void plusJoinmember(JoinmemberCountDto dto) {
-    	log.info("plusJoinmember(dto={}) ", dto);
-    	
-    	RecruitPost recruitPost = recruitPosrRepository.findById(dto.getPostId()).get();
-    	
-    	Apply applymember = applyRepository.findById(dto.getJoinNickname()).get();
-    	
-    	CountMember entity = CountMember.builder().recruitPost(recruitPost).apply(applymember).build();
-    	log.info("entity={}", entity);
-    	
-    	countMemberRepository.save(entity);
-    	
-    	recruitPost.plusJoinMember(recruitPost.getJoinMember()+1); // joinMember 1증가
-    }
     
 }

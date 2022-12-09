@@ -111,12 +111,4 @@ public class RecruitPostController {
     	model.addAttribute("list",list);
     }
     
-    @GetMapping("/post/plusMember")
-    @ResponseBody
-    public void plusMember(JoinmemberCountDto dto) {
-    	log.info("plusMember(dto={})", dto);
-    	
-    	recruitPostService.plusJoinmember(dto);
-    }
-    
 }

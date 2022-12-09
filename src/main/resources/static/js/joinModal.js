@@ -27,21 +27,12 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(response => {
         console.log(response, data);
         alert('신청완료! 신청 내용은 마이페이지에서 확인 가능합니다.');
-        countMember();
     })
     .catch(error => {
         console.log(error)
     })
     .then(function(){applyModal.hide()});
 }
-	
-	function countMember(){
-		axios
-		.get('/post/plusMember?applyId=' + joinNickname + '&=postId' + postId)
-		.then(response => {console.log(response)})
-		.catch(err => {console.log(err)})
-		
-	}
 
     // 신청 취소 버튼
     const btnNoJoin = document.querySelector('#btnNoJoin');
@@ -62,8 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
             .catch(err => {console.log(err)})
         }
         
-        
     }
+    
     const btnOk = document.querySelector('#ok');
     const btnNok = document.querySelector('#nok');
     const joinNicknameInput = document.querySelector('#joinNickname'); 

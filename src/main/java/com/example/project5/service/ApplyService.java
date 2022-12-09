@@ -26,6 +26,8 @@ public class ApplyService {
         // 포스트 아이디 검색 
         RecruitPost recruitPost = recruitPostRepository.findById(dto.getPostId()).get();
         
+        recruitPost.plusJoinMember(recruitPost.getJoinMember()+1);
+        
         // DTO를 APPLY Entity로 변환
         Apply apply = Apply.builder().recruitPost(recruitPost).joinNickname(dto.getJoinNickname()).build();
         
@@ -42,6 +44,11 @@ public class ApplyService {
         log.info("delete(joinNickname={}, recruitPostId={})", joinNickname, recruitPostId);
         
         int result = applyrepository.deleteByjoinNickname(joinNickname, recruitPostId);
+        
+        RecruitPost recruitPost = recruitPostRepository.findById(recruitPostId).get();
+        
+        recruitPost.plusJoinMember(recruitPost.getJoinMember()-1);
+        log.info("plusJoinMember -1 호출");
         
         return result;
     }
