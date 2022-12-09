@@ -99,13 +99,6 @@
 		            
 		        })(marker, adrList[i].title);
 		        
-		        kakao.maps.event.addListener(marker, 'click', function(){
-		            position = this.getPosition();
-					
-		            var url = '/post/detail?id=' + parseInt(marker.getTitle());
-		            window.open(url, '_blank');
-		        });
-		        
 		        fragment.appendChild(itemEl);
 		    }
 		
@@ -119,14 +112,12 @@
 		
 		// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, adrList) {
-		
 		    var el = document.createElement('li'),
 		    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 		                '<div class="info">' +
-		                '   <h5>' + adrList.title + '</h5>';
-            itemStr += '    <span>' + adrList.content + '</span>' +
+		                '   <h5>' + '<a href="' + '/post/detail?id=' + adrList.id + '">' + adrList.title + '</h5>';
+            itemStr += '    <span>' + '<a href="' + '/post/detail?id=' + adrList.id + '">' + adrList.content + '</span>' +
 	                    '   <span>' +  adrList.author  + '</span>';
-		                 
 		    el.innerHTML = itemStr;
 		    el.className = 'item';
 		
