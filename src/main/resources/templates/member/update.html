@@ -6,7 +6,73 @@ layout:decorate="~{ layout/layout.html }">
     <body>
         <div layout:fragment="content">
             <h1>개인정보 변경 페이지</h1>
-        </div>
+            <div class="card-body">
+            <form id="modify">
+                <div class="my-2">
+                    <label for="id" class="form-label">회원 번호 (변경불가)</label>
+                    <input type="number" id="id" class="form-control" name="id" th:value="${ member.id }" readonly />
+                </div>
+                <div class="my-2">
+                    <label for="id" class="form-label">회원 아이디 (변경불가)</label>
+                    <input type="text" id="username" class="form-control" name="id" th:value="${ member.username }" readonly />
+                </div>
+                <div class="my-2">
+                    <label for="id" class="form-label">비밀번호(변경불가)</label>
+                    <input id="password" class="form-control" name="password" th:value="${ member.password }" readonly />
+                </div>
+                <div class="my-2">
+                    <label for="id" class="form-label">닉네임</label>
+                    <input id="nickname" class="form-control" name="nickname" th:value="${ member.nickname }" />
+                </div>
+                <div class="my-2">
+                    <label for="id" class="form-label">이름</label>
+                    <input id="name" class="form-control" name="name" th:value="${ member.name }" />
+                </div>
+                <div class="my-2">
+                    <label for="id" class="form-label">전화 번호</label>
+                    <input id="phone" class="form-control" name="phone" th:value="${ member.phone }" />
+                </div>
+                <div class="my-2">
+                    <label for="id" class="form-label">이메일</label>
+                    <input type="email" id="email" class="form-control" name="email" th:value="${ member.email }" />
+                </div>
+                
+                <div class="my-2">
+                <button class="btn btn-success" id="btnUpdate">수정 완료</button>
+            </div>
+                
+            </form>
+            
+            
+            
+            </div>
+
+        <script layout:fragment>
+		const formModify = document.querySelector('#modify');
+		const btnUpdate = document.querySelector('#btnUpdate');
+		btnUpdate.addEventListener('click',function() {
+			const nickname = document.querySelector('#nickname').value;
+			const name = document.querySelector('#name').value;
+			const phone = document.querySelector('#phone').value;
+			const email = document.querySelector('#email').value;
+			
+			if(nickname=='' || name=='' || phone=='' || email=='') {
+				alert('모든 항목을 입력하세요!');
+				return ;
+			}
+	        
+			const result = confirm('수정하시겠습니까?');
+			if (result) {
+			formModify.action = '/member/update';
+			formModify.method = 'post';
+			formModify.submit();
+		}
+	});
+		</script>
+
+    </div>
+        
+        
     </body>
     
 </html>
