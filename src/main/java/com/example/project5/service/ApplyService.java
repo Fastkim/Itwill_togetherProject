@@ -20,6 +20,11 @@ public class ApplyService {
     private final ApplyRepository applyrepository;
     private final RecruitPostRepository recruitPostRepository;
     
+    public List<Apply> findByUsername(String username) {
+        log.info("findByUsername(username={})", username);
+        return applyrepository.findByJoinNicknameOrderByIdDesc(username);
+    }
+    
     public Integer JoinPost(ApplyJoinDto dto) {
         log.info("joinPost(dto={}", dto);
         
