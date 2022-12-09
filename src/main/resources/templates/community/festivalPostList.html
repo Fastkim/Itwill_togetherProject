@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ layout/layout }">
+	<!--/* layout/layout.html 파일의 "content" 프래그먼트에 삽입될 컨텐트  */-->
+    <div layout:fragment="content">
+        <div class="card-header">
+            <h1>축제,취미활동 게시판</h1>
+        </div>
+            <div class="card-body">
+                <div class="my-2">
+                    <form th:action="@{ /festivalPost/search }" method="get">
+                        <div class="row">
+                            <div class="col-auto my-2">
+                                기간검색
+                            </div>
+                            <div class="col-auto">
+                                <input class="btn btn-primary" type="button" value="일주일">
+                            </div>
+                            <div class="col-auto">
+                                <input class="btn btn-primary" type="button" value="1개월">
+                            </div>
+                            <div class="col-auto">
+                                <input class="btn btn-primary" type="button" value="3개월">
+                            </div>
+                            <div class="col-auto my-1" >
+                                <input class="datepicker" type="text" id="datepicker" >
+                            </div>
+                            <div class="col-auto my-1">
+                                ~
+                            </div>
+                            <div class="col-auto my-1">
+                                <input class="datepicker" type="text" id="datepicker" >
+                            </div>
+                            <div class="col-auto">
+                                <a th:href="@{ /community/festivalPostCreate}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">포스트 만들기</a> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto my-4">
+                                지역
+                            </div>
+                            <div class="col-auto my-3">
+                                <select name="location" class="form-control" >
+                                    <option value="all">전국</option>
+                                    <option value="s">서울시</option>
+                                    <option value="b">부산시</option>
+                                    <option value="i">인천시</option>
+                                    <option value="gg">경기도</option>
+                                    <option value="jeju">제주도</option>
+                                </select>
+                            </div>
+                            <div class="col-auto my-4">
+                                검색대상
+                            </div>
+                            <div class="col-auto my-3">
+                                <select name="type" class="form-control" >
+                                    <option value="fv">축제명</option>
+                                    <option value="c">내용</option>
+                                </select>
+                            </div>
+                            <div class="col-auto my-3">
+                                <input type="text" class="form-control" 
+                                    name="keyword" placeholder="검색어" required autofocus />
+                            </div>
+                            <div class="col-auto my-3">
+                                <input type="submit" class="btn btn-light" value="검색" />
+                            </div>
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>이미지</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>수정시간</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="festivalPost : ${ list }">
+                                    <td th:text="${ festivalPost.id }"></td>
+                                    <td>
+                                        <img
+                                            th:src="${ festivalPost.filePath}" 
+                                            alt="첨부 이미지" 
+                                            th:if="${festivalPost.fileName != null}"
+                                            style="width:40%; height:40%" />
+                                    </td>
+                                    <td>
+                                        <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${ festivalPost.id }) }" th:text="${ festivalPost.title }"></a>
+                                    </td>
+                                    <td th:text="${ festivalPost.author }"></td>
+                                    <td th:text="${ #temporals.format(festivalPost.modifiedTime, 'yyyy-MM-dd HH:mm:ss') }"></td>
+                                </tr>
+                            </tbody>
+                        </table>           
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+</html>

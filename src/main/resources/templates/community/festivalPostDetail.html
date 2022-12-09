@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ layout/layout }">
+
+    <div layout:fragment="content">
+        <div class="card my-2">
+            <div class="card-header">
+                <h1>포스트 상세 페이지</h1>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="my-2">
+                        <label for="id" class="form-label">포스트 번호</label>
+                        <input id="id" class="form-control" th:value="${ festivalPost.id }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <img
+                                            th:src="${ festivalPost.filePath}" 
+                                            alt="첨부 이미지" 
+                                            th:if="${festivalPost.fileName != null}"
+                                            style="width:40%; height:40%" />
+                    </div>
+                    <div class="my-2">
+                        <label for="title" class="form-label">포스트 제목</label>
+                        <input id="title" class="form-control" th:value="${ festivalPost.title }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label for="content" class="form-label">포스트 내용</label>
+                        <textarea id="content" class="form-control" th:text="${ festivalPost.content }" readonly></textarea>
+                    </div>
+                    <div class="my-2">
+                        <label for="author" class="form-label">작성자</label>
+                        <input id="author" class="form-control" th:value="${ festivalPost.author }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalArea" class="form-label">개최지역</label>
+                        <input id="festivalArea" class="form-control" th:value="${ festivalPost.festivalArea }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalPeriod" class="form-label">개최기간</label>
+                        <input id="festivalPeriod" class="form-control" th:value="${ festivalPost.festivalPeriod }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalCharacter" class="form-label">축제 성격</label>
+                        <input id="festivalCharacter" class="form-control" th:value="${ festivalPost.festivalCharacter }" readonly />
+                            
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalInfo" class="form-label">관련 누리집</label>
+                        <input id="festivalInfo" class="form-control" th:value="${ festivalPost.festivalInfo }" readonly />
+                       
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalPlace" class="form-label">축제 장소</label>
+                        <input id="festivalPlace" class="form-control" th:value="${ festivalPost.festivalPlace }" readonly />
+                    
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalPrice" class="form-label">요금</label>
+                        <input id="festivalPrice" class="form-control" th:value="${ festivalPost.festivalPrice }" readonly />
+                       
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalAgency" class="form-label">주최/주관기관</label>
+                        <input id="festivalAgency" class="form-control" th:value="${ festivalPost.festivalAgency }" readonly />
+                           
+                    </div>
+                    <div class="my-2">
+                        <label for="festivalInquiry" class="form-label">문의</label>
+                        <input id="festivalInquiry" class="form-control" th:value="${ festivalPost.festivalInquiry }" readonly />
+                        
+                    </div>
+                    <div class="my-2">
+                        <label for="createdTime" class="form-label">작성 시간</label>
+                        <input id="createdTime" class="form-control" 
+                            th:value="${ #temporals.format(festivalPost.createdTime, 'yyyy-MM-dd HH:mm:ss') }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label for="modifiedTime" class="form-label">수정 시간</label>
+                        <input id="modifiedTime" class="form-control" 
+                            th:value="${ #temporals.format(festivalPost.modifiedTime, 'yyyy-MM-dd HH:mm:ss') }" readonly />
+                    </div>
+                </form>
+                 <!-- 글 작성자 아이디와 로그인 사용자 아이디가 같은 경우에만 "수정하기" 보여주기 -->
+                <div>
+                    <a class="my-2 btn btn-primary" role="button" aria-disabled="true" 
+                        th:href="@{ /community/festivalPostModify?id={id} (id = ${ festivalPost.id }) }">
+                        수정하기</a>
+                </div>
+            </div>
+        </div>
+
+</div><!-- layout:fragment="content" 끝 -->   
+   
+       
+        
+</html>
