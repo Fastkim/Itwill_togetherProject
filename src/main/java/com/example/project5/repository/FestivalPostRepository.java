@@ -15,10 +15,9 @@ import com.example.project5.domain.FreeSharePost;
 
 public interface FestivalPostRepository extends JpaRepository<FestivalPost, Integer> {
 
-    Page<FestivalPost> findAll(Pageable pageable);
-    
     // select * from COMMUNITYS order by ID desc
     List<FestivalPost> findByOrderByIdDesc();
+    Page<FestivalPost> findAll(Pageable pageable);
     
  // 제목 검색:
     // select * from POSTS where lower(TITLE) like lower(?) order by ID desc
