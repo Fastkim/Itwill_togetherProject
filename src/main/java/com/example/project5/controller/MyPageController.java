@@ -8,7 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.project5.domain.Apply;
+import com.example.project5.domain.FreeSharePost;
 import com.example.project5.domain.RecruitPost;
+import com.example.project5.service.ApplyService;
+import com.example.project5.service.FreeSharePostService;
 import com.example.project5.service.MemberService;
 import com.example.project5.service.RecruitPostService;
 
@@ -21,6 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MyPageController {
     
     private final RecruitPostService recruitPostService;
+    private final FreeSharePostService freeSharePostService;
+    private final ApplyService applyService;
     private final MemberService memberService;
     
     @PreAuthorize("hasRole('USER')")
@@ -30,7 +36,11 @@ public class MyPageController {
         log.info("initMypage(host={})", host);
 
         List<RecruitPost> recruitPostList = recruitPostService.readByAuthor(host);
+        List<FreeSharePost> freeSharePostList = freeSharePostService.readByAuthor(host);
+        List<Apply> applyList = applyService.findByUsername(host);
         model.addAttribute("recruitPostList", recruitPostList);
+        model.addAttribute("freeSharePostList", freeSharePostList);
+        model.addAttribute("applyList", applyList);
         
     }
     
