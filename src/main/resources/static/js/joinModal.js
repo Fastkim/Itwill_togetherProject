@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(response => {
         console.log(response, data);
         alert('신청완료! 신청 내용은 마이페이지에서 확인 가능합니다.');
+	location.reload();
         countMember();
     })
     .catch(error => {
@@ -38,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	function countMember(){
 		axios
 		.get('/post/plusMember?applyId=' + joinNickname + '&=postId' + postId)
-		.then(response => {console.log(response)})
+		.then(response => {location.reload();})
 		.catch(err => {console.log(err)})
 		
 	}
@@ -58,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
             .delete(`/api/apply?joinNickname=${joinNickname2}&recruitPostId=${recruitPostId}`)
             .then(response => {
                 alert('신청 취소 완료')
+		location.reload();
             })
             .catch(err => {console.log(err)})
         }
