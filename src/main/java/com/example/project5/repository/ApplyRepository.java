@@ -1,6 +1,7 @@
 package com.example.project5.repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -15,6 +16,10 @@ import com.example.project5.domain.Apply;
 public interface ApplyRepository extends JpaRepository<Apply, Integer> {
     
     Optional<Apply> findByJoinNicknameAndRecruitPostId(@Param(value = "joinNickname") String joinNickname , @Param(value = "recruitPostId") Integer recruitPostId); 
+    
+    List<Apply> findByJoinNicknameOrderByIdDesc(String joinNickname);
+    
+    List<Apply> findByRecruitPostIdOrderByIdDesc(Integer recruitPostId);
 
     @Transactional
     @Modifying
@@ -24,6 +29,5 @@ public interface ApplyRepository extends JpaRepository<Apply, Integer> {
     
     
     String findByjoinNickname(@Param(value = "joinNickname") Integer joinNickname);
-    
-    
 }
+    

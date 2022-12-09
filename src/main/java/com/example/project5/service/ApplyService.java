@@ -1,6 +1,8 @@
 package com.example.project5.service;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.project5.domain.Apply;
@@ -20,13 +22,21 @@ public class ApplyService {
     private final ApplyRepository applyrepository;
     private final RecruitPostRepository recruitPostRepository;
     
+    public List<Apply> findByUsername(String username) {
+        log.info("findByUsername(username={})", username);
+        return applyrepository.findByJoinNicknameOrderByIdDesc(username);
+    }
+    
+    public List<Apply> findByRecruitPostId(Integer recruitPostId) {
+        log.info("findByRecruitPostId(recruitPostId={})", recruitPostId);
+        return applyrepository.findByRecruitPostIdOrderByIdDesc(recruitPostId);
+    }
+    
     public Integer JoinPost(ApplyJoinDto dto) {
         log.info("joinPost(dto={}", dto);
         
         // 포스트 아이디 검색 
         RecruitPost recruitPost = recruitPostRepository.findById(dto.getPostId()).get();
-        
-        recruitPost.plusJoinMember(recruitPost.getJoinMember()+1);
         
         // DTO를 APPLY Entity로 변환
         Apply apply = Apply.builder().recruitPost(recruitPost).joinNickname(dto.getJoinNickname()).build();
@@ -44,11 +54,6 @@ public class ApplyService {
         log.info("delete(joinNickname={}, recruitPostId={})", joinNickname, recruitPostId);
         
         int result = applyrepository.deleteByjoinNickname(joinNickname, recruitPostId);
-        
-        RecruitPost recruitPost = recruitPostRepository.findById(recruitPostId).get();
-        
-        recruitPost.plusJoinMember(recruitPost.getJoinMember()-1);
-        log.info("plusJoinMember -1 호출");
         
         return result;
     }

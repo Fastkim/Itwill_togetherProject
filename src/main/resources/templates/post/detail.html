@@ -64,12 +64,12 @@
                                 th:value="${post.totalMember}" readonly />
                         </div>
                         <label for="joinMember"
-                            class="col-sm-2 col-form-label">모집인원</label>
+                            class="col-sm-2 col-form-label">지원인원</label>
                         <div class="col-sm-4">
                             <input type="number"
                                 class="form-control-plaintext"
-                                id="joinMember" name="tjoinMember"
-                                th:value="${post.joinMember}" readonly />
+                                id="joinMember" name="joinMember"
+                                th:value="${countMember}" readonly />
                         </div>
                     </div>
                 </div>
