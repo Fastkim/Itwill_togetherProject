@@ -68,25 +68,27 @@ window.addEventListener('DOMContentLoaded', () => {
         
     }
     
+    const btnJoinDiv = document.querySelector('#btnJoinDiv');
+    btnJoinDiv.addEventListener('change', displayCheckResult());
+    
     const btnOk = document.querySelector('#ok');
     const btnNok = document.querySelector('#nok');
-    const joinNicknameInput = document.querySelector('#joinNickname'); 
     
-    joinNicknameInput.addEventListener('load', function(){
+    function displayCheckResult(){
     const joinNickname = joinNicknameInput.value; 
     console.log(joinNickname);
-        axios.get('/api/checkid?joinNickname=' + joinNickname)
-        .then(response => displayCheckResult(response.data))
-        .catch(err => {console.log(err)})
-    });
     
-    function displayCheckResult(data){
+        axios.get('/api/checkid?joinNickname=' + joinNickname + '&recruitPostId=' + id)
+        .then(response => displayCheckResult(response.data)
+        )
+        .catch(err => {console.log(err)})
+    
         if(data.joinNickname == 'ok') { // 신청이력 없음
-            btnOk.classList.remove('disabled');
-            btnNok.classList.add('disabled');
+            btnOk.classList.remove('d-none');
+            btnNok.classList.add('my-2 d-none');
         } else { // 신청이력이 있음.
-            btnOk.classList.add('disabled');
-            btnNok.classList.remove('disabled');
+            btnOk.classList.add('my-2 d-none');
+            btnNok.classList.remove('d-none');
         }
     }
     

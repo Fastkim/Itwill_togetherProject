@@ -28,6 +28,6 @@ public interface ApplyRepository extends JpaRepository<Apply, Integer> {
             @Param(value = "recruitPostId") Integer recruitPostId);
     
     
-    String findByjoinNickname(@Param(value = "joinNickname") Integer joinNickname);
+//    Optional<Apply> findByjoinNicknameAndRecruitPostId(@Param(value = "joinNickname") String joinNickname, @Param(value = "recruitPostId") Integer recruitPostId);
 }
     

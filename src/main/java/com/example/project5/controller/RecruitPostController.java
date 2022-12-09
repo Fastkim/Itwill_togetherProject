@@ -70,6 +70,7 @@ public class RecruitPostController {
         RecruitPost post = recruitPostService.read(id);
         
         List<Apply> applyList=applyService.findByRecruitPostId(id);
+        
         Integer countMember=applyList.size();
         
         model.addAttribute("post", post);

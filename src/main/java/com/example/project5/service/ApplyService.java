@@ -2,6 +2,7 @@ package com.example.project5.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -61,15 +62,17 @@ public class ApplyService {
     
 
     
-//    public String checkJoinNickname(String joinNickname) {
-//        log.info("checkJoinNickname(joinNickname={})",joinNickname);
-//        
-//        Optional<Apply> result = applyrepository.findByJoinNickname(joinNickname);
-//        if(result.isPresent()) {
-//            return "nok";
-//        } else {
-//            return "ok";
-//        }
+    public String checkJoinNickname(String joinNickname, Integer recruitPostId) {
+        
+        log.info("checkJoinNickname(joinNickname={}, recruitPostId={})",joinNickname, recruitPostId);
+        
+        Optional<Apply> result = applyrepository.findByJoinNicknameAndRecruitPostId(joinNickname, recruitPostId);
+        
+        if(result.isPresent()) {
+            return "nok";
+        } else {
+            return "ok";
+        }
 
-    
+    }
 }
