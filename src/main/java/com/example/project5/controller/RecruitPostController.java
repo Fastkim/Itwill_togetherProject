@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.project5.domain.Apply;
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.JoinmemberCountDto;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
+import com.example.project5.service.ApplyService;
 import com.example.project5.service.RecruitPostService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RecruitPostController {
     
     private final RecruitPostService recruitPostService;
+    private final ApplyService applyService;
     
     @GetMapping("/post/list")
     public String list(Model model) {
@@ -61,12 +64,16 @@ public class RecruitPostController {
     
     @PreAuthorize("hasRole('USER')")
     @GetMapping({"/post/detail" , "/post/modify"})
-    public void detail(Integer id, Model  model ) {
+    public void detail(Integer id, Model  model) {
         log.info("detail(id={})", id);
         
         RecruitPost post = recruitPostService.read(id);
         
+        List<Apply> applyList=applyService.findByRecruitPostId(id);
+        Integer countMember=applyList.size();
+        
         model.addAttribute("post", post);
+        model.addAttribute("countMember", countMember);
         
     }
     
@@ -77,10 +84,9 @@ public class RecruitPostController {
         
         Integer postId = recruitPostService.delete(id);
         
-        
         attrs.addFlashAttribute("deletePostId" , postId);
         
-        return "redirect:/post/list";
+        return "redirect:/";
     }
     
     @PostMapping("/post/update")
@@ -88,7 +94,6 @@ public class RecruitPostController {
         
         
         Integer postId = recruitPostService.update(dto, fileName);
-        log.info("postId={}",postId);
         
         return "redirect:/post/detail?id=" + dto.getId();
     }
@@ -106,17 +111,16 @@ public class RecruitPostController {
     @GetMapping("/map/main")
     public void mapAddress(Model model) {
     
-    	
-    	List<RecruitPost> list = recruitPostService.read();
-    	model.addAttribute("list",list);
+        
+        List<RecruitPost> list = recruitPostService.read();
+        model.addAttribute("list",list);
     }
     
     @GetMapping("/post/plusMember")
     @ResponseBody
     public void plusMember(JoinmemberCountDto dto) {
-    	log.info("plusMember(dto={})", dto);
-    	
-    	recruitPostService.plusJoinmember(dto);
+        log.info("plusMember(dto={})", dto);
+        
+        recruitPostService.plusJoinmember(dto);
     }
-    
 }
