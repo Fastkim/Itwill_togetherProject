@@ -46,19 +46,4 @@ public class ApplyController {
         return ResponseEntity.ok(result);
     }
     
-    
-    
-    
-    @GetMapping("/api/checkid")
-    @ResponseBody
-    public ResponseEntity<String> checkJoinNickname(String joinNickname, Integer recruitPostId) {
-        log.info("checkJoinNickname(joinNickname={})",joinNickname);
-        
-        String result = applyService.checkJoinNickname(joinNickname, recruitPostId);
-        
-        return ResponseEntity.ok(result);
-    }
-
-    
-
 }
