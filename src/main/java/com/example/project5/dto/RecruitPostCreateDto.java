@@ -25,12 +25,16 @@ public class RecruitPostCreateDto {
 
     private Integer totalMember;
     
+    private String fileName;
+    private String filePath;
+    
+    
     private double lat;
     private double lng;
 
     public RecruitPost toEntity() {
         return RecruitPost.builder().title(title).content(content).author(author).place(place).meetingDate(meetingDate)
-                .lat(lat).lng(lng).totalMember(totalMember).closeDate(closeDate).build();
+                .lat(lat).lng(lng).fileName(fileName).filePath(filePath).totalMember(totalMember).closeDate(closeDate).build();
     }
 
 }

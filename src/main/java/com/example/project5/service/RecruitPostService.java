@@ -57,41 +57,74 @@ public class RecruitPostService {
     public RecruitPost create(RecruitPostCreateDto dto, MultipartFile file) throws IOException {
         log.info("create(dto={})", dto);
         
-//        RecruitPost entity = recruitPosrRepository.save(dto.toEntity());
-        RecruitPost entity = dto.toEntity();
         
-        // 파일 저장 경로 설정 
-        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; 
+//        // 파일 저장 경로 설정 
+//        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; 
+//        
+//        UUID uuid = UUID.randomUUID();
+//        // 파일 고유 이름 랜덤 생성
+//        String fileName = uuid + "_" + file.getOriginalFilename();
+//        
+//        // 파일 저장소
+//        File saveFile = new File(filePath ,fileName); 
+//        file.transferTo(saveFile); // throws Exception
+//
+//        //RecruitPost entity = recruitPosrRepository.save(dto.toEntity());
+//        RecruitPost entity = dto.toEntity();
+//        entity.setFileName(fileName);
+//        entity.setFilePath("/img/" + fileName);
+//        
+        String fileSavePath = "/img/" + file.getOriginalFilename();
+        String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
         
+        File saveFile = new File(fileStaticPath, file.getOriginalFilename());
+        file.transferTo(saveFile);
         
-        UUID uuid = UUID.randomUUID();
-        // 파일 고유 이름 랜덤 생성
-        String fileName = uuid + "_" + file.getOriginalFilename();
-        File saveFile = new File(filePath ,fileName); // 파일 저장소
-        file.transferTo(saveFile); // throws Exception
-
-        entity.setFileName(fileName);
-        entity.setFilePath("/img/" + fileName);
+        dto.setFileName(file.getOriginalFilename());
+        dto.setFilePath(fileSavePath);
         
+        RecruitPost recruitPost = dto.toEntity();
+        recruitPost = recruitPosrRepository.save(recruitPost);
         
-        
-        return recruitPosrRepository.save(entity);
+        return recruitPost;
     }
     
     @Transactional
-    public Integer update(RecruitPostUpdateDto dto, MultipartFile file) throws Exception {
+    public Integer updateImg(RecruitPostUpdateDto dto, MultipartFile file) 
+    		throws Exception {
+    	log.info("update(dto={})", dto);
+    	
+    	RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
+    	
+        String fileSavePath = "/img/"  + file.getOriginalFilename();
+        String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+        
+        File saveFile = new File(fileStaticPath, file.getOriginalFilename());
+        file.transferTo(saveFile);
+        
+        dto.setFilePath(file.getOriginalFilename());
+        dto.setFileName(fileSavePath);
+    	
+    	entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
+    			dto.getTotalMember(), dto.getFileName(), dto.getFilePath(), dto.getCloseDate());
+    	
+    	
+    	return entity.getId();
+    }
+
+    @Transactional
+    public Integer update(RecruitPostUpdateDto dto ){
         log.info("update(dto={})", dto);
         
         RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
         
-        if (file.isEmpty()) {
             entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
-                    dto.getTotalMember(), dto.getFilePath(), dto.getFileName(), dto.getCloseDate());
-        }
+                    dto.getTotalMember(), dto.getCloseDate());
         
         
         return entity.getId();
     }
+    
     
     public List<RecruitPost> search(String type, String keyword) {
         log.info("search(type={}, keyword={}", type, keyword);

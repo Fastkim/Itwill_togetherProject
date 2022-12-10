@@ -12,7 +12,7 @@
                     <input type="file" id="imgFile" name="imgFile"/>
                 </div>
                 <div class="select_img_hidden d-none">
-                    <img th:src="${post.filePath}"  th:if="${post.filePath != null}" />
+                    <img th:src="${post.filePath}"  th:if="${post.filePath} != null" />
                     <input type="hidden" name="hiddenImg" th:value="${post.filePath}"/>
                 </div>
                 <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
@@ -116,6 +116,7 @@
         const content = document.querySelector('#content').value;
         const imgFile = document.querySelector('#imgFile').value;
         
+        if(imgFile == '') {
 	        if(title == '' || content == '') {
 	            alert('제목과 내용을 입력하세요')
 	            return;
@@ -123,10 +124,26 @@
 	        
 	        const result = confirm('수정하시겠습니까?');
 	        if(result) {
+	            formModify.action='/post/update';
+	            formModify.method='post';
+	            formModify.submit();
+	        }
+        } else {
+	        if(title == '' || content == '') {
+	            alert('제목과 내용을 입력하세요')
+	            return;
+	        }
+	        
+	        const result = confirm('수정하시겠습니까?');
+	        if(result) {
+	        	console.log("updatImg")
 	            formModify.action='/post/updateImg';
 	            formModify.method='post';
 	            formModify.submit();
 	        }
+        	
+        	
+        }
 	        })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -23,11 +23,4 @@ public class RecruitPostUpdateDto {
     @DateTimeFormat(iso = ISO.DATE_TIME)
     private LocalDateTime closeDate;
     
-//
-//    public RecruitPost toEntity() {
-//        return RecruitPost.builder()
-//                .id(id).title(title).content(content).totalMember(totalMember).place(place)
-//                .filePath(filePath).fileName(fileName)
-//                .closeDate(closeDate).build();
-//    }
 }
