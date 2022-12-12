@@ -1,173 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www,thymeleaf.org/thymeleaf-extras-springsecurity5"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{ layout/layout }">
-<body>
-    <div layout:fragment="content">
-        <div>
-            <form id="formModify" method="post" enctype="multipart/form-data" style="margin-top: 4px;">
-                <div class="card m-4 row g-5">
-                <div class="select_img" style="width: 20rem;">
-                    <img id="imgFileImg" th:src="${post.filePath}" th:if="${post.filePath} != null" class="card-img-top card-img"/>
-                    <input type="file" id="imgFile" name="imgFile"/>
-                </div>
-                <div class="select_img_hidden d-none">
-                    <img th:src="${post.filePath}"  th:if="${post.filePath} != null" />
-                    <input type="hidden" name="hiddenImg" th:value="${post.filePath}"/>
-                </div>
-                <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
-                    <div class="mb-3 row">
-                        <label for="title"
-                            class="col-sm-2 col-form-label">제목</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control"
-                                id="title" name="title" th:value="${post.title}" required
-                                autofocus>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="author"
-                            class="col-sm-2 col-form-label">담당자</label>
-                        <div class="col-sm-10 my-4">
-                            <input type="text" class="form-control-plaintext"
-                                id="author" name="author" th:value="${post.author}" readonly />
-                        </div>
-                    </div>
-                </div>
-            <!-- content 모집내용 시작 -->
-            <div class="card m-4 g-5">
-                <label for="content" class="form-label mt-5 m-3">모집내용</label>
-                    <div class="mx-4 mb-2">
-                        <textarea id="content" name="content"
-                            class="form-control" rows="20" th:text="${post.content}" required></textarea>
-                    </div>
-                </div>
 
-            <!-- 지도폼 -->
-            <div class="card m-4 row g-5">
-                <div class="mb-3 my-2 row">
-                    <label for="totalMember"
-                        class="col-sm-2 col-form-label">모집인원</label>
-                    <div class="col-sm-4">
-                        <input type="number" class="form-control"
-                            id="totalMember" name="totalMember" th:value="${post.totalMember}" />
+    <div layout:fragment="content">
+        <div class="card my-2">
+            <div class="card-header">
+                <h1>포스트 수정 페이지</h1>
+            </div>
+            <div class="card-body">
+                <form id="formModify">
+                    <div class="my-2">
+                        <label for="id" class="form-label">포스트 번호</label>
+                        <input id="id" class="form-control" 
+                            name="id" th:value="${ post.id }" readonly />
                     </div>
-                    <label for="joinMember"
-                        class="col-sm-2 col-form-label">현재인원</label>
-                    <div class="col-sm-4">
-                        <input type="number"
-                            class="form-control-plaintext"
-                            id="joinMember" name="joinMember"
-                            th:value="${countMember}" readonly />
+                    <div class="my-2">
+                        <label for="title" class="form-label">포스트 제목</label>
+                        <input id="title" class="form-control" 
+                            name="title" th:value="${ post.title }" autofocus />
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="meetingDate"
-                        class="col-sm-2 col-form-label">모임기간</label>
-                    <div class="col-sm-4">
-                        <input type="datetime-local" class="form-control"
-                            id="meetingDate" name="meetingDate" th:value="${post.meetingDate}" readonly />
-                    </div> 
-                    <label for="closeDate"
-                        class="col-sm-2 col-form-label">신청마감</label>
-                    <div class="col-sm-4">
-                        <input type="datetime-local" class="form-control"
-                            id="closeDate" name="closeDate" th:value="${post.closeDate}" />
+                    <div class="my-2">
+                        <label for="content" class="form-label">포스트 내용</label>
+                        <textarea id="content" class="form-control" 
+                            name="content" th:text="${ post.content }"></textarea>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="place" class="col-sm-2 col-form-label">장소</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"
-                            id="place" name="place" th:value="${post.place}"/>
+                    <div class="my-2">
+                        <label for="author" class="form-label">작성자</label>
+                        <input id="author" class="form-control" th:value="${ post.author }" readonly />
                     </div>
+                </form>
+                <div class="my-2" th:if="${ post.author } == ${ #authentication.name }">
+                    <button class="btn btn-danger" id="btnDelete">삭제</button>
+                    <button class="btn btn-success" id="btnUpdate">수정 완료</button>
                 </div>
-                <div class="card my-2">
-                    <div id="map" style="width:100%;height:350px;"></div>
-                </div>
-                <div class="my-2">
-                    <!-- 버튼 위치 -->
-                    <button class="btn btn-outline-danger" id="btnDelete">삭제</button>
-                    <button class="btn btn-outline-primary" id="btnUpdate">수정</button>
-                </div>
-                </div>
-            </form>
+            </div>
         </div>
-        
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c08ea52751749a649dc57946541b0336"></script>
-		<script th:inline="javascript">
-		var adrList = [[ ${ post } ]]
-		var markerPosition  = new kakao.maps.LatLng(adrList.lat, adrList.lng); 
-		var marker = {
-		    position: markerPosition,
-		    text: '지도는 수정이 불가능합니다..!'
-		};
-		
-		var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
-		    staticMapOption = { 
-		        center: new kakao.maps.LatLng(adrList.lat, adrList.lng), // 이미지 지도의 중심좌표
-		        level: 3, // 이미지 지도의 확대 레벨
-		        marker: marker // 이미지 지도에 표시할 마커 
-		    };    
-		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-		</script>
-        
-    </div><!-- 메인 div 끝 -->
+    </div>
+
     <script layout:fragment="script">
-    const formModify = document.querySelector('#formModify')
+    // form HTML 요소를 찾음.
+    const formModify = document.querySelector('#formModify');
     
-    // 삭제버튼 이벤트리스너
-    const btnDelete = document.querySelector('#btnDelete')
-    btnDelete.addEventListener('click' , function(){
-    	   const result = confirm('삭제하시겠습니까?');
-    	    if(result) {
-    	        formModify.action='/post/delete';
-    	        formModify.method='post';
-    	        formModify.submit();
-    	    }
+    // 삭제 버튼 찾아서 이벤트 리스너 등록.
+    const btnDelete = document.querySelector('#btnDelete');
+    btnDelete.addEventListener('click', function () {
+    	const result = confirm('정말 삭제?');
+    	if (result) {
+    		formModify.action = '/post/delete';
+    		formModify.method = 'post';
+    		formModify.submit();
+    	}
     });
     
-    // 수정버튼 이벤트리스너
+    // 수정 완료 버튼 찾아서 이벤트 리스너 등록.
     const btnUpdate = document.querySelector('#btnUpdate');
-    btnUpdate.addEventListener('click', function() {
+    btnUpdate.addEventListener('click', function () {
+    	const title = document.querySelector('#title').value;
+    	const content = document.querySelector('#content').value;
+    	if (title == '' || content == '') {
+    		alert('제목과 내용은 반드시 입력.');
+    		return;
+    	}
     	
-        const title = document.querySelector('#title').value;
-        const content = document.querySelector('#content').value;
-        const imgFile = document.querySelector('#imgFile').value;
-        
-        if(imgFile == '') {
-	        if(title == '' || content == '') {
-	            alert('제목과 내용을 입력하세요')
-	            return;
-	        }
-	        
-	        const result = confirm('수정하시겠습니까?');
-	        if(result) {
-	            formModify.action='/post/update';
-	            formModify.method='post';
-	            formModify.submit();
-	        }
-        } else {
-	        if(title == '' || content == '') {
-	            alert('제목과 내용을 입력하세요')
-	            return;
-	        }
-	        
-	        const result = confirm('수정하시겠습니까?');
-	        if(result) {
-	        	console.log("updatImg")
-	            formModify.action='/post/updateImg';
-	            formModify.method='post';
-	            formModify.submit();
-	        }
-        	
-        	
-        }
-	        })
+    	const result = confirm('수정 완료?');
+    	if (result) {
+    		formModify.action = '/post/update';
+    		formModify.method = 'post';
+    		formModify.submit();
+    	}
+    });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- 댓글 관련 자바스크립트 함수/코드들을 작성한 스크립트 파일 -->
 
-
-</body>
 </html>
