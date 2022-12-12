@@ -7,44 +7,14 @@
 
 <!--/* layout/layout.html 파일의 "content" 프래그먼트에 삽입될 컨텐트 */-->
 <div layout:fragment="content">
-    <div class="card my-2">
-        <div class="card-header">
-            <h1>포스트 목록 페이지</h1>
-        </div> 
-        <ul>
-            <li><a th:href="@{ /post/create }">새글작성</a></li>
+    <div class="card my-2 row">
+        <div class="card-header container-fluid">
+            <h1 class="mt-4" style="float:left;">포스트 목록 페이지 </h1>
+        <ul style="float:left;">
+            <li><a th:href="@{ /post/create }" >새글작성</a></li>
         </ul>
-        <ul>
-            <li><a th:href="@{ /post/list }">전체목록</a></li>
-        </ul>
-        
-        <div class="card-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>총인원</th>
-                        <th>작성자</th>
-                        <th>모임날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="post : ${ list }">
-                        <td th:text="${post.id}"></td>
-                        <td><a
-                            th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
-                            th:text="${post.title}"></a></td>
-                        <td th:text="${post.totalMember}"></td>
-                        <td th:text="${post.author}"></td>
-                        <td th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <form th:action="@{ /post/search }">
-         <div class="row">
+         <form th:action="@{ /post/search }">
+         <div class="row mt-4" style="float:right;">
              <div class="col-3">
                  <select name="type" class="form-control">
                      <option value="t">제목</option>
@@ -53,13 +23,41 @@
                      <option value="a">작성자</option>
                  </select>
              </div>
-             <div class="col-7" >
+             <div class="col-6" >
                  <input type="text" name="keyword" class="form-control" placeholder="검색어" required autofocus />
              </div>
              <div class="col-2" >
                  <input type="submit" value="검색" class="btn btn-outline-info" />
              </div>
          </div>
-     </form>
+         </form>
+        </div>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-4" th:each="post : ${ list }">
+                <div class="my-5 card h-60" style="width: 70%">
+                    <!-- =image-->
+                    <img th:src="${post.filePath}"  class="card-img-top" style="height: 160px;" name="imgFile" />
+                    <!-- details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h4 th:text="${post.id}" class="d-none"></h4>
+                            <h4 class="fw-bolder" ><a
+                            th:href="@{ /post/detail?id={id} (id = ${post.id}) }" th:text="${post.title}" style="text-decoration:none;"></a></h4>
+                            <h6 th:text="${post.author}"></h6>
+                            <h6 th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></h6>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+        <div class="card-footer">
+        <ul>
+            <li><a th:href="@{ /post/create }">새글작성</a></li>
+        </ul>
+        <ul>
+            <li><a th:href="@{ /post/list }">전체목록</a></li>
+        </ul>
+        </div>
+    </div>
 </div>
 </html>

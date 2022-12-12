@@ -36,6 +36,7 @@ public class RecruitPostController {
         log.info("list");
 
         List<RecruitPost> list = recruitPostService.read();
+        
         model.addAttribute("list", list);
 
         return "/post/list";

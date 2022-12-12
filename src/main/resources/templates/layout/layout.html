@@ -64,7 +64,7 @@ ul{
 }
 li{
     float:left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 </style>
@@ -82,7 +82,7 @@ li{
     </div>
 </div>
 <!-- nav bar  -->
-<nav class="navbar navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid row">
         <div class="bg-dark pt-3 pb-3 px-5 col-sm-2">
 <!--    =<h5 class="text-orange" style="text-decoration:none; color: orange; font-size:200%;">같취
@@ -97,19 +97,36 @@ li{
         </svg></div>
             <span style="color: red; font-size:120%;">'같'은 '취'미를 공유하는..</span>
             </div>
-        <div class="m-4 col-sm-6" style="text-align: left;" >
-            <ul style="list-style :none;">
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class=" col-sm-8 collapse navbar-collapse" id="navbarSupportedContent" style="text-align: left;" >
+            <ul style="list-style :none; " class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a th:href="@{ / }" style="text-decoration: none; color: orange; font-size: 120%;">Home</a>
+                    <a th:href="@{ / }" style="text-decoration: none; color: orange; font-size: 140%;">Home<span> || </span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{ /post/list }" style="text-decoration: none; color: orange; font-size: 120%;">인원모집</a>
+                    <a th:href="@{ /post/list }" style="text-decoration: none; color: orange; font-size: 140%;">모집<span> | </span></a>
                 </li>
+                <li class="nav-item">
+                    <a th:href="@{/freeshare/list}" style="text-decoration: none; color: orange; font-size: 140%;">나눔<span> | </span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{ /community/festivalPostList }" style="text-decoration: none; color: orange; font-size: 140%;">행사<span> | </span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{ /map/main }" style="text-decoration: none; color: orange; font-size: 140%;">지도</a>
+                </li>
+                
             </ul>
         </div>
-        <div class="m-4 col-sm-3" style="text-align: left;">
-            <div>
-            <ul style="list-style :none;">
+        <div class="col-sm-2" style="text-align: left;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul style="list-style :none;" class="navbar-nav">
                 <th:block sec:authorize="isAnonymous()">
                     <li class="nav-item" >
                         <a style="text-decoration:none; color: orange; font-size:100%;" th:href="@{ /login }">◎ 로그인</a>
@@ -120,7 +137,7 @@ li{
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:100%;">
+                        <a th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:100%;">◎
                             <span class="text-info" sec:authentication="name"></span>
                             마이페이지 </a>
                     </li>
@@ -140,26 +157,6 @@ li{
 <body>
     <header> </header>
             <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                    </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-
     <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container-fluid">
@@ -204,8 +201,10 @@ li{
         </nav>
     </div>
     <!--/* 메인컨텐트 */-->
-    <div>
-        <div class="container-fluid" layout:fragment="content"></div>
+    <div class="container-fluid row" >
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10" layout:fragment="content"></div>
+        <div class="col-sm-1"></div>
     </div>
 
 
