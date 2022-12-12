@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,9 +61,15 @@
          
         </div>
         <div class="m-5" style="text-align: right;">
-            <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /login }">◎ 로그인</a></div>
-            <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{/member/signup}">◎ 회원가입</a></div>
+            <th:block sec:authorize="isAnonymous()">
+                <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /login }">◎ 로그인</a></div>
+                <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{/member/signup}">◎ 회원가입</a></div>
+            </th:block>
             <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{/member/signup}">◎ 회사소개</a></div>
+            <th:block sec:authorize="isAuthenticated()">
+                <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /logout }">[[ ${#authentication.name} ]] ◎ 로그아웃
+                </a></div>
+            </th:block>
         </div>
     </div>
 </nav>
@@ -241,7 +249,6 @@ layout:decorate="~{ layout/layout }">
             <li><a th:href="@{ /post/list }">지역 행사 게시판</a></li>
         </ul>
     </div>
-
 </div> -->
 
 </html>
