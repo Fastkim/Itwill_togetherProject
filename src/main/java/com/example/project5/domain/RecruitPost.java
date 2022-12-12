@@ -70,7 +70,20 @@ public class RecruitPost extends BaseTimeEntity {
     private final String postGroup="recruitPost";
     
     public RecruitPost updateRecruitPost(String title, String content, String place, 
-            Integer totalMember, String filePath, String fileName,LocalDateTime closeDate) {
+            Integer totalMember,LocalDateTime closeDate) {
+        this.title=title;
+        this.content=content;
+        this.place=place;
+        this.totalMember=totalMember;
+//        this.filePath=filePath;
+//        this.fileName = fileName;
+        this.closeDate=closeDate;
+         
+        return this;
+    }
+    
+    public RecruitPost updateRecruitPost(String title, String content, String place, 
+            Integer totalMember, String filePath , String fileName,LocalDateTime closeDate) {
         this.title=title;
         this.content=content;
         this.place=place;

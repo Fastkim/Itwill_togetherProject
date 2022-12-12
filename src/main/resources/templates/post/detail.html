@@ -10,11 +10,12 @@
             <form id="formModify" method="post" style="margin-top: 4px;" enctype="multipart/form-data">
                 <div class="card m-4 row g-5">
                     <div class="my-2">
-                    <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
+                    <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden" multiple="multiple"/>
                 <div class="card" style="width: 15rem;">
-                <img th:src="${post.filePath}" th:if="${post.filePath != null}" class="card-img-top card-img" name="imgFile" alt="..." />
+                <img th:src="${post.filePath}"  class="card-img-top card-img" name="imgFile"/>
                 </div>
                     </div>
+					<!-- 내용시작 -->
                     <div class="mb-3 row">
                         <label for="title"
                             class="col-sm-2 col-form-label">제목</label>

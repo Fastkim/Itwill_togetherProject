@@ -106,12 +106,24 @@ public class RecruitPostController {
     }
 
     @PostMapping("/post/update")
-    public String update(RecruitPostUpdateDto dto, @RequestParam("imgFile") MultipartFile fileName) throws Exception {
+    public String update(RecruitPostUpdateDto dto) throws Exception {
 
-        Integer postId = recruitPostService.update(dto, fileName);
+        Integer postId = recruitPostService.update(dto);
         log.info("postId={}",postId);
 
         return "redirect:/post/detail?id=" + dto.getId();
+    }
+    
+    @PostMapping("/post/updateImg")
+    public String updateImg(RecruitPostUpdateDto dto, 
+    		@RequestParam("imgFile") MultipartFile fileName) throws Exception {
+    	
+    	Integer postId = recruitPostService.updateImg(dto, fileName);
+    	
+    	
+    	log.info("postId={}",postId);
+    	
+    	return "redirect:/post/detail?id=" + dto.getId();
     }
 
     @GetMapping("/post/search")

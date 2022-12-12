@@ -5,14 +5,14 @@
 <body>
     <div layout:fragment="content">
         <div>
-            <form id="formModify" method="post" style="margin-top: 4px;">
+            <form id="formModify" method="post" enctype="multipart/form-data" style="margin-top: 4px;">
                 <div class="card m-4 row g-5">
                 <div class="select_img" style="width: 20rem;">
-                    <img th:src="${post.filePath}" th:if="${post.filePath != null}" class="card-img-top card-img" name="imgFile"/>
-                    <input type="file" id="imgFileInput" name="imgFile" />
+                    <img id="imgFileImg" th:src="${post.filePath}" th:if="${post.filePath} != null" class="card-img-top card-img"/>
+                    <input type="file" id="imgFile" name="imgFile"/>
                 </div>
-                <div class="select_img_hidden">
-                    <img th:src="${post.filePath}" th:if="${post.filePath != null}" />
+                <div class="select_img_hidden d-none">
+                    <img th:src="${post.filePath}"  th:if="${post.filePath} != null" />
                     <input type="hidden" name="hiddenImg" th:value="${post.filePath}"/>
                 </div>
                 <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
@@ -53,12 +53,12 @@
                             id="totalMember" name="totalMember" th:value="${post.totalMember}" />
                     </div>
                     <label for="joinMember"
-                        class="col-sm-2 col-form-label">모집인원</label>
+                        class="col-sm-2 col-form-label">현재인원</label>
                     <div class="col-sm-4">
                         <input type="number"
                             class="form-control-plaintext"
-                            id="joinMember" name="tjoinMember"
-                            th:value="${post.joinMember}" readonly />
+                            id="joinMember" name="joinMember"
+                            th:value="${countMember}" readonly />
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -111,38 +111,44 @@
     // 수정버튼 이벤트리스너
     const btnUpdate = document.querySelector('#btnUpdate');
     btnUpdate.addEventListener('click', function() {
+    	
         const title = document.querySelector('#title').value;
         const content = document.querySelector('#content').value;
+        const imgFile = document.querySelector('#imgFile').value;
         
-        if(title == '' || content == '') {
-            alert('제목과 내용을 입력하세요')
-            return;
+        if(imgFile == '') {
+	        if(title == '' || content == '') {
+	            alert('제목과 내용을 입력하세요')
+	            return;
+	        }
+	        
+	        const result = confirm('수정하시겠습니까?');
+	        if(result) {
+	            formModify.action='/post/update';
+	            formModify.method='post';
+	            formModify.submit();
+	        }
+        } else {
+	        if(title == '' || content == '') {
+	            alert('제목과 내용을 입력하세요')
+	            return;
+	        }
+	        
+	        const result = confirm('수정하시겠습니까?');
+	        if(result) {
+	        	console.log("updatImg")
+	            formModify.action='/post/updateImg';
+	            formModify.method='post';
+	            formModify.submit();
+	        }
+        	
+        	
         }
-        
-        const result = confirm('수정하시겠습니까?');
-        if(result) {
-            formModify.action='/post/update';
-            formModify.method='post';
-            formModify.submit();
-        }
-    })
+	        })
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- 댓글 관련 자바스크립트 함수/코드들을 작성한 스크립트 파일 -->
-    <script>
-    $("#imgFileInput").change(function(){
-    	if(this.files && this.files[0]) {
-    		const reader = new FileReader;
-    		reader.onload = function(data) {
-    			$(".select_img_hidden").attr("src", data.target.result).width(500);
-    		}
-    		reader.readAsDataURL(this.files[0]);
-    	}
-    	
-    })
     
-    </script>
     
 
 </body>

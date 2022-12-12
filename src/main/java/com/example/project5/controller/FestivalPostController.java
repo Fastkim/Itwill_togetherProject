@@ -30,12 +30,14 @@ public class FestivalPostController {
     
     private final FestivalPostService festivalPostService;
     
-    @GetMapping("/festivalPostList") // 요청 URL/방식 매핑.
-    public String home(Model model) {
-        log.info("list()");
-        
-        List<FestivalPost> list = festivalPostService.read(); // DB에서 포스트 목록 전체 검색.
-        model.addAttribute("list", list);
+    @GetMapping("/festivalPostList")
+    public String list(Model model,@RequestParam(value="page", defaultValue = "0")int page) {
+        log.info("page()");
+        //TODO 
+        //List<FreeSharePost> list = freeSharePostService.read();
+        Page<FestivalPost> paging=this.festivalPostService.getList(page);
+        model.addAttribute("paging",paging);
+        //model.addAttribute("list", list);
         
         return "/community/festivalPostList";
     }
@@ -78,7 +80,7 @@ public class FestivalPostController {
         attrs.addFlashAttribute("deletedPostId", postId);
         
         // 삭제 완료 후에는 목록 페이지로 이동(redirect) - PRG 패턴
-        return "redirect:/";
+        return "redirect:/community/festivalPostList";
     }
     
     @PostMapping("/festivalPostUpdate")
