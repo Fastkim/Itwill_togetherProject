@@ -34,7 +34,7 @@
         </div>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-4" th:each="post : ${ list }">
-                <div class="my-5 card h-60" style="width: 70%">
+                <div class="my-5 card h-60">
                     <!-- =image-->
                     <img th:src="${post.filePath}"  class="card-img-top" style="height: 160px;" name="imgFile" />
                     <!-- details-->
