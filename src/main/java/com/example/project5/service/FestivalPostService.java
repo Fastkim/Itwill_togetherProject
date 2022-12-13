@@ -15,12 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project5.domain.FestivalPost;
-import com.example.project5.domain.FreeSharePost;
-import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.FestivalPostCreateDto;
 import com.example.project5.dto.FestivalPostUpdateDto;
 import com.example.project5.repository.FestivalPostRepository;
-
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor // final 필드를 초기화하는 생성자.
 @Service // 스프링 컨텍스트에 Service 컴포넌트로 등록.
-
 public class FestivalPostService {
-    
     private final FestivalPostRepository festivalPostRepository;
     
     @Transactional(readOnly = true) // 검색 속도가 빨라짐.
@@ -64,15 +59,17 @@ public class FestivalPostService {
         
     }
     
-    public Page<FestivalPost> getList(int page){
-        log.info("page-getList(page={})",page);
-        List<Sort.Order> sorts=new ArrayList<>();
-        sorts.add(Sort.Order.desc("createdTime"));
-        Pageable pageable=PageRequest.of(page, 5, Sort.by(sorts));
-        
-        return this.festivalPostRepository.findAll(pageable);
-    }
     
+    public Page<FestivalPost> getList(int page){ 
+      log.info("page-getList(page={})",page); // List<Sort.Order> sorts=new
+      
+      List<Sort.Order> sorts=new ArrayList<>();
+      sorts.add(Sort.Order.desc("createdTime"));
+      Pageable pageable=PageRequest.of(page, 4, Sort.by(sorts));
+      
+      return this.festivalPostRepository.findAll(pageable);
+     }
+       
     @Transactional(readOnly = true)
     public FestivalPost read(Integer id) {
         log.info("read(id={})", id);
@@ -112,14 +109,13 @@ public class FestivalPostService {
         case "c": // 내용만 검색
             list = festivalPostRepository.findByContentIgnoreCaseContainingOrderByIdDesc(keyword);
             break;
+        case "tc": // 제목 또는 내용 검색
+            list = festivalPostRepository.searchByKeyword(keyword);
+            break;
         }
         
         return list;
     }
-    
-    
-    
-    
     
     
 }
