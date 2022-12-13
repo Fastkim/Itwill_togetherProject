@@ -2,6 +2,8 @@ package com.example.project5.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -39,6 +41,8 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
             + " or lower(r.content) like lower('%' || :keyword || '%') order by r.id desc"
             )
     List<RecruitPost> searchByKeyword(@Param(value = "keyword") String keyword);
+    
+    Page<RecruitPost> findAll(Pageable pageable);
     
     // joinmember 구하는거 연습했던 코드... 선생님이 해보라고 하신 방법인데 다른 방법을 찾음.
 //select r.id, r.created_time, r.modifid_time, r.author, r.close_date, 
