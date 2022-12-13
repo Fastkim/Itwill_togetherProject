@@ -19,6 +19,8 @@ public class RecruitPostUpdateDto {
     private Integer totalMember;
     private String filePath;
     private String fileName;
+    private double lat;
+    private double lng;
     
     @DateTimeFormat(iso = ISO.DATE_TIME)
     private LocalDateTime closeDate;
