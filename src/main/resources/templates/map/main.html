@@ -11,17 +11,14 @@
 		<div id="map"
 			style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
-		<div id="menu_wrap" class="bg_white">
-			<div>
-				취미 활동 모임 목록
-			</div>
+		<div id="menu_wrap" class="bg_white" >
 			<hr>
-			<ul id="placesList"></ul>
-		    <div th:if="${!paging.isEmpty()}">
+			<ul id="placesList" ></ul>
+			<hr>
+			<div th:if="${!paging.isEmpty()}">
 		        <ul class="pagination justify-content-center">
 		            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
-		                <a class="page-link"
-		                    th:href="@{|?page=${paging.number-1}|}">
+		                <a class="page-link" th:href="@{|?page=${paging.number-1}|}">
 		                    <span>이전</span>
 		                </a>
 		            </li>
@@ -38,8 +35,11 @@
 		            </li>
 		        </ul>
 		    </div>
+			
 		</div>
+		
 	</div>
+	
 	
 	
 	<script type="text/javascript"
@@ -131,11 +131,14 @@
 		
 		// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, adrList) {
+			
+			var partOfContent = adrList.content;
+			var partOfTitle = adrList.title;
 		    var el = document.createElement('li'),
 		    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 		                '<div class="info">' +
-		                '   <h5>' + '<a href="' + '/post/detail?id=' + adrList.id + '">' + adrList.title + '</h5>';
-            itemStr += '    <span>' + '<a href="' + '/post/detail?id=' + adrList.id + '">' + adrList.content + '</span>' +
+		                '   <h5>' + '<a href="' + '/post/detail?id=' + adrList.id + '">' + partOfTitle + '</h5>';
+            itemStr += '    <span>' + '<a href="' + '/post/detail?id=' + adrList.id + '">' + partOfContent + '</span>' +
 	                    '   <span>' +  adrList.author  + '</span>';
 		    el.innerHTML = itemStr;
 		    el.className = 'item';
@@ -176,7 +179,7 @@
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, title) {
 		    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-		
+			
 		    infowindow.setContent(content);
 		    infowindow.open(map, marker);
 		}
@@ -187,6 +190,7 @@
 		        el.removeChild (el.lastChild);
 		    }
 		}
+		 
 	</script>
 	
 	
