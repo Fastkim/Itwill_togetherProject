@@ -1,6 +1,5 @@
 package com.example.project5.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -26,23 +25,23 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/community")
+
 public class FestivalPostController {
     
     private final FestivalPostService festivalPostService;
     
     @GetMapping("/festivalPostList")
-    public String list(Model model,@RequestParam(value="page", defaultValue = "0")int page) {
-        log.info("page()");
+    public String list(Model model, @RequestParam(value="page", defaultValue = "0")int page) {
+        log.info("list()");
         //TODO 
-        //List<FreeSharePost> list = freeSharePostService.read();
+        
         Page<FestivalPost> paging=this.festivalPostService.getList(page);
         model.addAttribute("paging",paging);
-        //model.addAttribute("list", list);
         
         return "/community/festivalPostList";
     }
     
-    
+
     @GetMapping("/festivalPostCreate") // GET 방식의 /post/create 요청을 처리하는 메서드.
     public void create() {
         log.info("create()");
@@ -98,9 +97,11 @@ public class FestivalPostController {
         log.info("search(type={}, keyword={})", type, keyword);
 
         List<FestivalPost> list = festivalPostService.search(type, keyword);
+        System.out.println("테스트..."+ list.toString());
         model.addAttribute("list", list);
 
-        return "/community/festivalPostList"; // list.html 파일
+        return "/community/festivalPostSearch"; // list.html 파일
 
     }
+    
 }
