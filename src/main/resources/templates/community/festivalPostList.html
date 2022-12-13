@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{ layout/layout }">
+
     <!--/* layout/layout.html 파일의 "content" 프래그먼트에 삽입될 컨텐트  */-->
     <div layout:fragment="content">
         <div class="card-header">
             <h1>축제,취미활동 게시판</h1>
         </div>
-            <div class="card-body">
+            <div class="card-body" id="content">
                 <div class="my-2">
                     <form th:action="@{ /community/festivalPostSearch }" method="get">
                         <div class="row">
