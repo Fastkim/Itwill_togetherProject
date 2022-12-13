@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -138,10 +139,10 @@ public class RecruitPostController {
     }
 
     @GetMapping("/map/main")
-    public void mapAddress(Model model) {
-
-        List<RecruitPost> list = recruitPostService.read();
-        model.addAttribute("list", list);
+    public String mapAddress(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+    	Page<RecruitPost> paging = this.recruitPostService.getMapList(page);
+    	model.addAttribute("paging", paging);
+    	return "/map/main";
     }
 
 }
