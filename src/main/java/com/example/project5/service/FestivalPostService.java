@@ -84,16 +84,43 @@ public class FestivalPostService {
         
         return id; // 삭제한 포스트 아이디(번호)를 리턴.
     }
-
+    
+    @Transactional
+    public Integer updateImg(FestivalPostUpdateDto dto, MultipartFile file) 
+            throws Exception {
+        log.info("update(dto={})", dto);
+        
+        FestivalPost entity = festivalPostRepository.findById(dto.getId()).get();
+        
+        String fileSavePath = "/img/"  + file.getOriginalFilename();
+        String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+        
+        File saveFile = new File(fileStaticPath, file.getOriginalFilename());
+        file.transferTo(saveFile);
+        
+        dto.setFilePath(file.getOriginalFilename());
+        dto.setFileName(fileSavePath);
+        
+        entity.updateFestivalPost(dto.getTitle(), dto.getContent(), 
+                dto.getFestivalAgency(), dto.getFestivalArea(), dto.getFestivalCharacter(),
+                dto.getFestivalInfo(), dto.getFestivalInquiry(), dto.getFestivalPeriod(),
+                dto.getFestivalPrice(), dto.getFestivalPlace(), 
+                dto.getFileName(), dto.getFilePath());
+        
+        
+        return entity.getId();
+    }
+    
     @Transactional // readOnly = false(기본값)
     public Integer update(FestivalPostUpdateDto dto) {
         log.info("update(dto={})", dto);
         
         FestivalPost entity = festivalPostRepository.findById(dto.getId()).get(); // (1)
+        
         entity.updateFestivalPost(dto.getTitle(), dto.getContent(), 
                 dto.getFestivalAgency(), dto.getFestivalArea(), dto.getFestivalCharacter(),
                 dto.getFestivalInfo(), dto.getFestivalInquiry(), dto.getFestivalPeriod(),
-                dto.getFestivalPrice(), dto.getFestivalPlace(), dto.getFileName(), dto.getFilePath()); // (2)
+                dto.getFestivalPrice(), dto.getFestivalPlace()); // (2)
         
         return entity.getId();
     }
