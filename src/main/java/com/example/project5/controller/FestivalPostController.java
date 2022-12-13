@@ -83,7 +83,7 @@ public class FestivalPostController {
     }
     
     @PostMapping("/festivalPostUpdate")
-    public String update(FestivalPostUpdateDto dto) {
+    public String update(FestivalPostUpdateDto dto) throws Exception {
         log.info("update(dto={})", dto);
         
         Integer postId = festivalPostService.update(dto);
@@ -91,6 +91,19 @@ public class FestivalPostController {
         // 포스트 수정 성공 후에는 상세 페이지로 이동(redirect)
         return "redirect:/community/festivalPostDetail?id=" + dto.getId();
     }
+    
+    @PostMapping("/festivalPostUpdateImg")
+    public String updateImg(FestivalPostUpdateDto dto, 
+            @RequestParam("imgFile") MultipartFile fileName) throws Exception {
+        
+        Integer postId = festivalPostService.updateImg(dto, fileName);
+        
+        
+        log.info("postId={}",postId);
+        
+        return "redirect:/community/festivalPostDetail?id=" + dto.getId();
+    }
+    
     
     @GetMapping("/festivalPostSearch")
     public String search(String type, String keyword, Model model) {
