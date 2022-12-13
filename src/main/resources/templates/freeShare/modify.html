@@ -14,36 +14,71 @@
     border-collapse: collapse;
     justify-content: center;
 }
+@font-face {
+    font-family: 'Tenada';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+   font-size : 100%;
+   font-family: 'Tenada';
+}
 </style>
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">[같취]로고가 들어갈 자리</a>
-        <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse"
-            id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active"
-                    aria-current="page" th:href="@{/}">메인 페이지</a></li>
-                <li class="nav-item"><a class="nav-link"
-                    th:href="@{/freeshare/create}">상품 등록</a></li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search"
-                    placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">검색</button>
-            </form>
+    <!-- nav bar  -->
+    <nav class="navbar navbar-light bg-dark">
+        <div class="container-fluid row">
+            <div class="bg-dark">
+                <div class="ml-5">
+                    <svg id="Layer_1" width="150" height="150" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 481.49 228.55">
+                        <defs><style>.cls-1{fill:#fd9409;}.cls-2{fill:none;stroke:#fd9409;stroke-miterlimit:10;stroke-width:20px;}.cls-3{fill:#f3ad14;}</style></defs>
+                        <path class="cls-1" d="M103.12,70.23q-2.91.3-2.91-2.91V53.5a2.57,2.57,0,0,1,2.91-2.91,105,105,0,0,0,14-1.46A56.83,56.83,0,0,0,129,45.86a34.36,34.36,0,0,0,8.66-5,14.76,14.76,0,0,0,4.8-6.48H100.94A2.57,2.57,0,0,1,98,31.52V18.13a2.57,2.57,0,0,1,2.91-2.91h67.67q3.06,0,3.06,3.06V28a32.42,32.42,0,0,1-3.06,14.41,34.87,34.87,0,0,1-8.22,10.84,47.91,47.91,0,0,1-12,7.71A86.82,86.82,0,0,1,134,66.09,115.71,115.71,0,0,1,118.4,69Q110.39,69.94,103.12,70.23Zm26.63,28.24h74.37a2.57,2.57,0,0,1,2.91,2.91v6a2.57,2.57,0,0,1-2.91,2.91H129.75v6.4h76.7a2.57,2.57,0,0,1,2.91,2.91v9.32a2.57,2.57,0,0,1-2.91,2.91H105.16a2.57,2.57,0,0,1-2.91-2.91V80.42a2.57,2.57,0,0,1,2.91-2.91h100a2.57,2.57,0,0,1,2.91,2.91V89.3a2.57,2.57,0,0,1-2.91,2.91H129.75Zm54.43-28.38c-2,0-3.05-1-3.05-2.91V16.82a2.7,2.7,0,0,1,3.05-3.05H205q3.06,0,3.06,3.05V29.05h6.84c1.94,0,2.91,1,2.91,3.05V49.28a2.57,2.57,0,0,1-2.91,2.91h-6.84v15q0,2.91-3.06,2.91Z"/><path class="cls-1" d="M228.13,104.58q-3,0-3-3.2V88.14c0-1.94,1-2.92,3-2.92h45q10.77,0,21-.87a73,73,0,0,0,18.34-3.78V16.82q0-3,3.06-3.05h20.81a2.7,2.7,0,0,1,3.05,3.05V129.61c0,1.94-1,2.91-3.05,2.91H315.46q-3.06,0-3.06-2.91V97.45a67.16,67.16,0,0,1-14.92,4.66,135.43,135.43,0,0,1-19,2.33v25a2.57,2.57,0,0,1-2.91,2.91h-19.5a2.57,2.57,0,0,1-2.91-2.91V104.58Zm2-82.08q0-2.91,3.06-2.91h19.94V12.46c0-2,1-3.06,3.05-3.06h20.09q3.19,0,3.2,3.06v7.13h18.92c2,0,3.05,1,3.05,2.91V35.16c0,1.94-1,2.91-3.05,2.91H281.25L255.79,74.89a3.51,3.51,0,0,1-3.64,2.33H231a2.71,2.71,0,0,1-2.4-1,2.51,2.51,0,0,1,.08-2.54l24-35.66h-19.5q-3.06,0-3.06-2.91Zm50.07,53.85a4,4,0,0,1-2.19-.66A6.14,6.14,0,0,1,276.31,74l-6-8.3a3,3,0,0,1,0-3.93L279.8,48q1.89-2.76,3.93,0l17.9,24.88a2.4,2.4,0,0,1,.58,2.41,2,2,0,0,1-2,1.09Z"/><path class="cls-2" d="M401.88,107.06a50.17,50.17,0,1,0,23.6-96.25h0c0,114.73-93,207.74-207.74,207.74S10,125.54,10,10.81"/>
+                        <path class="cls-3" d="M124.71,58.05c3.21,0,3.22-5,0-5s-3.23,5,0,5Z"/>
+                    </svg>
+                    <div class="m-5" style="width:200px; height:150px; float: right">
+                        <th:block sec:authorize="isAuthenticated()">
+                            <div><a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /logout }">[[ ${#authentication.name} ]] ◎ 로그아웃</a></div>
+                        </th:block>
+                    </div>
+                </div>
+                <span style="color: red; font-size:180%;"> <strong>'같'은 '취'미를 공유하는..♥</strong></span>
+            
+                <!--<div class="m-2">
+                        <a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /login }">◎ Home</a>
+                        <a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /login }">◎ 인원모집</a>
+                    </div> -->
+            </div>
+        </div>    
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bg-black">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse"
+                id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/}">◎ 메인 페이지</a></li>
+                    <li class="nav-item">
+                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
+                    <li class="nav-item">
+                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
+                  
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+   
 
 <div class="container" style="background-size: cover">
     <div class="row wrap img-fluid">
@@ -64,40 +99,41 @@
                 
                 <div class="card-body">
                     <div class="my-2">
-                        <label for="title" class="form-label">제목</label> 
-                        <input id="title" name="title" class="form-control" th:value="${post.title}"  />
+                        <label for="title" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 제목</label> 
+                        <input id="title" name="title" class="form-control" style="font-size:140%" th:value="${post.title}"  />
                     </div>
                     <div class="my-2">
-                        <label for="author" class="form-label">담당자</label> 
-                        <input id="author" class="form-control" th:value="${post.author}" readonly />
+                        <label for="author" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 담당자</label> 
+                        <input id="author" class="form-control" style="font-size:140%" th:value="${post.author}" readonly />
                     </div>
                     <div class="my-2">
-                        <label for="content" class="form-label">모집내용</label> 
-                        <textarea id="content" name="content" class="form-control" th:text="${post.content}"  ></textarea>
+                        <label for="content" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 모집내용</label> 
+                        <textarea id="content" name="content" class="form-control" style="font-size:140%" th:text="${post.content}"  ></textarea>
                     </div>
                     <div class="my-2">
-                        <label for="price" class="form-label">가격</label> 
-                        <input type="text" maxlength="10" onkeyup="inputNumberFormat(this)" name="price" id="price" class="form-control" th:value="${post.price}" />
+                        <label for="price" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 가격</label> 
+                        <input type="text" maxlength="10" onkeyup="inputNumberFormat(this)" style="font-size:140%" name="price" id="price" class="form-control" th:value="${post.price}" />
                     </div>
                     <th:block>
                         <div class="my-2" th:if="${post.transaction}==parcel">
-                            <label for="transaction" class="form-label">거래방법</label> 
-                            <input id="transaction" class="form-control" value="택배가능" readonly />
+                            <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
+                            <input id="transaction" class="form-control" value="택배가능" style="font-size:140%" readonly />
                         </div>
                         <div class="my-2" th:if="${post.transaction}==direct">
-                            <label for="transaction" class="form-label">거래방법</label> 
-                            <input id="transaction" class="form-control" value="직접거래 가능" readonly />
+                            <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
+                            <input id="transaction" class="form-control" value="직접거래 가능" style="font-size:140%" readonly />
                         </div>
                         <div class="my-2" th:unless="${post.transaction}==direct or ${post.transaction}==parcel">
-                            <label for="transaction" class="form-label">거래방법</label> 
-                            <input id="transaction" class="form-control" value="택배 가능, 직접거래 가능" readonly />
+                            <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
+                            <input id="transaction" class="form-control" value="택배 가능, 직접거래 가능" style="font-size:140%" readonly />
                         </div>
                     </th:block>
                 </div>
             </div>
             
             <div class="my-2">
-                <button class="btn btn-outline-success" id="btnUpdate">수정완료</button>
+                <button class="btn btn-outline-success" id="btnUpdate" style="font-size:150%">수정완료</button>
+                <button class="btn btn-outline-danger" id="btnCancel" style="font-size:150%">취소</button>
             </div>
             
         </form>
@@ -106,11 +142,14 @@
 
 
 <script layout:fragment="script">
+
     //form HTML요소를 찾음...
     const formModify=document.querySelector('#formModify');
-
+    
     //수정완료버튼을 찾아서 eventListener등록.
     const btnUpdate=document.querySelector('#btnUpdate');
+    const btnCancel=document.querySelector('#btnCancel');
+    
     btnUpdate.addEventListener('click',function(){
         const title=document.querySelector('#title').value;
         const content=document.querySelector('#content').value;
@@ -126,6 +165,14 @@
             formModify.submit();
         }
     });    
+    
+    btnCancel.addEventListener('click', function(){
+    	formModify.action='/freeshare/list';
+        formModify.method='get';
+        formModify.submit();
+    });
+    
+    
     </script>
     <script type="text/javascript">
     function comma(str) {
