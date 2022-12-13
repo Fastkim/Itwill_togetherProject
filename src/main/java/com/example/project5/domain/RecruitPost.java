@@ -70,7 +70,7 @@ public class RecruitPost extends BaseTimeEntity {
     private final String postGroup="recruitPost";
     
     public RecruitPost updateRecruitPost(String title, String content, String place, 
-            Integer totalMember,LocalDateTime closeDate) {
+            Integer totalMember,LocalDateTime closeDate, double lat, double lng) {
         this.title=title;
         this.content=content;
         this.place=place;
@@ -78,6 +78,8 @@ public class RecruitPost extends BaseTimeEntity {
 //        this.filePath=filePath;
 //        this.fileName = fileName;
         this.closeDate=closeDate;
+        this.lat = lat;
+        this.lng = lng;
          
         return this;
     }
