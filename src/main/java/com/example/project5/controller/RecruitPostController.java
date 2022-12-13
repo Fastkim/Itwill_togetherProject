@@ -35,7 +35,7 @@ public class RecruitPostController {
     @GetMapping("/post/list")
     public String list(Model model , @RequestParam(value = "page" , defaultValue = "0") int page) {
         log.info("list");
-
+        
 //        List<RecruitPost> list = recruitPostService.read();
 //        model.addAttribute("list", list);
         Page<RecruitPost> paging = this.recruitPostService.getPostList(page);
@@ -135,9 +135,9 @@ public class RecruitPostController {
         log.info("search(type={}, keyword={}", type, keyword);
 
         List<RecruitPost> list = recruitPostService.search(type, keyword);
-        model.addAttribute("list", list);
-
-        return "/post/list";
+        model.addAttribute("post", list);
+        log.info("post=" + list);
+        return "/post/search";
     }
 
     @GetMapping("/map/main")

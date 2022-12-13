@@ -155,4 +155,9 @@ public class RecruitPostService {
     	return this.recruitPosrRepository.findAll(pageable);
     }
     
+    public Page<RecruitPost> getPostList(int page) {
+        Pageable pageable = PageRequest.of(page, 15);
+        return this.recruitPosrRepository.findAll(pageable);
+    }
+    
 }
