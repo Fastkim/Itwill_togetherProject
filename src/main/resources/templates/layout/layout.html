@@ -157,49 +157,6 @@ li{
 <body>
     <header> </header>
             <!-- Navigation-->
-    <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse"
-                    id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active"><a
-                            class="nav-link" th:href="@{ / }">Home</a></li>
-                        <!-- 로그인하지 않은 상태 -->
-                        <th:block sec:authorize="isAnonymous()">
-                            <li class="nav-item"><a
-                                class="nav-link"
-                                th:href="@{ /member/signup }">회원가입</a></li>
-                            <li class="nav-item"><a
-                                class="nav-link" th:href="@{ /login }">로그인</a></li>
-                        </th:block>
-                        <!-- 로그인 상태 -->
-                        <th:block sec:authorize="isAuthenticated()">
-                            <li class="nav-item"><a
-                                class="nav-link" th:href="@{ /logout }">
-                                    <span class="text-info"
-                                    sec:authentication="name"></span>
-                                    로그아웃
-                            </a></li>
-                            <li class="nav-item"><a
-                                class="nav-link" th:href="@{ /member/mypage }">
-                                    <span class="text-info"
-                                    sec:authentication="name"></span>
-                                    마이페이지
-                            </a></li>
-                        </th:block>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
     <!--/* 메인컨텐트 */-->
     <div class="container-fluid row" >
         <div class="col-sm-2"></div>
