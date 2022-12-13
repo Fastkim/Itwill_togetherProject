@@ -60,7 +60,6 @@ public class RecruitPostService {
     public RecruitPost create(RecruitPostCreateDto dto, MultipartFile file) throws IOException {
         log.info("create(dto={})", dto);
         
-        
 //        // 파일 저장 경로 설정 
 //        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; 
 //        
@@ -76,7 +75,6 @@ public class RecruitPostService {
 //        RecruitPost entity = dto.toEntity();
 //        entity.setFileName(fileName);
 //        entity.setFilePath("/img/" + fileName);
-//        
         String fileSavePath = "/img/" + file.getOriginalFilename();
         String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
         
@@ -155,4 +153,8 @@ public class RecruitPostService {
     	return this.recruitPosrRepository.findAll(pageable);
     }
     
+    public Page<RecruitPost> getPostList(int page) {
+        Pageable pageable = PageRequest.of(page, 12);
+        return this.recruitPosrRepository.findAll(pageable);
+    }
 }

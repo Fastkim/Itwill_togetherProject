@@ -33,12 +33,14 @@ public class RecruitPostController {
     private final ApplyService applyService;
 
     @GetMapping("/post/list")
-    public String list(Model model) {
+    public String list(Model model , @RequestParam(value = "page" , defaultValue = "0") int page) {
         log.info("list");
 
-        List<RecruitPost> list = recruitPostService.read();
+//        List<RecruitPost> list = recruitPostService.read();
+//        model.addAttribute("list", list);
+        Page<RecruitPost> paging = this.recruitPostService.getPostList(page);
         
-        model.addAttribute("list", list);
+        model.addAttribute("paging", paging);
 
         return "/post/list";
     }
