@@ -89,4 +89,21 @@ public class FestivalPost extends BaseTimeEntity {
         
         return this;
     }
+    
+    public FestivalPost updateFestivalPost(String title, String content, String festivalArea, String festivalPeriod
+            , String festivalCharacter, String festivalInfo, String festivalPlace, String festivalPrice, String festivalAgency,
+            String festivalInquiry) {
+        this.title=title;
+        this.content=content;
+        this.festivalArea=festivalArea;
+        this.festivalAgency=festivalAgency;
+        this.festivalCharacter=festivalCharacter;
+        this.festivalInfo=festivalInfo;
+        this.festivalInquiry=festivalInquiry;
+        this.festivalPeriod=festivalPeriod;
+        this.festivalPrice=festivalPrice;
+        this.festivalPlace=festivalPlace;
+        
+        return this;
+    }
 }
