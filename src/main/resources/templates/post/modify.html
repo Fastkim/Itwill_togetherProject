@@ -6,7 +6,33 @@
     <div layout:fragment="content">
         <div>
             <form id="formModify" method="post" enctype="multipart/form-data" style="margin-top: 4px;">
-                <div class="card m-4 row g-5">
+                <h4 style="margin-right: 50px; margin-left: 50px; margin-top: 50px;">게시글 수정</h4>
+                <hr style="margin-right: 50px; margin-left: 50px; height: 3px; border: 0; background:gray;"/>
+                <div class="card mb-3 m-4 g-5 border border-white" >
+                    <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden"/>
+                    <div class="row g-0 " >
+                    <!-- style="width: 20rem; -->
+                        <div class="col-md-4" style="width: 300px; margin: 10px; margin-left: 25px;">
+                            <img id="imgFileImg" name="imgFile" th:src="${post.filePath}" th:if="${post.filePath} != null" class="card-img-top card-img"/>
+                            <input type="file" id="imgFile" name="imgFile"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" style="margin-top: 20px;">
+                            <label for="title" class="col-sm-2 col-form-label" style="color: gray;">제목</label>
+                                <input style="font-size: 22px;" type="text" class="form-control"
+                                        id="title" name="title" th:value="${post.title}" />
+                            <div class="row" style="margin-top: 15px;">
+                            <label for="author"
+                                    class="col-2" style="margin-right: 5px; color: gray;" >담당자</label>
+                            <input  type="text" class="col-8" style="border:0 solid black"
+                                        id="author" name="author" th:value="${post.author}" />
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+<!--             <div class="card m-4 row g-5">
                 <div class="select_img" style="width: 20rem;">
                     <img id="imgFileImg" th:src="${post.filePath}" th:if="${post.filePath} != null" class="card-img-top card-img"/>
                     <input type="file" id="imgFile" name="imgFile"/>
@@ -33,51 +59,53 @@
                                 id="author" name="author" th:value="${post.author}" readonly />
                         </div>
                     </div>
-                </div>
+            </div> -->
             <!-- content 모집내용 시작 -->
-            <div class="card m-4 g-5">
-                <label for="content" class="form-label mt-5 m-3">모집내용</label>
+            <div class="card m-4 g-5 border border-white">
+                <label for="content" class="form-label" style="margin-left: 27px; margin-bottom: 10px; margin-top: 30px;">모집내용</label>
                     <div class="mx-4 mb-2">
-                        <textarea style="font-size: 22px;" id="content" name="content"
+                        <textarea style="font-size: 22px; margin-bottom: 30px;" id="content" name="content"
                             class="form-control" rows="20" th:text="${post.content}" required></textarea>
                     </div>
                 </div>
-
+                
+            <hr style="margin-right: 50px; margin-left: 50px; height: 1px; border: 0; background:gray;"/>
             <!-- 지도폼 -->
-            <div class="card m-4 row g-5">
+            
+            <div class="card m-4 row g-5 border border-white">
                 <div class="mb-3 my-2 row">
                     <label for="totalMember"
-                        class="col-sm-2 col-form-label">모집인원</label>
-                    <div class="col-sm-4">
+                        class="col-sm-2 col-form-label"  style="margin-left: 10px;">모집인원</label>
+                    <div class="col-sm-3">
                         <input type="number" class="form-control"
                             id="totalMember" name="totalMember" th:value="${post.totalMember}" />
                     </div>
                     <label for="joinMember"
-                        class="col-sm-2 col-form-label">현재인원</label>
-                    <div class="col-sm-4">
+                        class="col-sm-2 col-form-label" style="margin-left: 110px;">현재인원</label>
+                    <div class="col-sm-3">
                         <input type="number"
                             class="form-control-plaintext"
                             id="joinMember" name="joinMember"
                             th:value="${countMember}" readonly />
                     </div>
                 </div>
-                <div class="mb-3 row">
+                <div class="mb-3 row border border-white">
                     <label for="meetingDate"
-                        class="col-sm-2 col-form-label">모임기간</label>
-                    <div class="col-sm-4">
+                        class="col-sm-2 col-form-label" style="margin-left: 10px;">모임기간</label>
+                    <div class="col-sm-3">
                         <input type="datetime-local" class="form-control"
                             id="meetingDate" name="meetingDate" th:value="${post.meetingDate}" readonly />
                     </div> 
                     <label for="closeDate"
-                        class="col-sm-2 col-form-label">신청마감</label>
-                    <div class="col-sm-4">
+                        class="col-sm-2 col-form-label" style="margin-left: 110px;">신청마감</label>
+                    <div class="col-sm-3">
                         <input type="datetime-local" class="form-control"
                             id="closeDate" name="closeDate" th:value="${post.closeDate}" />
                     </div>
                 </div>
-               	<div class="mb-3 row">
+               	<div class="mb-3 row border border-white">
                		<div class="col-sm-8">
-               				<input class="form-control" type="text" name="place" id="place" th:value="${post.place}" readonly>
+               				<input class="form-control" type="text" name="place" id="place" th:value="${post.place}"  style="margin-left: 5px;" readonly>
                		</div>
 					<div class="col-sm-2">
 						<input class="form-control btn btn-outline-success" type="button" onclick="execDaumPostcode()" value="주소 검색">
@@ -88,13 +116,12 @@
 						<input type="number" name="Lat" id="lat" th:value="${post.lat}" step="0.000000000000001" style="display:none">
 						<input type="number" name="Lng" id="lng" th:value="${post.lng}" step="0.000000000000001" style="display:none">
 						<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
+                    <div style="margin-top: 20px; margin-left: 5px;">
+                        <!-- 버튼 위치 -->
+                        <button class="btn btn-outline-danger" id="btnDelete" style="margin-right: 5px;">삭제</button>
+                        <button class="btn btn-outline-primary" id="btnUpdate">수정</button>
+                    </div>
                	</div>
-               	
-                <div class="my-2">
-                    <!-- 버튼 위치 -->
-                    <button class="btn btn-outline-danger" id="btnDelete">삭제</button>
-                    <button class="btn btn-outline-primary" id="btnUpdate">수정</button>
-                </div>
                 </div>
             </form>
         </div>

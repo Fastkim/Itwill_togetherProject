@@ -78,9 +78,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 + '<h5>' + r.writer + '</h5>'
                 + '</div>'
                 + '<div class="card-body">'
-                + '<p>' + r.replyText + '</p>'
-                + '<p> 작성 시간: ' + r.createdTime + '</p>'
-                + '<p> 수정 시간: ' + r.modifiedTime + '</p>'
+                + '<p style="font-size: 20px;">' + r.replyText + '</p>'
+                + '<p style="font-size: 12px; color:gray;"> 작성 시간: ' + r.createdTime + '</p>'
+                + '<p style="font-size: 12px; color:gray;"> 수정 시간: ' + r.modifiedTime + '</p>'
                 + '</div>';
             // 댓글 작성자 아이디와 로그인 사용자 아이디가 같을 때만 "수정" 보여주기.
             if (r.writer == loginUser) {
