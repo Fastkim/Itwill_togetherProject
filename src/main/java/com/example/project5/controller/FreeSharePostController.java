@@ -19,6 +19,7 @@ import com.example.project5.domain.FreeSharePost;
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.FreeSharePostCreateDto;
 import com.example.project5.dto.FreeSharePostUpdateDto;
+import com.example.project5.service.FreeSharePostReplyService;
 import com.example.project5.service.FreeSharePostService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/freeshare")
 public class FreeSharePostController {
     private final FreeSharePostService freeSharePostService;
+    private final FreeSharePostReplyService freeSharePostReplyService;
     
     @GetMapping("/list")
     public String list(Model model,@RequestParam(value="page", defaultValue = "0")int page) {
@@ -82,6 +84,9 @@ public class FreeSharePostController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/delete")
     public String delete(Integer id, RedirectAttributes attrs) {
+        log.info("deleteReply(id={})", id);
+        freeSharePostReplyService.deleteByFreeSharePostId(id);
+        
         log.info("delete(id={})", id);
         
         Integer freeShareId = freeSharePostService.delete(id);
