@@ -3,6 +3,7 @@ package com.example.project5.controller;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,7 @@ public class FestivalPostController {
         return "/community/festivalPostList";
     }
     
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/festivalPostCreate") // GET 방식의 /post/create 요청을 처리하는 메서드.
     public void create() {
         log.info("create()");
@@ -49,6 +50,7 @@ public class FestivalPostController {
         // src/main/resources/templates/post/create.html
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/festivalPostCreate")
     public String create(RedirectAttributes attrs, FestivalPostCreateDto dto, @RequestParam("filePath") MultipartFile fileName) throws Exception {
         log.info("create(dto={})", dto);
@@ -61,6 +63,7 @@ public class FestivalPostController {
         return "redirect:/community/festivalPostList";
     }
     
+    @PreAuthorize("hasRole('USER')")
     @GetMapping({"/festivalPostDetail", "/festivalPostModify" })
     // 컨트롤러 메서드가 2개 이상의 요청 주소를 처리할 때는 mapping에서 요청 주소를 배열로 설정.
     public void detail(Integer id, Model model) {
@@ -71,6 +74,7 @@ public class FestivalPostController {
         model.addAttribute("festivalPost", festivalPost);
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/festivalPostDelete")
     public String delete(Integer id, RedirectAttributes attrs) {
         log.info("delete(id={})", id);
@@ -116,7 +120,5 @@ public class FestivalPostController {
         return "/community/festivalPostSearch"; // list.html 파일
 
     }
-    
-    //깃아 업데이트 되었니?
     
 }

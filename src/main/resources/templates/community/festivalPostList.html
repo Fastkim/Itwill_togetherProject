@@ -66,7 +66,7 @@
                                         <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${ festivalPost.id }) }" th:text="${ festivalPost.title }"></a>
                                     </td>
                                     <td th:text="${ festivalPost.author }"></td>
-                                    <td th:text="${ #temporals.format(festivalPost.modifiedTime, 'yyyy-MM-dd HH:mm:ss') }"></td>
+                                    <td th:text="${ #temporals.format(festivalPost.modifidTime, 'yyyy-MM-dd HH:mm:ss') }"></td>
                                 </tr>
                             </tbody>
                         </table>
