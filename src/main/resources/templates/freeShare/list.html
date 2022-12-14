@@ -32,7 +32,7 @@
 </style>
 </head>
 <div layout:fragment="content">
-    <nav class="navbar navbar-expand-lg bg-black">
+    <nav class="navbar navbar-expand-lg bg-red">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse"
@@ -42,14 +42,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse p-2" id="navbarSupportedContent" style="border: 3px solid orange;">
+            <div class="collapse navbar-collapse p-1" id="navbarSupportedContent" >
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/}">◎ 메인 페이지</a></li>
+                    <a id="menuList1" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/}">◎ 메인 페이지</a></li>
                     <li class="nav-item">
-                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
+                    <a id="menuList2" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
                     <li class="nav-item">
-                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
+                    <a id="menuList3" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
                   
                 </ul>
                 <form th:action="@{ /freeshare/search }" class="d-flex">
@@ -98,7 +98,6 @@
     
         </div>
     </div>
-</div>
     <!-- div-container끝나는 부분. -->
     <!-- 페이징처리 시작 -->
     <div th:if="${!paging.isEmpty()}">
@@ -122,35 +121,63 @@
         </ul>
     </div>
 <!-- 페이징처리 끝 -->
+</div>
+<th:block layout:fragment="script">  
+    <script>
+    let click1 = document.getElementById("menuList1"); 
+    let click2 = document.getElementById("menuList2");
+    let click3 = document.getElementById("menuList3");
     
-<script type="text/javascript">
-//가격숫자 표시에 세 자리 숫자 기준으로 ,를 붙이기 위해서 만든 자바스크립트 함수
-    function comma(str) {
-        str = String(str);
-        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-    }
-
-    function uncomma(str) {
-        str = String(str);
-        return str.replace(/[^\d]+/g, '');
-    } 
+    click1.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click1.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+      
+    click2.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click2.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+      
+    click3.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click3.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+    </script>
     
-    function inputNumberFormat(obj) {
-        obj.value = comma(uncomma(obj.value));
-    }
+    <script type="text/javascript">
+    //가격숫자 표시에 세 자리 숫자 기준으로 ,를 붙이기 위해서 만든 자바스크립트 함수
+        function comma(str) {
+            str = String(str);
+            return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+        }
     
-    function inputOnlyNumberFormat(obj) {
-        obj.value = onlynumber(uncomma(obj.value));
-    }
+        function uncomma(str) {
+            str = String(str);
+            return str.replace(/[^\d]+/g, '');
+        } 
+        
+        function inputNumberFormat(obj) {
+            obj.value = comma(uncomma(obj.value));
+        }
+        
+        function inputOnlyNumberFormat(obj) {
+            obj.value = onlynumber(uncomma(obj.value));
+        }
+        
+        function onlynumber(str) {
+            str = String(str);
+            return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+        }
+    </script>
     
-    function onlynumber(str) {
-        str = String(str);
-        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
-    }
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</th:block>
 </html>

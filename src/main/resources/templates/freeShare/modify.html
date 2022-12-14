@@ -33,7 +33,7 @@
 <body>
 
 <div layout:fragment="content">
-    <nav class="navbar navbar-expand-lg bg-black">
+    <nav class="navbar navbar-expand-lg bg-red">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse"
@@ -43,14 +43,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse p-2" id="navbarSupportedContent" style="border: 3px solid orange;">
+            <div class="collapse navbar-collapse p-1" id="navbarSupportedContent" >
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/}">◎ 메인 페이지</a></li>
+                    <a id="menuList1" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/}">◎ 메인 페이지</a></li>
                     <li class="nav-item">
-                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
+                    <a id="menuList2" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
                     <li class="nav-item">
-                    <a style="text-decoration:none; color: orange; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
+                    <a id="menuList3" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
                   
                 </ul>
             </div>
@@ -119,8 +119,34 @@
     </div>
 </div>
 
-<script layout:fragment="script">
-
+<th:block script layout:fragment="script">
+    <script>
+    let click1 = document.getElementById("menuList1"); 
+    let click2 = document.getElementById("menuList2");
+    let click3 = document.getElementById("menuList3");
+    
+    click1.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click1.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+      
+    click2.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click2.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+      
+    click3.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click3.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+    </script>
+    <script>
     //form HTML요소를 찾음...
     const formModify=document.querySelector('#formModify');
     
@@ -149,8 +175,6 @@
         formModify.method='get';
         formModify.submit();
     });
-    
-    
     </script>
     <script type="text/javascript">
     function comma(str) {
@@ -175,6 +199,7 @@
         str = String(str);
         return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
     }
-</script>
+    </script>
+</th:block>
 </body>
 </html>
