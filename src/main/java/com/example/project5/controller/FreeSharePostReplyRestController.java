@@ -62,7 +62,7 @@ public class FreeSharePostReplyRestController {
     }
     
     @PreAuthorize("hasRole('USER')")
-    @DeleteMapping("/replyId")
+    @DeleteMapping("/{replyId}")
     public ResponseEntity<Integer> deleteReply(@PathVariable Integer replyId) {
         log.info("deleteReply(replyId={})", replyId);
         

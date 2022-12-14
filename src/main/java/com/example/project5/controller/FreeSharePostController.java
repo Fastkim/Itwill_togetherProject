@@ -70,6 +70,7 @@ public class FreeSharePostController {
         model.addAttribute("post", freeSharePost);
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/modify")
     public String update(FreeSharePostUpdateDto dto) {
         log.info("update(dto={})", dto);
