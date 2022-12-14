@@ -15,9 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project5.domain.FreeSharePost;
+import com.example.project5.domain.FreeSharePostReply;
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.FreeSharePostCreateDto;
 import com.example.project5.dto.FreeSharePostUpdateDto;
+import com.example.project5.repository.FreeSharePostReplyRepository;
 import com.example.project5.repository.FreeSharePostRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class FreeSharePostService {
     private final FreeSharePostRepository freeSharePostRepository;
+    private final FreeSharePostReplyRepository freeSharePostReplyRepository;
 
     public List<FreeSharePost> read() {
         log.info("List<all> read");
@@ -76,6 +79,7 @@ public class FreeSharePostService {
 
     public Integer delete(Integer id) {
         log.info("delete(id={})", id);
+        
         freeSharePostRepository.deleteById(id);
         
         return id;
