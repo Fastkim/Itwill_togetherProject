@@ -44,7 +44,7 @@ public class RecruitPostController {
 
         return "/post/list";
     }
-
+    
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/post/create")
     public String post() {
