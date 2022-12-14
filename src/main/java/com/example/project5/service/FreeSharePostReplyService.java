@@ -1,6 +1,7 @@
 package com.example.project5.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,7 @@ public class FreeSharePostReplyService {
         
         return list.stream()
                 .map(FreeSharePostReplyReadDto::fromEntity)
-                .toList();
+                .collect(Collectors.toList());
         
     }
     
