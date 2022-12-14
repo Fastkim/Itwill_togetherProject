@@ -7,11 +7,11 @@ layout:decorate="~{ layout/layout.html }">
         <div layout:fragment="content">
             <h1 style="margin-right: 50px; margin-left: 50px; margin-top: 50px;">마이페이지</h1>
             
-            <div class="card-body">
-            <input type="text" class="form-control" id="host" name="host" 
+            <div class="card-body" style="margin-left: 50px; margin-right: 50px;">
+                <input type="text" class="form-control-plaintext" style="font-size: 25px; margin-left: 10px;" id="host" name="host" 
                         th:value="${ #authentication.name }" readonly />
                         <br/>
-            <h3>나의 지원 게시판 작성목록</h3>
+                <h3>나의 지원 게시판 작성목록</h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -75,9 +75,9 @@ layout:decorate="~{ layout/layout.html }">
         </div>
         <br/>
             <div class="card-body">
-                <ul>
-                    <li class="nav-item active">
-                        <a th:href="@{ /member/update }">개인정보 변경</a>
+                <ul style="list-style: none;">
+                    <li class="nav-item active" style="float: left; text-align: right; margin-left: 20px;">
+                        <a style="text-decoration-line: none; color: orange;" th:href="@{ /member/update }">개인정보 변경</a>
                     </li>
                 </ul>
             </div>
