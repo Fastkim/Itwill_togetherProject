@@ -59,7 +59,15 @@ public class ApplyService {
         return result;
     }
 
-    
+    public void deleteByRecruitPostId(Integer recruitPostId) {
+        log.info("delete(recruitPostId={})", recruitPostId);
+        
+        List<Apply> list = applyrepository.findByRecruitPostIdOrderByIdDesc(recruitPostId);
+        for (Apply a : list) {
+            applyrepository.deleteById(a.getId());
+        }
+        
+    }
 
     
     public String checkJoinNickname(String joinNickname, Integer recruitPostId) {

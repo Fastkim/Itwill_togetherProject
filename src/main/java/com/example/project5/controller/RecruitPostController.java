@@ -19,6 +19,7 @@ import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
 import com.example.project5.service.ApplyService;
+import com.example.project5.service.RecruitPostReplyService;
 import com.example.project5.service.RecruitPostService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RecruitPostController {
 
     private final RecruitPostService recruitPostService;
+    private final RecruitPostReplyService recruitPostReplyService;
     private final ApplyService applyService;
 
     @GetMapping("/post/list")
@@ -101,12 +103,15 @@ public class RecruitPostController {
     @PostMapping("/post/delete")
     public String delete(Integer id, RedirectAttributes attrs) {
         log.info("delete(id={})", id);
+        recruitPostReplyService.deleteByRecruitPostId(id);
+        
+        applyService.deleteByRecruitPostId(id);
 
         Integer postId = recruitPostService.delete(id);
 
         attrs.addFlashAttribute("deletePostId", postId);
 
-        return "redirect:/";
+        return "redirect:/post/list";
     }
 
     @PostMapping("/post/update")

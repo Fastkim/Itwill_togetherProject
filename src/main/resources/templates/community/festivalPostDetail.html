@@ -79,7 +79,7 @@
                     <div class="my-2">
                         <label for="modifiedTime" class="form-label">수정 시간</label>
                         <input id="modifiedTime" class="form-control" 
-                            th:value="${ #temporals.format(festivalPost.modifiedTime, 'yyyy-MM-dd HH:mm:ss') }" readonly />
+                            th:value="${ #temporals.format(festivalPost.modifidTime, 'yyyy-MM-dd HH:mm:ss') }" readonly />
                     </div>
                 </form>
                  <!-- 글 작성자 아이디와 로그인 사용자 아이디가 같은 경우에만 "수정하기" 보여주기 -->

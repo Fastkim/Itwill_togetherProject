@@ -67,6 +67,17 @@ public class RecruitPostReplyService {
         return replyId;
     }
     
+    public void deleteByRecruitPostId(Integer recruitPostId) {
+        log.info("delete(recruitPostId= {})", recruitPostId);
+        
+        List<RecruitPostReply> list = recruitPostReplyRepository.findByRecruitPostIdOrderByIdDesc(recruitPostId);
+        
+        for (RecruitPostReply r : list) {
+            recruitPostReplyRepository.deleteById(r.getId());
+        }
+        
+    }
+    
     @Transactional
     public Integer updateDto(RecruitPostReplyUpdateDto dto) {
         log.info("update(dto={})", dto);

@@ -1,6 +1,7 @@
 package com.example.project5.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,9 +42,15 @@ public class MyPageController {
         List<RecruitPost> recruitPostList = recruitPostService.readByAuthor(host);
         List<FreeSharePost> freeSharePostList = freeSharePostService.readByAuthor(host);
         List<Apply> applyList = applyService.findByUsername(host);
+        List<RecruitPost> applyRecruitPostList = new ArrayList<>();
+        for (Apply a : applyList) {
+            RecruitPost r = recruitPostService.read(a.getRecruitPost().getId());
+            applyRecruitPostList.add(r);
+        }
         model.addAttribute("recruitPostList", recruitPostList);
         model.addAttribute("freeSharePostList", freeSharePostList);
         model.addAttribute("applyList", applyList);
+        model.addAttribute("applyRecruitPostList", applyRecruitPostList);
         
     }
     
