@@ -25,7 +25,7 @@ layout:decorate="~{ layout/layout.html }">
                 <tbody>
                     <tr th:each="post : ${ recruitPostList }">
                         <td th:text="${post.id}"></td>
-                        <td><a
+                        <td><a style="text-decoration-line: none; color: black;"
                             th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
                             th:text="${post.title}"></a></td>
                         <td th:text="${post.totalMember}"></td>
@@ -47,7 +47,7 @@ layout:decorate="~{ layout/layout.html }">
                 <tbody>
                     <tr th:each="post2 : ${ freeSharePostList }">
                         <td th:text="${post2.id}"></td>
-                        <td><a
+                        <td><a style="text-decoration-line: none; color: black;"
                             th:href="@{ /freeshare/detail?id={id} (id = ${post2.id}) }"
                             th:text="${post2.title}"></a></td>
                         <td th:text="${post2.author}"></td>
