@@ -3,6 +3,7 @@ package com.example.project5.controller;//전 컨트롤러 패키지 이름에 w
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,11 +42,14 @@ public class FreeSharePostController {
         
         return "/freeShare/list";
     }
+    
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/create")
     public void create() {
         log.info("create()-get방식");
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
     public String create(RedirectAttributes attrs,FreeSharePostCreateDto dto, @RequestParam("filePath") MultipartFile file) throws Exception {
         log.info("create(dto={})-post방식",dto);
@@ -57,6 +61,7 @@ public class FreeSharePostController {
         return "redirect:/freeshare/list";
     }
     
+    @PreAuthorize("hasRole('USER')")
     @GetMapping({"/detail", "/modify"})
     public void detail(Integer id, Model model) {
         log.info("detail or modify(id={})", id);
@@ -73,6 +78,7 @@ public class FreeSharePostController {
         return "redirect:/freeshare/detail?id="+id;
     }
     
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/delete")
     public String delete(Integer id, RedirectAttributes attrs) {
         log.info("delete(id={})", id);
