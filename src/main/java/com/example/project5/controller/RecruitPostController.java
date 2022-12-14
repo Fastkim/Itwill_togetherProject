@@ -111,7 +111,7 @@ public class RecruitPostController {
 
         attrs.addFlashAttribute("deletePostId", postId);
 
-        return "redirect:/";
+        return "redirect:/post/list";
     }
 
     @PostMapping("/post/update")
