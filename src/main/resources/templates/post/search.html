@@ -38,7 +38,7 @@
         <hr/>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
 <!--             <div class="col" th:each="post , loop : ${paging}"> -->
-            <div class="col" th:each="post, loop: ${paging}">
+            <div class="col" th:each="post : ${post}">
                 <div class="my-5 card" style="height: 80%">
                     <!-- image-->
                     <img th:src="${post.filePath}"  class="card-img-top" style="height: 160px;" name="imgFile" />
@@ -59,7 +59,7 @@
 </div>
 
 <!-- 페이징 -->
-<div th:if="${!paging.isEmpty()}">
+<!-- <div th:if="${!paging.isEmpty()}">
     <ul class="pagination justify-content-center">
         <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
             <a class="page-link" th:href="@{\?page=${paging.number-1}|}" >
@@ -77,5 +77,5 @@
             </a>
         </li>
     </ul>
-</div>
+</div> -->
 </html>

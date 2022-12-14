@@ -64,7 +64,7 @@ public class RecruitPostController {
         attrs.addFlashAttribute("createId", entity.getId());
 
         return "redirect:/post/list";
-    }
+    } 
 
     @PreAuthorize("hasRole('USER')")
     @GetMapping({ "/post/detail", "/post/modify" })

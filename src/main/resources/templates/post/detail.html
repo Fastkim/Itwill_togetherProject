@@ -9,43 +9,39 @@
         <div class="m-4 row g-5">
             <form id="formModify" method="post" style="margin-top: 4px;" enctype="multipart/form-data">
                     <input id="id" name="id" class="form-control" th:value="${post.id}" type="hidden" multiple="multiple"/>
-                <div class="card m-4 row g-5">
-                    <div class="my-2">
-                        <div  class="card" style="width: 15rem;">
-                            <img style="float: left; margin-right: 20px;" th:src="${post.filePath}"  class="card-img-top card-img" name="imgFile"/>
+                <!-- 이미지 및 제목 담당자 -->
+                <div class="card mb-3 m-4 g-5" >
+                    <div class="row g-0">
+                        <div class="col-md-4" style="width: 20rem; margin: 10px;">
+                            <img th:src="${post.filePath}"  class="card-img-top card-img" name="imgFile"/>
                         </div>
-					   <!-- 내용시작 -->
-                        <div>
-                            <div class="mb-3 row">
-                                <label for="title" class="col-sm-2 col-form-label">제목</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control-plaintext"
+                        <div class="col-md-8">
+                            <div class="card-body" style="margin-top: 20px;">
+                            <label for="title" class="col-sm-2 col-form-label" style="color: gray;">제목</label>
+                                <input style="font-size: 22px;" type="text" class="form-control-plaintext"
                                         id="title" name="title" th:value="${post.title}" readonly />
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label for="author"
-                                    class="col-sm-2 col-form-label">담당자</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control-plaintext"
+                            <div class="row" style="margin-top: 15px;">
+                            <label for="author"
+                                    class="col-1" style="margin-right: 5px; color: gray;" >담당자</label>
+                            <input  type="text" class="col-10" style="border:0 solid black"
                                         id="author" name="author" th:value="${post.author}" readonly />
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- content 모집내용 시작 -->
-            <div class="card m-4 g-5">
-                <label for="content" class="form-label mt-5 m-3">모집내용</label>
+            <!-- 2번째 카드 content 모집내용 시작 -->
+            <div class="card m-4 g-5 ">
+                <label for="content" class="form-label" style="color: gray; margin-left: 25px; margin-top: 20px; margin-bottom: 20px;">모집내용</label>
                     <div class="mx-4 mb-2">
                         <textarea style="font-size: 22px;" id="content" name="content"
                             class="form-control-plaintext" th:text="${post.content}" rows="20" readonly></textarea>
                     </div>
                 </div>
 
-            <!-- 지도폼 -->
-            
-            <div class="card m-4 row g-5">
+            <!-- 3번째 카드 -->
+            <div class="card m-4 row g-5" >
+                <div style="margin: 4px;">
                 <div class="mb-3 my-2 row">
                     <label for="totalMember"
                         class="col-sm-2 col-form-label">모집인원</label>
@@ -87,6 +83,10 @@
                     <div id="map" style="width:100%;height:350px;" onclick="location.href='/map/main';"></div>
                 </div>
                 </div>
+                </div>
+                
+                
+                
                 <div class="g-5" >
                 <div class="my-2" th:if="${ post.author } == ${ #authentication.name }">
                     <!-- 버튼 위치 -->
