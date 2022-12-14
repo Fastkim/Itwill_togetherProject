@@ -117,4 +117,6 @@ public class FestivalPostController {
 
     }
     
+    //깃아 업데이트 되었니?
+    
 }
