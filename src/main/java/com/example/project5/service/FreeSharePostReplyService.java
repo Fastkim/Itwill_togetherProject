@@ -69,6 +69,15 @@ public class FreeSharePostReplyService {
         return replyId;
     }
     
+    public void deleteByFreeSharePostId(Integer freeSharePostId) {
+        log.info("delete(freeSharePostId");
+        
+        List<FreeSharePostReply> list=freeSharePostReplyRepository.findByFreeSharePostIdOrderByIdDesc(freeSharePostId);
+        for (FreeSharePostReply a : list) {
+            freeSharePostReplyRepository.deleteById(a.getId());
+        }
+    }
+    
     @Transactional
     public Integer updateDto(FreeSharePostReplyUpdateDto dto) {
         log.info("update(dto={})", dto);
