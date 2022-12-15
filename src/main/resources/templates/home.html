@@ -5,7 +5,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap demo</title>
+<title>같은 취향을 가진 사람들의 가치</title>
 
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -13,33 +13,26 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
     crossorigin="anonymous">
 
-<style>
-@font-face {
-    font-family: 'Tenada';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-*{
-   font-family: 'Tenada';
-}
-.latest-slider-tb .slider-img img.displayed {
-    display: block;
-    margin-left: auto;
-    margin-right: auto 
-}
-</style>
+    <style>
+    @font-face {
+        font-family: 'Tenada';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    *{
+       font-family: 'Tenada';
+    }
+    .latest-slider-tb .slider-img img.displayed {
+        display: block;
+        margin-left: auto;
+        margin-right: auto 
+    }
+    #colorfont{
+        font-color:#e6f3e6;
+    }
+    </style>
 </head>
-<div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-        <h5 class="text-white h4">같취
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-snapchat" viewBox="0 0 16 16">
-                <path d="M15.943 11.526c-.111-.303-.323-.465-.564-.599a1.416 1.416 0 0 0-.123-.064l-.219-.111c-.752-.399-1.339-.902-1.746-1.498a3.387 3.387 0 0 1-.3-.531c-.034-.1-.032-.156-.008-.207a.338.338 0 0 1 .097-.1c.129-.086.262-.173.352-.231.162-.104.289-.187.371-.245.309-.216.525-.446.66-.702a1.397 1.397 0 0 0 .069-1.16c-.205-.538-.713-.872-1.329-.872a1.829 1.829 0 0 0-.487.065c.006-.368-.002-.757-.035-1.139-.116-1.344-.587-2.048-1.077-2.61a4.294 4.294 0 0 0-1.095-.881C9.764.216 8.92 0 7.999 0c-.92 0-1.76.216-2.505.641-.412.232-.782.53-1.097.883-.49.562-.96 1.267-1.077 2.61-.033.382-.04.772-.036 1.138a1.83 1.83 0 0 0-.487-.065c-.615 0-1.124.335-1.328.873a1.398 1.398 0 0 0 .067 1.161c.136.256.352.486.66.701.082.058.21.14.371.246l.339.221a.38.38 0 0 1 .109.11c.026.053.027.11-.012.217a3.363 3.363 0 0 1-.295.52c-.398.583-.968 1.077-1.696 1.472-.385.204-.786.34-.955.8-.128.348-.044.743.28 1.075.119.125.257.23.409.31a4.43 4.43 0 0 0 1 .4.66.66 0 0 1 .202.09c.118.104.102.26.259.488.079.118.18.22.296.3.33.229.701.243 1.095.258.355.014.758.03 1.217.18.19.064.389.186.618.328.55.338 1.305.802 2.566.802 1.262 0 2.02-.466 2.576-.806.227-.14.424-.26.609-.321.46-.152.863-.168 1.218-.181.393-.015.764-.03 1.095-.258a1.14 1.14 0 0 0 .336-.368c.114-.192.11-.327.217-.42a.625.625 0 0 1 .19-.087 4.446 4.446 0 0 0 1.014-.404c.16-.087.306-.2.429-.336l.004-.005c.304-.325.38-.709.256-1.047Zm-1.121.602c-.684.378-1.139.337-1.493.565-.3.193-.122.61-.34.76-.269.186-1.061-.012-2.085.326-.845.279-1.384 1.082-2.903 1.082-1.519 0-2.045-.801-2.904-1.084-1.022-.338-1.816-.14-2.084-.325-.218-.15-.041-.568-.341-.761-.354-.228-.809-.187-1.492-.563-.436-.24-.189-.39-.044-.46 2.478-1.199 2.873-3.05 2.89-3.188.022-.166.045-.297-.138-.466-.177-.164-.962-.65-1.18-.802-.36-.252-.52-.503-.402-.812.082-.214.281-.295.49-.295a.93.93 0 0 1 .197.022c.396.086.78.285 1.002.338.027.007.054.01.082.011.118 0 .16-.06.152-.195-.026-.433-.087-1.277-.019-2.066.094-1.084.444-1.622.859-2.097.2-.229 1.137-1.22 2.93-1.22 1.792 0 2.732.987 2.931 1.215.416.475.766 1.013.859 2.098.068.788.009 1.632-.019 2.065-.01.142.034.195.152.195a.35.35 0 0 0 .082-.01c.222-.054.607-.253 1.002-.338a.912.912 0 0 1 .197-.023c.21 0 .409.082.49.295.117.309-.04.56-.401.812-.218.152-1.003.638-1.18.802-.184.169-.16.3-.139.466.018.14.413 1.991 2.89 3.189.147.073.394.222-.041.464Z"/>
-            </svg>
-        </h5>
-        <span style="color: red;">'같'은 '취'미를 공유하는..</span>
-    </div>
-</div>
 
 <body>
 <!-- nav bar  -->
@@ -63,18 +56,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                     </th:block>
                 </div>
             </div>
-            <span style="color: red; font-size:180%; margin-left: 30px;">'같'은 '취'미를 공유하는..</span>
-        
-<!--             <div class="m-2">
-                <a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /login }">◎ Home</a>
-                <a style="text-decoration:none; color: orange; font-size:160%;" th:href="@{ /login }">◎ 인원모집</a>
-            </div> -->
+            <span style="color: red; font-size:150%; margin-left: 30px;">'같'은 '취'향을 가진 사람들의 '가치'</span>
         </div>
     </div>    
-</nav>
+</nav><!-- nav bar끝부분 -->
 
 <!-- 이미지 슬라이드.-->
-<div id="carouselExampleDark" class="latest-slider-tb carousel carousel-dark slide" data-bs-ride="carousel">
+<div id="carouselExampleDark" class="latest-slider-tb carousel carousel-dark slide" data-bs-ride="carousel" >
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -99,8 +87,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a href="/freeshare/list">
             <img src="/cardImg/cardImg3.gif" class="img-responsive displayed d-block" alt="...">
         </a>
-      <div class="carousel-caption d-none d-md-block">
-      </div>
+      <div class="carousel-caption d-none d-md-block"></div>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -111,12 +98,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</div>
+</div>  <!-- 이미지 슬라이드 끝 -->
 
-    <!-- content가 들어가는 부분.. -->
-    <br/>
-    <div class="container-marketing mx-5">
-    
+
+<br/>
+<!-- content가 들어가는 부분.. -->
+<div class="container-marketing mx-5">
         <div class="row text-center my-5">
             <div class="col-4">
              
@@ -152,27 +139,24 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 </p>
             </div>
         </div>
-        
-        <hr/>
-        
+<hr/>
         <div class="row ">    
-            <div class="col-md-7">
+            <div class="col-md-7 bg-light">
                 <h1 class="m-5 display-4" >나와 비슷한 취향을 가진 사람들과 </h1>
                 <h1 class="m-5 display-4" >만나보고 싶다면...?</h1>
                 <!-- <p class="lead">나와 비슷한 취향을 가진 사람들과 만나보고 싶다면...?</p> -->
                 <div class="text-center"><a id="click1" style="text-decoration:none; color: orange;" class="display-5" th:href="@{ /post/list }">▶ Click!</a></div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 ">
                 <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAzMjJfMTkw%2FMDAxNjQ3OTEwNzYwMzIw.ZCIHOWFSOwD7SmLI9RB53lgVlO8QtH8DMSak1xqMIkQg.91X07YO5SxLAkLvJhCAC17NVrHne1zdaTNfL6fS8Xi0g.PNG.hope9096%2F1647323135831.png&type=sc960_832" class="img-responsive displayed d-block w-50 " alt="...">
             </div>
         </div>
-        
-        <hr/>
+<hr/>
         <div class="row">    
             <div class="col-md-5">
                 <img src="https://www.mcst.go.kr/attachFiles/cultureInfoCourt/localFestival/notifyFestival/1669855476675.jpg" class="img-responsive displayed d-block w-50" alt="...">
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7" style="background-color: #e6f3e6;">
                 <h1 class="my-5 display-4">나누면 행복해요! 더 이상 쓰지 않은 물건을</h1>
                 <h1 class="my-5 display-4">다른 사람들과 나누고 싶다면...?</h1>
                 <div>
@@ -180,24 +164,25 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 </div>
             </div>
         </div>
-        <hr/>
+<hr/>
         <div class="row">    
-            <div class="col-md-7">
+            <div class="col-md-7 bg-light" >
                 <h1 class="m-5 display-4">지금 내 주변에 있는 재밌는 행사들을 </h1>
                 <h1 class="m-5 display-4" >알고 싶다면...?</h1>
                 <div class="text-center"><a id="click3" style="text-decoration:none; color: orange;" class="display-5" th:href="@{ /community/festivalPostList }">▶ Click!</a></div>
             </div>
             
             <div class="col-md-5">
-                <img src="https://www.mcst.go.kr/attachFiles/cultureInfoCourt/localFestival/notifyFestival/1668648081935.jpg" class="w-50 img-responsive displayed d-block" alt="...">            </div>
+                <img src="https://www.mcst.go.kr/attachFiles/cultureInfoCourt/localFestival/notifyFestival/1668648081935.jpg" class="w-50 img-responsive displayed d-block" alt="...">            
+            </div>
         </div>
 
-    </div><!-- div-class:container-marketing끝부분.. -->
+</div><!-- div-class:container-marketing끝부분.. -->
 
-    <!-- footer -->
-    <hr/>
+<!-- footer -->
+<hr/>
     
-    <div class="container-fluid" id="footerStyle">
+<div class="container-fluid p-3" id="footerStyle" style="background-color: #FBECD8;">
         <div class="mx-4 font-face">
             <ul style="list-style: none;">
             <strong>㈜ 같취 </strong>
@@ -214,68 +199,68 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
             </ul>
         </div>
     
-    </div>
+</div>
     
-    <p class="text-center" style="color: orange; font-size:160%;">서울특별시 강남구 역삼동 테헤란로 4층 [같취] Team </p>
-    <p class="text-center p-1" style="color: orange; font-size:110%;">※ 문의번호: 010-xxxx-xxxx </p>
+<p class="text-center" style="color: orange; font-size:160%;">서울특별시 강남구 역삼동 테헤란로 4층 [같취] Team </p>
+<p class="text-center p-1" style="color: orange; font-size:110%;">※ 문의번호: 010-xxxx-xxxx </p>
     
-    <script>
-        let menuEvent1 = document.getElementById("menuList1"); 
-        let menuEvent2 = document.getElementById("menuList2");
-        let menuEvent3 = document.getElementById("menuList3");
+<script>
+    let menuEvent1 = document.getElementById("menuList1"); 
+    let menuEvent2 = document.getElementById("menuList2");
+    let menuEvent3 = document.getElementById("menuList3");
         
-        let click1 = document.getElementById("click1");
-        let click2 = document.getElementById("click2");
-        let click3 = document.getElementById("click3");
-        
-        click1.addEventListener("mouseover", function (event) {
-            event.target.style.color = "gold";
-          }, false);
-        click1.addEventListener("mouseout", function(event){
-            event.target.style.color = "orange";
-          }, false)
-        
-        click2.addEventListener("mouseover", function (event) {
-            event.target.style.color = "gold";
-          }, false);
-        click2.addEventListener("mouseout", function(event){
-            event.target.style.color = "orange";
-          }, false)
+    let click1 = document.getElementById("click1");
+    let click2 = document.getElementById("click2");
+    let click3 = document.getElementById("click3");
+    
+    click1.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    click1.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
+    
+    click2.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    click2.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
           
-        click3.addEventListener("mouseover", function (event) {
-            event.target.style.color = "gold";
-          }, false);
-        click3.addEventListener("mouseout", function(event){
-            event.target.style.color = "orange";
-          }, false) 
-          
-        menuEvent1.addEventListener("mouseover", function (event) {
-          event.target.style.color = "orange";
-        }, false);
-        menuEvent1.addEventListener("mouseout", function(event){
-          event.target.style.color = "white";
-        }, false)
+    click3.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    click3.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false) 
+      
+    menuEvent1.addEventListener("mouseover", function (event) {
+      event.target.style.color = "orange";
+    }, false);
+    menuEvent1.addEventListener("mouseout", function(event){
+      event.target.style.color = "white";
+    }, false)
+    
+    menuEvent2.addEventListener("mouseover", function (event) {
+      event.target.style.color = "orange";
+    }, false);
+    menuEvent2.addEventListener("mouseout", function(event){
+      event.target.style.color = "white";
+    }, false)
+    
+    menuEvent3.addEventListener("mouseover", function (event) {
+      event.target.style.color = "orange";
+    }, false);
+    menuEvent3.addEventListener("mouseout", function(event){
+      event.target.style.color = "white";
+    }, false)
         
-        menuEvent2.addEventListener("mouseover", function (event) {
-          event.target.style.color = "orange";
-        }, false);
-        menuEvent2.addEventListener("mouseout", function(event){
-          event.target.style.color = "white";
-        }, false)
-        
-        menuEvent3.addEventListener("mouseover", function (event) {
-          event.target.style.color = "orange";
-        }, false);
-        menuEvent3.addEventListener("mouseout", function(event){
-          event.target.style.color = "white";
-        }, false)
-        
-        
-    </script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-        
-    </body>
+</script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous">
+</script>
+    
+</body>
 </html>
