@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // btnReplyRegister 버튼을 찾고 이벤트 리스너를 등록.
     const btnReplyRegister = document.querySelector('#btnReplyRegister');
     btnReplyRegister.addEventListener('click', registerNewReply);
+
     
     // 댓글 작성 함수
     function registerNewReply() {
@@ -30,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
             alert('댓글 내용은 반드시 입력!')
             return; // 메서드 종료
         }
-        
+
         // 댓글 등록 Ajax POST 요청을 보낼 때 서버로 보내는 데이터 작성.
         const data = {
             postId: postId, // 댓글이 달릴 포스트 아이디(번호)
@@ -75,12 +76,11 @@ window.addEventListener('DOMContentLoaded', () => {
         for (let r of data) {
             str += '<div class="card my-2">'
                 + '<div class="card-header">'
-                + '<h5>' + r.writer + '</h5>'
+                + '<h5>[' + r.writer + '] 님의 댓글.</h5>'
                 + '</div>'
                 + '<div class="card-body">'
-                + '<p>' + r.replyText + '</p>'
-                + '<p> 작성 시간: ' + r.createdTime + '</p>'
-                + '<p> 수정 시간: ' + r.modifiedTime + '</p>'
+                + '<p style="font-size:140%;">' + r.replyText + '</p>'
+                + '<p style="font-size:88%;"> [수정 시간] : ' + r.modifiedTime + '</p>'
                 + '</div>';
             // 댓글 작성자 아이디와 로그인 사용자 아이디가 같을 때만 "수정" 보여주기.
             if (r.writer == loginUser) {
@@ -136,7 +136,7 @@ window.addEventListener('DOMContentLoaded', () => {
             axios
             .delete('/api/freesharePostReply/' + replyId) // Ajax DELETE 요청 전송
             .then(response => { 
-                alert(`#${response.data} 댓글 삭제 성공`);
+                sweetalert(`#${response.data} 댓글 삭제 성공`);
                 readAllReplies(); // 댓글 목록 갱신
              }) // 성공(HTTP 200 OK) 응답
             .catch(err => { console.log(err) }) // 실패 응답(HTTP 40x, 50x, ...)
