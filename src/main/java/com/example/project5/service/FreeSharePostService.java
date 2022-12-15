@@ -76,6 +76,15 @@ public class FreeSharePostService {
         
         return this.freeSharePostRepository.findByPriceFree(pageable);
     }
+    
+    public Page<FreeSharePost> getListToday(int page){
+        log.info("page-getListToday(page={})",page);
+        List<Sort.Order> sorts=new ArrayList<>();
+        sorts.add(Sort.Order.desc("createdTime"));
+        Pageable pageable=PageRequest.of(page, 8, Sort.by(sorts));
+        
+        return this.freeSharePostRepository.findByToday(pageable);
+    }
 
     public FreeSharePost read(Integer id) {
         log.info("read(id={})", id);
