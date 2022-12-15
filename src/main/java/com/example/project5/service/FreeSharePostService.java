@@ -31,7 +31,7 @@ public class FreeSharePostService {
 
     public List<FreeSharePost> read() {
         log.info("List<all> read");
-
+        
         return freeSharePostRepository.findByOrderByIdDesc();
     }
     
@@ -66,6 +66,15 @@ public class FreeSharePostService {
         Pageable pageable=PageRequest.of(page, 8, Sort.by(sorts));
         
         return this.freeSharePostRepository.findAll(pageable);
+    }
+    
+    public Page<FreeSharePost> getListFree(int page){
+        log.info("page-getListFree(page={})",page);
+        List<Sort.Order> sorts=new ArrayList<>();
+        sorts.add(Sort.Order.desc("createdTime"));
+        Pageable pageable=PageRequest.of(page, 8, Sort.by(sorts));
+        
+        return this.freeSharePostRepository.findByPriceFree(pageable);
     }
 
     public FreeSharePost read(Integer id) {
@@ -104,6 +113,7 @@ public class FreeSharePostService {
             list = freeSharePostRepository.searchByAuthor(keyword);
             break;
         }
+        
         return list;
     }
     
