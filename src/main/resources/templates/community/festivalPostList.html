@@ -7,15 +7,15 @@
     <div layout:fragment="content">
         <div class="card my-2 mt-3 row border border-white">
             <div class="card-header bg-white container-fluid border-white">
-                <h1 class="mt-4" style="float:left;"> 모집 목록 </h1>
+                <h1 class="mt-4" style="float:left;"> 축제 목록 </h1>
                     <form th:action="@{ /community/festivalPostSearch }">
                         <div class="row mt-4" style="float:right;">
                              <div class="col-3">
                                  <select name="type" class="form-control">
+                                     <option value="choose">선택</option>
                                      <option value="t">축제명</option>
                                      <option value="c">내용</option>
                                      <option value="tc">축제명+내용</option>
-                                     <option value="a">작성자</option>
                                  </select>
                              </div>
                              <div class="col-6" >
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <hr/>
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="row row-cols-1 row-cols-md-3 g-4" >
                             <div class="col" th:each="festivalPost , loop:${paging}">
                                 <div class="card mb-3" style="max-width: 540px;">
                                     <div class="row g-0">
@@ -47,9 +47,8 @@
                                         </div>
                                         <div class="col-md-8">
                                           <div class="card-body">
-                                            <h5 class="card-title" th:text="${ festivalPost.title }"></h5>
-                                            <p class="card-text" th:text="${ festivalPost.title }"></p>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <h4 class="card-title" th:text="${ festivalPost.title }"></h4>
+                                            <p class="card-text" th:text="${ festivalPost.content}" style="display: -webkit-box; width:300px; height:150px; overflow: hidden;"><small class="text-muted"></small></p>
                                             <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${festivalPost.id}) }" class="btn btn-primary">자세히 보기</a>
                                           </div>
                                         </div>
@@ -57,7 +56,6 @@
                                     </div>
                                 </div>
                              </div>
-                                </li>
                         <!-- 페이징처리 시작 -->
                     <div class="container text-center">
                         <div th:if="${!paging.isEmpty()}">
@@ -87,8 +85,4 @@
                         </div>
                     </div>
                         <!-- 페이징처리 끝 -->
-                    </form>
-                </div>
-            </div>
-        </div>
 </html>
