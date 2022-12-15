@@ -48,23 +48,25 @@
                     <li class="nav-item">
                     <a id="menuList2" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
                     <li class="nav-item">
+                    <a id="menuList4" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/free}">◎ 무료 상품 보기</a></li>
+                    <li class="nav-item">
                     <a id="menuList3" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
                   
                 </ul>
                 <form th:action="@{ /freeshare/search }" class="d-flex">
                     <div class="row">
                          <div class="col-3">
-                             <select name="type" class="form-control">
-                                 <option value="t">제목</option>
-                                 <option value="c">내용</option>
-                                 <option value="a">작성자</option>
+                             <select name="type" class="btn btn-dark" style="color: orange;">
+                                 <option value="t" style="color: orange;">제목</option>
+                                 <option value="c" style="color: orange;">내용</option>
+                                 <option value="a" style="color: orange;">작성자</option>
                              </select>
                          </div>
                          <div class="col-7" >
-                             <input type="text" name="keyword" class="form-control" placeholder="찾고 싶은 검색어를 입력.." required autofocus />
+                             <input type="text" name="keyword" class="btn btn-outline-dark" placeholder="찾고 싶은 검색어를 입력.." required autofocus />
                          </div>
                          <div class="col-2" >
-                             <input type="submit" value="검색" class="btn btn-outline-info" />
+                             <input type="submit" value="검색" class="btn btn-dark" style="color: orange;" />
                          </div>
                     </div>
                 </form>
@@ -182,6 +184,7 @@
     let click1 = document.getElementById("menuList1"); 
     let click2 = document.getElementById("menuList2");
     let click3 = document.getElementById("menuList3");
+    let click4 = document.getElementById("menuList4");
     
     click1.addEventListener("mouseover", function (event) {
         event.target.style.color = "orange";
@@ -201,6 +204,12 @@
         event.target.style.color = "orange";
       }, false);
     click3.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+    click4.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click4.addEventListener("mouseout", function(event){
         event.target.style.color = "black";
       }, false)
     </script>
