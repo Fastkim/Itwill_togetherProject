@@ -17,6 +17,12 @@ public interface FreeSharePostRepository extends JpaRepository<FreeSharePost, In
     Page<FreeSharePost> findAll(Pageable pageable);
     List<FreeSharePost> findByAuthorOrderByIdDesc(String author);
     
+    // 무료인 게시글만 검색
+    @Query(
+        "select r from FREESHAREPOSTS r where r.price='0' order by r.id desc"
+            )
+    Page<FreeSharePost> findByPriceFree(Pageable pageable);
+    
     // 제목검색
     @Query(
         "select r from FREESHAREPOSTS r where lower(r.title) like lower('%' || :title || '%') order by r.id desc"
@@ -33,5 +39,8 @@ public interface FreeSharePostRepository extends JpaRepository<FreeSharePost, In
     @Query(
         "select r from FREESHAREPOSTS r where lower(r.author) like lower('%' || :author || '%') order by r.id desc"
             )
+    
     List<FreeSharePost> searchByAuthor(@Param(value="author") String author);
+    
+    
 }
