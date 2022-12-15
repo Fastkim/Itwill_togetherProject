@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         // 댓글 작성자와 내용은 비어있으면 안됨.
         if (writer == '' || replyText == '') {
-            alert('댓글 내용은 반드시 입력!')
+            alert('댓글 내용은 반드시 입력하세요')
             return; // 메서드 종료
         }
         
@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     function deleteReply(event) {
         const replyId = modalReplyId.value; // 삭제할 댓글 아이디
-        const result = confirm('정말 삭제?');
+        const result = confirm('삭제하시겠습니까?');
         if (result) {
             axios
             .delete('/api/recruitPostReply/' + replyId) // Ajax DELETE 요청 전송
@@ -151,11 +151,11 @@ window.addEventListener('DOMContentLoaded', () => {
         const replyId = modalReplyId.value; // 수정할 댓글 아이디
         const replyText = modalReplyText.value; // 수정할 댓글 내용
         if (replyText == '') {
-            alert('댓글 내용은 반드시 입력');
+            alert('내용을 입력해주세요');
             return;
         }
         
-        const result = confirm('수정 완료?');
+        const result = confirm('수정 완료하시겠습니까?');
         if (result) {
             const data = { replyText: replyText }; // Ajax 요청으로 보낼 데이터 객체.
             axios
