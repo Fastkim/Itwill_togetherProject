@@ -9,7 +9,8 @@
             <h4 style="margin-right: 50px; margin-left: 50px; margin-top: 50px;">모집 글쓰기</h4>
             <hr style="margin-right: 50px; margin-left: 50px; height: 3px; border: 0; background:gray;"/>
                 <div class="card m-4 row g-5 border border-white" >
-                	<input type="file" id="imgFile" name="imgFile" style="margin-top: 20px; margin-bottom: 20px;" required/>
+                    <img src="" id="preview"  style="width: 280px; margin: 10px;" />
+                	<input type="file" id="imgFile" name="imgFile" style="margin-top: 20px; margin-bottom: 20px;" />
                     <div class="mb-3 row" style="margin: 7px;">
                         <label for="title"
                             class="col-sm-2 col-form-label">제목</label>
@@ -30,11 +31,13 @@
                 </div>
 	            <!-- content 모집내용 시작 -->
 	            <div class="card m-4 g-5 border border-white" >
+                  <div class="textLengthWrap">
                 	<label for="content" class="form-label" style="margin-left: 27px; margin-bottom: 10px; margin-top: 30px;">모집내용</label>
-                    <div class="mx-4">
+                        <div class="mx-4">
                         <textarea style="font-size: 22px; margin-bottom: 30px;" id="content" name="content"
-                            class="form-control" rows="20"></textarea>
+                            class="form-control" rows="20" maxlength="1000"></textarea>
                     </div>
+                </div>
                 </div>
                 <hr style="margin-right: 50px; margin-left: 50px; height: 1px; border: 0; background:gray;"/>
             	<!-- 지도폼 -->
@@ -145,6 +148,23 @@
 				});
 			}
 		</script>
+        <script>
+        
+        // 이미지 넣을 시 자동으로 이미지 보여줌
+        $('input[name="imgFile"]').change(function(){
+            setImageFromFile(this, '#preview');
+        });
+
+        function setImageFromFile(input, expression) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+            $(expression).attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+          }
+        }
+        </script>
     </div>
 
 </body>

@@ -57,9 +57,9 @@ public class RecruitPostService {
         return id;
     }
     
+    
     public RecruitPost create(RecruitPostCreateDto dto, MultipartFile file) throws IOException {
         log.info("create(dto={})", dto);
-        
         
 //        // 파일 저장 경로 설정 
 //        String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img"; 
@@ -76,15 +76,23 @@ public class RecruitPostService {
 //        RecruitPost entity = dto.toEntity();
 //        entity.setFileName(fileName);
 //        entity.setFilePath("/img/" + fileName);
-//        
-        String fileSavePath = "/img/" + file.getOriginalFilename();
-        String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
-        
-        File saveFile = new File(fileStaticPath, file.getOriginalFilename());
-        file.transferTo(saveFile);
-        
-        dto.setFileName(file.getOriginalFilename());
-        dto.setFilePath(fileSavePath);
+//      
+        if(file.isEmpty()) {
+            String fileSavePath = "/cardImg/homeLogo.gif";
+            String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\cardImg";
+            
+            dto.setFileName("/cardImg/homeLogo.gif");
+            dto.setFilePath(fileSavePath);
+        } else {
+            String fileSavePath = "/img/" + file.getOriginalFilename();
+            String fileStaticPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+            
+            File saveFile = new File(fileStaticPath, file.getOriginalFilename());
+            file.transferTo(saveFile);
+            
+            dto.setFileName(file.getOriginalFilename());
+            dto.setFilePath(fileSavePath);
+        }
         
         RecruitPost recruitPost = dto.toEntity();
         recruitPost = recruitPosrRepository.save(recruitPost);

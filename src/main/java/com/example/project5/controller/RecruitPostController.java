@@ -60,7 +60,7 @@ public class RecruitPostController {
     @PostMapping("/post/create")
     public String create(RecruitPostCreateDto dto, RedirectAttributes attrs,
             @RequestParam("imgFile") MultipartFile fileName) throws IOException {
-        log.info("create(dto={})", dto);
+        log.info("create(dto={}, fileName={})", dto ,fileName);
 
         RecruitPost entity = recruitPostService.create(dto, fileName);
 
