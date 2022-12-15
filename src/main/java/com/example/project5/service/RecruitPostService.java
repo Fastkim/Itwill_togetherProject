@@ -160,7 +160,7 @@ public class RecruitPostService {
     
     public Page<RecruitPost> getMapList(int page) {
     	Pageable pageable = PageRequest.of(page, 15);
-    	return this.recruitPosrRepository.findAll(pageable);
+    	return this.recruitPosrRepository.findWhereCompareWithSysdate(pageable);
     }
     
     public Page<RecruitPost> getPostList(int page) {

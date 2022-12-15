@@ -44,7 +44,13 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
     
     Page<RecruitPost> findAll(Pageable pageable);
     
+    
     Page<RecruitPost> findByOrderByIdDesc(Pageable pageable);
+    
+    @Query(
+		value="select * from recruitposts where TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') <= TO_CHAR(CLOSE_DATE, 'YYYY/MM/DD HH24:MI:SS')",
+		nativeQuery = true)
+    Page<RecruitPost> findWhereCompareWithSysdate(Pageable pageable);
     
     // joinmember 구하는거 연습했던 코드... 선생님이 해보라고 하신 방법인데 다른 방법을 찾음.
 //select r.id, r.created_time, r.modifid_time, r.author, r.close_date, 
