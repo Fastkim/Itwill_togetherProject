@@ -95,13 +95,16 @@
                     </div>
                     
                     <!-- 신청 모달창 -->
-                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'no' and ${ isFull }=='no' " >
+                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'no' and ${ isFull }=='no' and ${closeDateEnd}=='no'" >
                         <button type="button" id="btnJoin" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         신청
                         </button>
                     </div>
-                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'yes' " >
+                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'yes' and ${closeDateEnd}=='no'" >
                         <button type="button" id="btnNoJoin" class="btn btn-outline-danger">신청 취소</button>
+                    </div>
+                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'no' and ${ isFull }=='no' and ${closeDateEnd}=='yes'" >
+                        <h6 style="color:red;">기한이 지나 신청이 불가능합니다.</h6>
                     </div>
                 </div>
                 

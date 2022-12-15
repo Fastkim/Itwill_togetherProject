@@ -2,6 +2,8 @@ package com.example.project5.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -74,17 +76,24 @@ public class RecruitPostController {
         String username = principal.getName();
         String exist = "no";
         String isFull = "no";
+        String closeDateEnd = "no";
         log.info("detail(postId={}, username={})", id, username);
 
         RecruitPost post = recruitPostService.read(id);
 
         List<Apply> applyList = applyService.findByRecruitPostId(id);
         Integer countMember = applyList.size();
-
+        
+        LocalDateTime now = LocalDateTime.now();
+        
         if (countMember >= post.getTotalMember()) {
             isFull = "yes";
         }
-
+        
+        if(now.isAfter( post.getCloseDate())) {
+            closeDateEnd ="yes";
+        }
+            
         for (Apply a : applyList) {
             if (username.equals(a.getJoinNickname())) {
                 exist = "yes";
@@ -95,6 +104,7 @@ public class RecruitPostController {
         model.addAttribute("post", post);
         model.addAttribute("countMember", countMember);
         model.addAttribute("exist", exist);
+        model.addAttribute("closeDateEnd", closeDateEnd);
         model.addAttribute("isFull", isFull);
 
     }
