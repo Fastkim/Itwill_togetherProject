@@ -23,6 +23,12 @@ public interface FreeSharePostRepository extends JpaRepository<FreeSharePost, In
             )
     Page<FreeSharePost> findByPriceFree(Pageable pageable);
     
+    // 오늘 올라온 게시글만 검색
+    @Query(
+        "select r from FREESHAREPOSTS r where TO_CHAR(sysdate, 'yyyy-mm-dd') = TO_CHAR(r.createdTime,'yyyy-mm-dd') order by r.id desc"
+            )
+    Page<FreeSharePost> findByToday(Pageable pageable);
+    
     // 제목검색
     @Query(
         "select r from FREESHAREPOSTS r where lower(r.title) like lower('%' || :title || '%') order by r.id desc"
@@ -39,8 +45,8 @@ public interface FreeSharePostRepository extends JpaRepository<FreeSharePost, In
     @Query(
         "select r from FREESHAREPOSTS r where lower(r.author) like lower('%' || :author || '%') order by r.id desc"
             )
-    
     List<FreeSharePost> searchByAuthor(@Param(value="author") String author);
+
     
     
 }
