@@ -105,19 +105,19 @@
         <div class=" col-sm-8 collapse navbar-collapse" id="navbarSupportedContent" style="text-align: left;" >
             <ul style="list-style :none; " class="navbar-nav me-auto" >
                 <li class="nav-item" style="margin-right: 10px;">
-                    <a th:href="@{ / }" style="text-decoration: none; color: orange; font-size: 140%;">Home<span> || </span></a>
+                    <a id="menu1" th:href="@{ / }" style="text-decoration: none; color: orange; font-size: 140%;">Home</a>
                 </li>
                 <li class="nav-item" style="margin-right: 10px;">
-                    <a th:href="@{ /post/list }" style="text-decoration: none; color: orange; font-size: 140%;">모집<span> | </span></a>
+                    <a id="menu2" th:href="@{ /post/list }" style="text-decoration: none; color: orange; font-size: 140%;">모집</a>
                 </li>
                 <li class="nav-item" style="margin-right: 10px;">
-                    <a th:href="@{/freeshare/list}" style="text-decoration: none; color: orange; font-size: 140%;">나눔<span> | </span></a>
+                    <a id="menu3" th:href="@{/freeshare/list}" style="text-decoration: none; color: orange; font-size: 140%;">나눔</a>
                 </li>
                 <li class="nav-item" style="margin-right: 10px;">
-                    <a th:href="@{ /community/festivalPostList }" style="text-decoration: none; color: orange; font-size: 140%;">행사<span> | </span></a>
+                    <a id="menu4" th:href="@{ /community/festivalPostList }" style="text-decoration: none; color: orange; font-size: 140%;">행사</a>
                 </li>
                 <li class="nav-item" style="margin-right: 10px;">
-                    <a th:href="@{ /map/main }" style="text-decoration: none; color: orange; font-size: 140%;">지도</a>
+                    <a id="menu5" th:href="@{ /map/main }" style="text-decoration: none; color: orange; font-size: 140%;">지도</a>
                 </li>
             </ul>
         </div>
@@ -135,7 +135,7 @@
                 <th:block sec:authorize="isAuthenticated()">
                     <li class="nav-item" style="margin-right: 10px;">
                         <a th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:100%;">◎
-                            <span class="text-info" sec:authentication="name"></span>
+                            <span style="color:#FBECD8;" sec:authentication="name"></span>
                             마이페이지 </a>
                     </li>
                     <li style="margin-right: 10px;">
@@ -176,5 +176,52 @@
     
         <!-- 페이지에 필요한 JS를 삽입할 위치 -->
     <th:block layout:fragment="script"></th:block>
+        <script>
+    let menu1 = document.getElementById("menu1"); 
+    let menu2 = document.getElementById("menu2");
+    let menu3 = document.getElementById("menu3");
+    let menu4 = document.getElementById("menu4");
+    let menu5 = document.getElementById("menu5");
+    
+    menu1.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    menu1.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
+      
+    menu2.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    menu2.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
+      
+    menu3.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    menu3.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
+    
+    menu4.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    menu4.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
+      
+    menu5.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    menu5.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false)
+      
+      
+      
+      
+      
+    </script>
 </body>
 </html>
