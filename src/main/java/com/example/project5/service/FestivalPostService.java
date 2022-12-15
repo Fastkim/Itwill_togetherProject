@@ -65,7 +65,7 @@ public class FestivalPostService {
       
       List<Sort.Order> sorts=new ArrayList<>();
       sorts.add(Sort.Order.desc("createdTime"));
-      Pageable pageable=PageRequest.of(page, 4, Sort.by(sorts));
+      Pageable pageable=PageRequest.of(page, 9, Sort.by(sorts));
       
       return this.festivalPostRepository.findAll(pageable);
      }

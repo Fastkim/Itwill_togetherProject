@@ -8,7 +8,7 @@
         <div class="card my-2 mt-3 row border border-white">
             <div class="card-header bg-white container-fluid border-white">
                 <h1 class="mt-4" style="float:left;"> 모집 목록 </h1>
-                    <form th:action="@{ /post/search }">
+                    <form th:action="@{ /community/festivalPostSearch }">
                         <div class="row mt-4" style="float:right;">
                              <div class="col-3">
                                  <select name="type" class="form-control">
@@ -26,82 +26,40 @@
                              </div>
                         </div>
                     </form>
-            <div style="float:right; margin-right: 10px; display: flex; margin-top: 30px; font-size:20px;">
-                <ul style="list-style: none;">
-                    <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ /post/create }" >새글작성</a></li>
-                </ul>
-                <ul style="list-style: none; margin-right: 30px;">
-                    <li style="float: left; "><a id="totalList" style="text-decoration-line: none; color: black;" th:href="@{ /post/list }">전체목록</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr/>
-                <div class="my-2">
-                    <form th:action="@{ /community/festivalPostSearch }" method="get">
-                        <div class="row">
-                            <div class="col-auto my-2">
-                                기간검색
-                            </div>
-                            <div class="col-auto">
-                                <a th:href="@{ /community/festivalPostCreate}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">포스트 만들기</a> 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-auto my-4">
-                                지역
-                            </div>
-                            <div class="col-auto my-4">
-                                검색대상
-                            </div>
-                            <div class="col-auto my-3">
-                                <select name="type" class="form-control" >
-                                    <option value="choose">선택</option>
-                                    <option value="t">축제명</option>
-                                    <option value="c">내용</option>
-                                    <option value="tc">축제명+내용</option>
-                                </select>
-                            </div>
-                            <div class="col-auto my-3">
-                                <input type="text" class="form-control" 
-                                    name="keyword" placeholder="검색어" required autofocus />
-                            </div>
-                            <div class="col-auto my-3">
-                                <input type="submit" class="btn btn-light" value="검색" />
-                            </div>
-                        </div>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>이미지</th>
-                                    <th>축제명</th>
-                                    <th>작성자</th>
-                                    <th>수정시간</th>
-                                </tr>
-                            </thead>
-                            <ul>
-                                <li th:each="festivalPost , loop:${paging}">
-                                    <div class="image">
-                                        <img
-                                            th:src="${ festivalPost.filePath }" 
-                                            alt="${ festivalPost.title }" 
-                                            th:if="${festivalPost.fileName != null}"
-                                            style="width:15%; height:15%" />
-                                    </div>
-                                    <div class="text">
-                                        <div class="title" th:text="${}"></div>
-                                        <div class="content">
-                                            
+                    <div style="float:right; margin-right: 10px; display: flex; margin-top: 30px; font-size:20px;">
+                        <ul style="list-style: none;">
+                            <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostCreate }" >새글작성</a></li>
+                        </ul>
+                        <ul style="list-style: none; margin-right: 30px;">
+                            <li style="float: left; "><a id="totalList" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostList }">전체목록</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr/>
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="col" th:each="festivalPost , loop:${paging}">
+                                <div class="card mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                          <img th:src="${ festivalPost.filePath}"  class="img-fluid rounded-start" alt="${ festivalPost.title }"
+                                                th:if="${festivalPost.fileName != null}"
+                                                >
                                         </div>
-                                        <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${ festivalPost.id }) }" th:text="${ festivalPost.title }"></a>
-                                    </td>
-                                    <td th:text="${ festivalPost.author }"></td>
-                                    <td th:text="${ #temporals.format(festivalPost.modifidTime, 'yyyy-MM-dd HH:mm:ss') }"></td>
+                                        <div class="col-md-8">
+                                          <div class="card-body">
+                                            <h5 class="card-title" th:text="${ festivalPost.title }"></h5>
+                                            <p class="card-text" th:text="${ festivalPost.title }"></p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${festivalPost.id}) }" class="btn btn-primary">자세히 보기</a>
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
-                                </ul>
-                            </tbody>
-                        </table>
+                                </div>
+                             </div>
+                                </li>
                         <!-- 페이징처리 시작 -->
+                    <div class="container text-center">
                         <div th:if="${!paging.isEmpty()}">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item"
@@ -127,6 +85,7 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
                         <!-- 페이징처리 끝 -->
                     </form>
                 </div>
