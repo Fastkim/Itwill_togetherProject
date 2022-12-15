@@ -49,6 +49,14 @@ public class FreeSharePostController {
         return "/freeShare/free";
     }
     
+    @GetMapping("/today")
+    public String today(Model model, @RequestParam(value="page", defaultValue = "0")int page) {
+        log.info("today()");
+        Page<FreeSharePost> paging=this.freeSharePostService.getListToday(page);
+        model.addAttribute("paging",paging);
+        return "/freeShare/today";
+    }
+    
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/create")
     public void create() {
