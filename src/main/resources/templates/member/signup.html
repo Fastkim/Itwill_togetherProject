@@ -97,44 +97,49 @@
         </div>
     </nav>
     <body>
-        <div class="container-fluid p-2">
-            <div class="card-fluid">
+        <div class="container-fluid p-2 row">
+            <div class="col-sm-1"></div>
+            <div class="card-fluid col-sm-10" >
                 <div class="card-header p-4 bg-secondary text-white text-center rounded">
-                    <h1>회원가입 페이지</h1>
+                    <h1>회원가입</h1>
                 </div>
-                <div class="card-body my-2">
-                    <form method="post">
-                        <div class="my-2">
-                            <input type="text" id="username" name="username"
-                                class="form-control" placeholder="로그인 아이디" required autofocus />
+                <div class="card-body my-2 row">
+                <div class="col-4"></div>
+                    <form method="post" class="col-4">
+                    <div style="margin-bottom: 10px; margin-top: 10px;">
+                        <div>
+                            <input  type="text" id="username" name="username"
+                                class="form-control" placeholder="아이디" required autofocus />
                         </div>
                         <div class="my-2 d-none" id="ok">
-                            <p class="text-success">사용할 수 있는 아이디</p>
+                            <p class="text-success">사용할 수 있는 아이디입니다</p>
                         </div>
                         <div class="my-2 d-none" id="nok">
-                            <p class="text-danger">사용할 수 없는 아이디</p>
+                            <p class="text-danger">사용할 수 없는 아이디입니다</p>
                         </div>
-                        <div class="my-2">
+                    </div>
+                        <div style="margin-bottom: 10px;" >
                             <input type="password" id="password" name="password"
-                                class="form-control" placeholder="로그인 비밀번호" required />
+                                class="form-control" placeholder="비밀번호" required />
                         </div>
-                        <div class="my-2">
+                        <div style="margin-bottom: 10px;">
                             <input type="text" id="nickname" name="nickname"
                                 class="form-control" placeholder="닉네임" required />
                         </div>
-                        <div class="my-2">
+                        <div style="margin-bottom: 10px;">
                             <input type="text" id="name" name="name"
                                 class="form-control" placeholder="이름" required />
                         </div>
-                        <div class="my-2">
+                        <div style="margin-bottom: 10px;">
                             <input type="text" id="phone" name="phone"
                                 class="form-control" placeholder="전화번호" required />
                         </div>
-                        <div class="my-2">
+                        <div style="margin-bottom: 20px;">
                             <input type="email" id="email" name="email"
                                 class="form-control" placeholder="이메일" required />
                         </div>
-                        <div class="my-2" >
+                        <hr/>
+                        <div >
                             <input type="radio" name="gender" value="male" checked />남성
                             <input type="radio" name="gender" value="female" />여성<br>
                         </div>
@@ -142,17 +147,19 @@
                             <input type="number" id="postCount" name="postCount" value=0
                                 class="form-control" placeholder="만남 성사 횟수" readonly />
                         </div>
-                        <div class="my-2">
+                        <div style="margin-bottom: 30px;">
                             <input type="text" id="likeField" name="likeField"
                                 class="form-control" placeholder="취미/관심 분야" required />
                         </div>
-                        <div class="my-2">
+                        <div style="margin-bottom: 30px;">
                             <input type="submit" id="btnSubmit"
                                 class="form-control btn btn-success disabled" value="가입 완료" />
                         </div>
                     </form>
+                    <div class="col-4"></div>
                 </div>
             </div>
+            <div class="col-sm-1"></div>
         </div>
         
         <!-- Bootstrap core JS-->
