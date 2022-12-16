@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{ layout/layout }">
-
 <!--/* layout/layout.html 파일의 "content" 프래그먼트에 삽입될 컨텐트 */-->
+<body>
 <div layout:fragment="content">
     <div class="card my-2 mt-3 row border border-white">
         <div class="card-header bg-white container-fluid border-white">
@@ -11,7 +11,7 @@
          <form th:action="@{ /post/search }">
          <div class="row mt-4" style="float:right;">
              <div class="col-3">
-                 <select name="type" class="form-control">
+                 <select name="type" class="form-control" >
                      <option value="t">제목</option>
                      <option value="c">내용</option>
                      <option value="tc">제목+내용</option>
@@ -22,7 +22,7 @@
                  <input type="text" name="keyword" class="form-control" placeholder="검색어" required autofocus />
              </div>
              <div class="col-2" >
-                 <input type="submit" value="검색" class="btn btn-outline-info" />
+                 <input type="submit" value="검색" class="btn btn-outline-warning" />
              </div>
              </div>
              </form>
@@ -56,6 +56,7 @@
             </div>
         </div>
     </div>
+    </div>
 
 <!-- 페이징 -->
 <div th:if="${!paging.isEmpty()}">
@@ -77,5 +78,21 @@
         </li>
     </ul>
 </div>
-</div>  
+<th:block layout:fragment="script">
+    <script>
+    const newPost = document.getElementById("newPost");
+    const totalList = document.getElementById("totalList");
+    
+    newPost.addEventListener("mouseover", function(event) {
+    	event.target.style.color = "orange";}, false);
+    newPost.addEventListener("mouseout", function(event) {
+        event.target.style.color = "black";}, false);    
+    totalList.addEventListener("mouseover", function(event) {
+        event.target.style.color = "orange";}, false);
+    totalList.addEventListener("mouseout", function(event) {
+        event.target.style.color = "black";}, false);    
+    
+    </script>
+   </th:block>
+</body>
 </html>
