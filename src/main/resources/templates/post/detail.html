@@ -94,6 +94,7 @@
                 <div class="mx-4 g-5" >
                     <div class="my-2" th:if="${ post.author } == ${ #authentication.name }">
                         <!-- 버튼 위치 -->
+                        <input class="btn btn-outline-danger" onclick="deletePost()" type="button" value="삭제"/>
                         <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
                     </div>
                     
@@ -232,6 +233,25 @@
 		    };    
 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 		</script>
+        <script>
+        function deletePost(seq) {
+            Swal.fire({
+                title: '삭제하시겠습니까?',
+                showCancelButton: true,
+                confirmButtonColor: 'red',
+                cancelButtonColor: 'gray',
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+              }).then((result) => {
+                if (result.value) {
+                   formModify.action='/post/delete';
+                    formModify.method='post';
+                    formModify.submit();
+                }
+              })
+        }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     </th:block>
    
     
