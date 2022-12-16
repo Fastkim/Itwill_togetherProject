@@ -73,7 +73,8 @@
         
         </div>
     </div>
-
+</div>
+<th:block script layout:fragment="script">
     <script type="text/javascript">
     
     const check = document.querySelector('.btn-group');
@@ -84,21 +85,29 @@
     
     btnRegister.addEventListener('click', (e)=>{
         e.preventDefault();
-        alertCheckBox();
+        updatePost();
     });
     
-    function alertCheckBox(){
-        console.log('111');
-        for(let i = 0; i < checkboxes.length; i ++){
+    function updatePost(seq){
+    	for(let i = 0; i < checkboxes.length; i ++){
             if(checkboxes[i].checked === true){ 
                 console.log(checkboxes[i]);
                 formbtn.submit();
                 return;
+
+            }else{
+                Swal.fire({
+                  title: '필수 항목들은 전부 기입해주세요!',
+                  icon: 'warning',
+                  confirmButtonColor: 'orange',
+                  confirmButtonText: '확인',
+                }).then((result) => {if (result.value) {}})
             }
-            alert('필수사항들은 모두 입력해주세요...😍'); // 체크없으면 바로 return해서 alert 띄우기!
         }
     }
-        
+    
+
+    
     function inputNumberFormat(obj) {
         obj.value = comma(uncomma(obj.value));
     }
@@ -123,6 +132,11 @@
     }
         
     </script>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</th:block>
 </body>
 </html>

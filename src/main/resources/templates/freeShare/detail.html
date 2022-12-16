@@ -130,17 +130,16 @@
                     <div class="my-2" th:if="${ post.author } == ${ #authentication.name }">
                         <input class="btn btn-outline-danger" type="button" style="font-size:150%" onclick="deletePost()" value="삭제" />
                         <a class="btn btn-outline-primary" th:href="@{ /freeshare/modify?id={id} (id = ${ post.id }) }" style="font-size:150%">수정</a>
-                    </div>
-                        <!-- 좋아요 관련 기능..구현할지 고민중. 시간 좀 두고 생각해보기..<input id="like" class="btn btn-outline-black" type="button" value="Like♡" style="font-size:170%;" /> --> 
+                    </div> 
                 </div>
             </form>
         </div>
         <hr/>
+        <!-- 댓글 시작 -->
         <div class="card my-4">
             <div class="card-header">
-                <div class="col-4">
-                    <input type="text" class="form-control" id="writer" 
-                           th:value="${ #authentication.name }" readonly />
+                <div class="col-2">
+                    <input type="text" class="form-control" id="writer" th:value="${ #authentication.name }" readonly />
                 </div>
             </div>
             <div class="card-body row">
@@ -185,18 +184,6 @@
 </div>
     
 <th:block layout:fragment="script">  
-    
-    <script>
-    const like= document.getElementById("like");
-
-    like.addEventListener('click', function(){
-       document.getElementById("like").value = "Like♥";       
-    });
-    
-    like.addEventListener('dblclick', function(){
-       document.getElementById("like").value = "Like♡";
-    });
-    </script>
     
     <script>
 
@@ -254,7 +241,7 @@
             }).then((result) => {
               if (result.value) {
                   //"삭제" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
-                 formModify.action='/freeshare/delete';
+                  formModify.action='/freeshare/delete';
                   formModify.method='post';
                   formModify.submit();
               }

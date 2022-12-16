@@ -3,76 +3,87 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{ layout/layout.html }">
     
-    <body>
-        <div layout:fragment="content">
-            <h1>개인정보 변경 페이지</h1>
+<body>
+    <div layout:fragment="content">
+        <div class="card bg-light p-1 m-2">
+            <h1 style="margin-right: 50px; margin-left: 50px; margin-top: 10px;">◎ 개인정보 변경 페이지</h1>
             <div class="card-body">
-            <form id="modify">
-                <div class="my-2">
-                    <label for="id" class="form-label">회원 번호 (변경불가)</label>
-                    <input type="number" id="id" class="form-control" name="id" th:value="${ member.id }" readonly />
-                </div>
-                <div class="my-2">
-                    <label for="id" class="form-label">회원 아이디 (변경불가)</label>
-                    <input type="text" id="username" class="form-control" name="id" th:value="${ member.username }" readonly />
-                </div>
-                <div class="my-2">
-                    <label for="id" class="form-label">비밀번호(변경불가)</label>
-                    <input id="password" class="form-control" name="password" th:value="${ member.password }" readonly />
-                </div>
-                <div class="my-2">
-                    <label for="id" class="form-label">닉네임</label>
-                    <input id="nickname" class="form-control" name="nickname" th:value="${ member.nickname }" />
-                </div>
-                <div class="my-2">
-                    <label for="id" class="form-label">이름</label>
-                    <input id="name" class="form-control" name="name" th:value="${ member.name }" />
-                </div>
-                <div class="my-2">
-                    <label for="id" class="form-label">전화 번호</label>
-                    <input id="phone" class="form-control" name="phone" th:value="${ member.phone }" />
-                </div>
-                <div class="my-2">
-                    <label for="id" class="form-label">이메일</label>
-                    <input type="email" id="email" class="form-control" name="email" th:value="${ member.email }" />
-                </div>
-                
-                <div class="my-2">
-                <button class="btn btn-success" id="btnUpdate">수정 완료</button>
+                <form id="modify">
+                    <div class="my-2">
+                        <input type="hidden" id="id" class="form-control" name="id" th:value="${ member.id }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 회원 아이디 <span style="color:red;">*변경불가*</span></label>
+                        <input style="font-size:20px;" type="text" id="username" class="form-control" name="id" th:value="${ member.username }" readonly />
+                    </div>
+                    <div class="my-2">
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 닉네임</label>
+                        <input style="font-size:20px;" id="nickname" class="form-control" name="nickname" th:value="${ member.nickname }" />
+                    </div>
+                    <div class="my-2">
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 이름</label>
+                        <input style="font-size:20px;" id="name" class="form-control" name="name" th:value="${ member.name }" />
+                    </div>
+                    <div class="my-2">
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 전화 번호</label>
+                        <input style="font-size:20px;" id="phone" class="form-control" name="phone" th:value="${ member.phone }" />
+                    </div>
+                    <div class="my-2">
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 이메일</label>
+                        <input style="font-size:20px;" type="email" id="email" class="form-control" name="email" th:value="${ member.email }" />
+                    </div>
+                    
+                    <div class="my-2">
+                        <input class="btn btn-outline-primary" type="button" style="font-size:150%" onclick="updateInfo()" value="수정완료" />
+                        <!-- <button class="btn btn-success" id="btnUpdate">수정 완료</button> -->
+                    </div> 
+                </form>
             </div>
-                
-            </form>
-            
-            
-            
-            </div>
-
-        <script layout:fragment>
+        </div>
+        
+    <script layout:fragment>
 		const formModify = document.querySelector('#modify');
-		const btnUpdate = document.querySelector('#btnUpdate');
-		btnUpdate.addEventListener('click',function() {
-			const nickname = document.querySelector('#nickname').value;
-			const name = document.querySelector('#name').value;
-			const phone = document.querySelector('#phone').value;
-			const email = document.querySelector('#email').value;
-			
-			if(nickname=='' || name=='' || phone=='' || email=='') {
-				alert('모든 항목을 입력하세요!');
-				return ;
-			}
-	        
-			const result = confirm('수정하시겠습니까?');
-			if (result) {
-			formModify.action = '/member/update';
-			formModify.method = 'post';
-			formModify.submit();
-		}
-	});
-		</script>
 
+        
+		function updateInfo(seq){
+		    const nickname = document.querySelector('#nickname').value;
+		    const name = document.querySelector('#name').value;
+		    const phone = document.querySelector('#phone').value;
+		    const email = document.querySelector('#email').value;
+		        
+			if(nickname=='' || name=='' || phone=='' || email=='') {
+	            warning();
+	            return;
+			}
+			Swal.fire({
+	          title: '정말 수정하시겠습니까???',
+	          icon: 'info',
+	          showCancelButton: true,
+	          confirmButtonColor: '#3085d6',
+	          cancelButtonColor: '#d33',
+	          confirmButtonText: '수정완료',
+	          cancelButtonText: '취소'
+	        }).then((result) => {
+	          if (result.value) {
+    	           //"개인정보 수정" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
+    	           formModify.action='/member/update';
+    	           formModify.method='post';
+    	           formModify.submit();
+	          }
+	        })
+	    }
+		
+		function warning(){
+            Swal.fire({
+                text: "모든 항목을 기입해주세요!",
+                icon: 'warning',
+                confirmButtonColor: 'red',
+                confirmButtonText: '확인'
+              }).then((result) => {})
+		}
+	</script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     </div>
-        
-        
-    </body>
-    
+</body>  
 </html>

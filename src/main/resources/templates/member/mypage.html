@@ -1,87 +1,101 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html 
+xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{ layout/layout.html }">
     
-    <body>
-        <div layout:fragment="content">
-            <h1 style="margin-right: 50px; margin-left: 50px; margin-top: 50px;">마이페이지</h1>
-            
+<body>
+    <div layout:fragment="content">
+        <div class="card bg-light m-1">
+            <div class="card-head" style="text-align:center;">
+                <h1 style="font-size: 330%; margin-right: 50px; margin-left: 50px; margin-top: 50px;"> 마이페이지 </h1>
+            </div>
             <div class="card-body" style="margin-left: 50px; margin-right: 50px;">
-                <input type="text" class="form-control-plaintext" style="font-size: 25px; margin-left: 10px;" id="host" name="host" 
-                        th:value="${ #authentication.name }" readonly />
-                        <br/>
-                <h3>◎ 나의 지원 게시판 작성목록</h3>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>총인원</th>
-                        <th>작성자</th>
-                        <th>모임날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="post : ${ recruitPostList }">
-                        <td th:text="${post.id}"></td>
-                        <td><a style="text-decoration-line: none; color: black;"
-                            th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
-                            th:text="${post.title}"></a></td>
-                        <td th:text="${post.totalMember}"></td>
-                        <td th:text="${post.author}"></td>
-                        <td th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
-                    </tr>
-                </tbody>
-            </table>
+    
+                <br/>
+                <h3><span style="font-size: 77%; color: orange;">◎</span> 나의 지원 게시판 작성목록</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>총인원</th>
+                            <th>작성자</th>
+                            <th>모임날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${ recruitPostList }">
+                            <td th:text="${post.id}"></td>
+                            <td><a style="text-decoration-line: none; color: black;"
+                                th:href="@{ /post/detail?id={id} (id = ${post.id}) }"
+                                th:text="${post.title}"></a></td>
+                            <td th:text="${post.totalMember}"></td>
+                            <td th:text="${post.author}"></td>
+                            <td th:text="${ #temporals.format(post.meetingDate, 'yyyy-MM-dd HH:mm') }"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <h3><samp style="font-size: 20px; font-weight: bold;"></samp> <span style="font-size: 77%; color: orange;">◎</span> 나의 나눔 게시판 작성목록</h3>
+                <table class="table table-hover m-2">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post2 : ${ freeSharePostList }">
+                            <td th:text="${post2.id}"></td>
+                            <td><a style="text-decoration-line: none; color: black;"
+                                th:href="@{ /freeshare/detail?id={id} (id = ${post2.id}) }"
+                                th:text="${post2.title}"></a></td>
+                            <td th:text="${post2.author}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <h3><span style="font-size: 77%; color: orange;">◎</span> 나의 지원 내역</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>포스트 번호</th>
+                            <th>지원한 포스트</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post3 : ${ applyRecruitPostList }">
+                            <td th:text="${post3.id}"></td>
+                            <td><a
+                                th:href="@{ /post/detail?id={id} (id = ${post3.id}) }"
+                                th:text="${post3.title}"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <br/>
-            <h3><samp style="font-size: 20px; font-weight: bold;">◎</samp> 나의 나눔 게시판 작성목록</h3>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="post2 : ${ freeSharePostList }">
-                        <td th:text="${post2.id}"></td>
-                        <td><a style="text-decoration-line: none; color: black;"
-                            th:href="@{ /freeshare/detail?id={id} (id = ${post2.id}) }"
-                            th:text="${post2.title}"></a></td>
-                        <td th:text="${post2.author}"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br/>
-            <h3>◎ 나의 지원 내역</h3>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>포스트 번호</th>
-                        <th>지원한 포스트</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="post3 : ${ applyRecruitPostList }">
-                        <td th:text="${post3.id}"></td>
-                        <td><a
-                            th:href="@{ /post/detail?id={id} (id = ${post3.id}) }"
-                            th:text="${post3.title}"></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <br/>
             <div class="card-body">
                 <ul style="list-style: none;">
-                    <li class="nav-item active" style="float: left; text-align: right; margin-left: 20px;">
-                        <a style="text-decoration-line: none; color: orange;" th:href="@{ /member/update }">개인정보 변경</a>
+                    <li class="nav-item active p-2" style="float: left; text-align: right; margin-left: 20px;">
+                        <a id="point" style="font-size: 34px; text-decoration-line: 1px soild; color: orange;" th:href="@{ /member/update }"> 개인정보 변경</a>
                     </li>
                 </ul>
             </div>
+            
         </div>
-    </body>
+    <script>
+    let point = document.getElementById("point"); 
     
+    point.addEventListener("mouseover", function (event) {
+        event.target.style.color = "gold";
+      }, false);
+    point.addEventListener("mouseout", function(event){
+        event.target.style.color = "orange";
+      }, false);
+    </script>
+        
+    </div><!-- fragement: content -->
+</body>
 </html>

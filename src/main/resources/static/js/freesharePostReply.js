@@ -15,6 +15,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const btnReplyRegister = document.querySelector('#btnReplyRegister');
     btnReplyRegister.addEventListener('click', registerNewReply);
 
+    function replyWarning(seq){
+            Swal.fire({
+              text: "댓글을 입력해주세요!",
+              icon: 'warning',
+              confirmButtonColor: 'red',
+              confirmButtonText: '확인'
+            }).then((result) => {})
+    }
     
     // 댓글 작성 함수
     function registerNewReply() {
@@ -28,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         // 댓글 작성자와 내용은 비어있으면 안됨.
         if (writer == '' || replyText == '') {
-            alert('댓글 내용은 반드시 입력!')
+            replyWarning();
             return; // 메서드 종료
         }
 
@@ -43,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
         axios.post('/api/freesharePostReply', data) // Ajax Post 요청 보냄.
             .then(response => { // 성공 응답(response)이 도착했을 때 실행할 콜백
                 console.log(response);
-                alert('#' + response.data + ' 댓글 등록 성공');
+                successReply();
                 clearInputs(); // 댓글 작성자, 내용에 작성된 문자열을 삭제.
                 readAllReplies(); // 댓글 목록을 다시 요청, 갱신.
             })
@@ -52,7 +60,14 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         
     }
-    
+    function successReply(seq){
+            Swal.fire({
+              text: "댓글 등록 성공!",
+              icon: 'success',
+              confirmButtonColor: 'orange',
+              confirmButtonText: '확인'
+            }).then((result) => {})
+    }
     function clearInputs() {
         // 댓글 작성자 아이디는 로그인 사용자 아이디로 자동 완성되기 때문에 지우면 안됨.
         // document.querySelector('#writer').value = '';
