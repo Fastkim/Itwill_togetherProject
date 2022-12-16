@@ -91,12 +91,12 @@
                         </li>
                     </th:block>
                     <th:block sec:authorize="isAuthenticated()">
-                        <li id="menu8" class="nav-item" style="margin-right: 33px;">
+                        <li id="menu6" class="nav-item" style="margin-right: 33px;">
                             <a th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:16px;">◎
                                 <span sec:authentication="name" style="color: #FBECD8;"></span>님, 마이페이지 </a>
                         </li>
                         <li style="margin-right: 5px;">
-                            <a id="menu9" style="text-decoration:none; color: orange; font-size:16px;" th:href="@{/logout}">◎ 로그아웃</a>
+                            <a id="menu7" style="text-decoration:none; color: orange; font-size:16px;" th:href="@{/logout}">◎ 로그아웃</a>
                         </li>
                     </th:block>
                 </ul>
@@ -121,8 +121,6 @@
     let menu5 = document.getElementById("menu5");
     let menu6 = document.getElementById("menu6");
     let menu7 = document.getElementById("menu7");
-    let menu8 = document.getElementById("menu8");
-    let menu9 = document.getElementById("menu9");
     
     menu1.addEventListener("mouseover", function (event) {
         event.target.style.color = "gold";
@@ -158,31 +156,21 @@
     menu5.addEventListener("mouseout", function(event){
         event.target.style.color = "orange";
       }, false);
+    
     menu6.addEventListener("mouseover", function (event) {
         event.target.style.color = "gold";
       }, false);
     menu6.addEventListener("mouseout", function(event){
         event.target.style.color = "orange";
       }, false);      
+    
     menu7.addEventListener("mouseover", function (event) {
         event.target.style.color = "gold";
       }, false);
     menu7.addEventListener("mouseout", function(event){
         event.target.style.color = "orange";
       }, false);   
-      
-    menu8.addEventListener("mouseover", function (event) {
-        event.target.style.color = "gold";
-      }, false);
-    menu8.addEventListener("mouseout", function(event){
-        event.target.style.color = "orange";
-      }, false);
-    menu9.addEventListener("mouseover", function (event) {
-        event.target.style.color = "gold";
-      }, false);
-    menu9.addEventListener("mouseout", function(event){
-        event.target.style.color = "orange";
-      }, false);
+
       
     </script>
 
