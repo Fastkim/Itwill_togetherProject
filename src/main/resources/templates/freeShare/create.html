@@ -73,56 +73,56 @@
         
         </div>
     </div>
-</div>
-<script type="text/javascript">
 
+    <script type="text/javascript">
+    
     const check = document.querySelector('.btn-group');
     const checkboxes = check.querySelectorAll('input');
-    const formbtn=document.querySelector('#formbtn');
+    const formbtn = document.querySelector('#formbtn');
     
     const btnRegister = document.querySelector('#btnRegister');
-
+    
     btnRegister.addEventListener('click', (e)=>{
         e.preventDefault();
         alertCheckBox();
     });
     
     function alertCheckBox(){
-
+        console.log('111');
         for(let i = 0; i < checkboxes.length; i ++){
             if(checkboxes[i].checked === true){ 
                 console.log(checkboxes[i]);
                 formbtn.submit();
                 return;
             }
+            alert('필수사항들은 모두 입력해주세요...😍'); // 체크없으면 바로 return해서 alert 띄우기!
         }
-        alert('필수사항들은 모두 입력해주세요...😍'); // 체크없으면 바로 return해서 alert 띄우기!
     }
-    
+        
     function inputNumberFormat(obj) {
         obj.value = comma(uncomma(obj.value));
     }
-
+    
     function uncomma(str) {
         str = String(str);
         return str.replace(/[^\d]+/g, '');
     } 
-    
+        
     function comma(str) {
         str = String(str);
         return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
     }
-
+    
     function inputOnlyNumberFormat(obj) {
         obj.value = onlynumber(uncomma(obj.value));
     }
-    
+        
     function onlynumber(str) {
         str = String(str);
         return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
     }
-    
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        
+    </script>
+</div>
 </body>
 </html>

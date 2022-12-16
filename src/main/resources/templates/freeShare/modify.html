@@ -49,11 +49,11 @@
                     <li class="nav-item">
                     <a id="menuList2" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/list}">◎ 전체 페이지</a></li>
                     <li class="nav-item">
-                    <a id="menuList4" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/free}">◎ 무료 상품</a></li>
+                    <a id="menuList3" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/free}">◎ 무료 상품</a></li>
                     <li class="nav-item">
-                    <a id="menuList5" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/today}">◎ 오늘 올라온 상품</a></li>
+                    <a id="menuList4" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" aria-current="page" th:href="@{/freeshare/today}">◎ 오늘 올라온 상품</a></li>
                     <li class="nav-item">
-                    <a id="menuList3" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
+                    <a id="menuList5" style="text-decoration:none; color: black; font-size:140%;" class="nav-link active" th:href="@{/freeshare/create}">◎ 상품 등록</a></li>
                   
                 </ul>
             </div>
@@ -127,6 +127,8 @@
     let click1 = document.getElementById("menuList1"); 
     let click2 = document.getElementById("menuList2");
     let click3 = document.getElementById("menuList3");
+    let click4 = document.getElementById("menuList4");
+    let click5 = document.getElementById("menuList5");
     
     click1.addEventListener("mouseover", function (event) {
         event.target.style.color = "orange";
@@ -148,6 +150,21 @@
     click3.addEventListener("mouseout", function(event){
         event.target.style.color = "black";
       }, false)
+      
+    click4.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click4.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+      
+    click5.addEventListener("mouseover", function (event) {
+        event.target.style.color = "orange";
+      }, false);
+    click5.addEventListener("mouseout", function(event){
+        event.target.style.color = "black";
+      }, false)
+      
     </script>
     <script>
     const btnCancel=document.querySelector('#btnCancel');
@@ -155,7 +172,7 @@
     function updatePost(seq){
         Swal.fire({
           title: '정말 수정하시겠습니까???',
-          icon: 'warning',
+          icon: 'info',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
