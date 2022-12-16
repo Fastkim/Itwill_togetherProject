@@ -49,7 +49,7 @@ public class SecurityConfig {
         // 로그인/로그아웃 관련 설정
         http.formLogin(Customizer.withDefaults())
             .logout() // 로그아웃 관련 설정 시작
-            .logoutSuccessUrl("/login"); // 로그아웃 성공 후에 이동한 URL 설정.
+            .logoutSuccessUrl("/"); // 로그아웃 성공 후에 이동한 URL 설정.
         
         // 특정 경로(URL)에 시큐리티 적용:
         // 권한을 가지고 있는(로그인한) 사용자만 접근할 수 있는 경로.
