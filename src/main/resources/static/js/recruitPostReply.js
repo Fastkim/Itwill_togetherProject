@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
         axios.post('/api/recruitPostReply', data) // Ajax Post 요청 보냄.
             .then(response => { // 성공 응답(response)이 도착했을 때 실행할 콜백
                 console.log(response);
-                alert('#' + response.data + ' 댓글 등록 성공');
+                successReply()
                 clearInputs(); // 댓글 작성자, 내용에 작성된 문자열을 삭제.
                 readAllReplies(); // 댓글 목록을 다시 요청, 갱신.
             })
@@ -131,20 +131,28 @@ window.addEventListener('DOMContentLoaded', () => {
     
     function deleteReply(event) {
         const replyId = modalReplyId.value; // 삭제할 댓글 아이디
-        const result = confirm('삭제하시겠습니까?');
-        if (result) {
-            axios
-            .delete('/api/recruitPostReply/' + replyId) // Ajax DELETE 요청 전송
-            .then(response => { 
-                alert(`#${response.data} 댓글 삭제 성공`);
-                readAllReplies(); // 댓글 목록 갱신
-             }) // 성공(HTTP 200 OK) 응답
-            .catch(err => { console.log(err) }) // 실패 응답(HTTP 40x, 50x, ...)
-            .then(function () {
-                // 성공 응답 처리 또는 실패 응답 처리가 끝났을 때 무조건 실행할 문장.
-                replyModal.hide(); // 모달 닫기
-            });
-        }
+        Swal.fire({
+            title: '삭제하시겠습니까?',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: 'gray',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        }).then((result)=>{ 
+            if (result.value) {
+                axios
+                .delete('/api/recruitPostReply/' + replyId) // Ajax DELETE 요청 전송
+                .then(response => { 
+                    //alert(`#${response.data} 댓글 삭제 성공`);
+                    readAllReplies(); // 댓글 목록 갱신
+                 }) // 성공(HTTP 200 OK) 응답
+                .catch(err => { console.log(err) }) // 실패 응답(HTTP 40x, 50x, ...)
+                .then(function () {
+                    // 성공 응답 처리 또는 실패 응답 처리가 끝났을 때 무조건 실행할 문장.
+                    replyModal.hide(); // 모달 닫기
+                });
+            }
+        })
     }
     
     function updateReply(event) {
@@ -154,14 +162,20 @@ window.addEventListener('DOMContentLoaded', () => {
             alert('내용을 입력해주세요');
             return;
         }
-        
-        const result = confirm('수정 완료하시겠습니까?');
-        if (result) {
+        Swal.fire({
+            title: '수정하시겠습니까?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: 'gray',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        }). then((result) => {
+        if (result.value) {
             const data = { replyText: replyText }; // Ajax 요청으로 보낼 데이터 객체.
             axios
             .put('/api/recruitPostReply/' + replyId, data) // Ajax PUT 요청을 전송
             .then(response => { 
-                alert('#' + response.data + ' 댓글 수정 성공');
+                successUpdate()
                 readAllReplies(); // 댓글 목록 갱신
              }) // 성공 응답 처리
             .catch(err => { console.log(err) }) // 실패 응답 처리
@@ -169,6 +183,25 @@ window.addEventListener('DOMContentLoaded', () => {
                 replyModal.hide(); 
             });
         }
+        })
+    }
+    
+    function successReply(seq){
+        Swal.fire({
+            title: '댓글 등록 완료',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '확인'
+        })
+    }
+    
+    function successUpdate(seq){
+        Swal.fire({
+            title: '댓글 수정 완료',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '확인'
+        })
     }
     
 });
