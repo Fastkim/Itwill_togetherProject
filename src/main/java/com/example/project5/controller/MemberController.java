@@ -16,17 +16,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor 
 @Controller
-@RequestMapping("/member")
 public class MemberController {
     
     private final MemberService memberService;
     
-    @GetMapping("/signup")
+    @GetMapping("/member/signup")
     public void signUp() {
         log.info("signUp() GET");
     }
     
-    @GetMapping("/checkid")
+    @GetMapping("/member/checkid")
     @ResponseBody
     public ResponseEntity<String> checkUsername(String username) {
         log.info("checkUsername(username={})", username);
@@ -37,13 +36,18 @@ public class MemberController {
         
     }
     
-    @PostMapping("/signup")
+    @PostMapping("/member/signup")
     public String signUp(MemberRegisterDto dto) {
         log.info("signUp(dto = {})", dto);
         
         memberService.RegisterMember(dto);
         
         return "redirect:/login";
+    }
+    
+    @GetMapping("/login")
+    public void login() {
+        log.info("login");
     }
 
 }
