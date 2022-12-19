@@ -66,12 +66,12 @@
                 <div th:text="${ festivalPost.content }" style="padding: 40px; border-bottom: 1px solid #4f6280; border-top: 1px solid #4f6280; line-height: 25px;">
                 </div>
                  <!-- 글 작성자 아이디와 로그인 사용자 아이디가 같은 경우에만 "수정하기" 보여주기 -->
-                <div>
-                    <a class="my-2 btn btn-primary" role="button" aria-disabled="true" 
-                        th:href="@{ /community/festivalPostModify?id={id} (id = ${ festivalPost.id }) }">
-                        수정하기</a>
-                    <a class="btn btn-primary" th:href="@{ /community/festivalPostList }" role="button">돌아가기</a>
-                </div>
+                 	<div class="my-2" th:if="${ festivalPost.author } == ${ #authentication.name }" style="float: left; ">
+	                    <a class="my-2 btn btn-primary" role="button" aria-disabled="true" style="color: orange; background-color: black"
+	                        th:href="@{ /community/festivalPostModify?id={id} (id = ${ festivalPost.id }) }">
+	                        수정하기</a>
+	                </div>    
+	                <a class="btn btn-primary" th:href="@{ /community/festivalPostList }" role="button" style="float: right; margin-top:20px; color: orange; background-color: black">돌아가기</a>
             </div>
         </div>
 
