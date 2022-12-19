@@ -89,11 +89,10 @@
     });
     
     function updatePost(seq){
-    	for(let i = 0; i < checkboxes.length; i ++){
-            if(checkboxes[i].checked === true){ 
-                console.log(checkboxes[i]);
-                formbtn.submit();
-                return;
+        if(checkboxes[0].checked === true || checkboxes[1].checked === true){ 
+            formbtn.submit();
+            return;
+
 
             }else{
                 Swal.fire({
@@ -101,11 +100,8 @@
                   icon: 'warning',
                   confirmButtonColor: 'orange',
                   confirmButtonText: '확인',
-                }).then((result) => {if (result.value) {
-                	
-                }})
+                }).then((result) => {if (result.value) {}})
             }
-        }
     }
     
     function inputNumberFormat(obj) {
