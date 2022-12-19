@@ -8,21 +8,21 @@
         <div class="card my-2 mt-3 row border border-white">
             <div class="card-header bg-white container-fluid border-white">
                 <h1 class="mt-4" style="float:left;"> 축제 목록 </h1>
-                    <form th:action="@{ /community/festivalPostSearch }">
+                    <form th:action="@{ /community/festivalPostSearch }" >
                         <div class="row mt-4" style="float:right;">
                              <div class="col-3">
-                                 <select name="type" class="form-control">
-                                     <option value="choose">선택</option>
-                                     <option value="t">축제명</option>
-                                     <option value="c">내용</option>
-                                     <option value="tc">축제명+내용</option>
+                                 <select name="type" class="form-control" style="color: orange; background-color: black">
+                                     <option value="choose" style="color: orange;">선택</option>
+                                     <option value="t" style="color: orange;">축제명</option>
+                                     <option value="c" style="color: orange;">내용</option>
+                                     <option value="tc" style="color: orange;">축제명+내용</option>
                                  </select>
                              </div>
                              <div class="col-6" >
-                                 <input type="text" name="keyword" class="form-control" placeholder="검색어" required autofocus />
+                                 <input type="text" name="keyword" class="form-control" placeholder="검색어" style="color: white; background-color: black" required autofocus />
                              </div>
                              <div class="col-2" >
-                                 <input type="submit" value="검색" class="btn btn-outline-info" />
+                                 <input type="submit" value="검색" class="btn btn-outline-info" style="color: orange; background-color: black" />
                              </div>
                         </div>
                     </form>
@@ -30,11 +30,15 @@
                         <ul style="list-style: none;">
                             <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostCreate }" >새글작성</a></li>
                         </ul>
-                        <ul style="list-style: none; margin-right: 30px;">
+                        <ul style="list-style: none;">
                             <li style="float: left; "><a id="totalList" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostList }">전체목록</a></li>
+                        </ul>
+                        <ul style="list-style: none; margin-right: 30px;">
+                            <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ / }" >메인페이지</a></li>
                         </ul>
                     </div>
                 </div>
+             </div>
                 <hr/>
                         <div class="row row-cols-1 row-cols-md-3 g-4" >
                             <div class="col" th:each="festivalPost , loop:${paging}">
