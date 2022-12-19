@@ -75,7 +75,7 @@
     <div class="container" style = "background-size: cover">
         <div class="row wrap img-fluid">
     
-            <div class="card col-md-3" th:each="post, loop:${paging}">
+            <div class="card col-md-3 shadow m-5" th:each="post, loop:${paging}">
                 <div class="card-header">
                     <img class="card-img-top img-thumbnail w-100 rounded"
                         th:src="${post.filePath}" alt="첨부이미지.."
@@ -131,29 +131,37 @@
     
     click1.addEventListener("mouseover", function (event) {
         event.target.style.color = "orange";
+        //event.target.style.fontSize = "170%";
       }, false);
     click1.addEventListener("mouseout", function(event){
         event.target.style.color = "black";
+        //event.target.style.fontSize = "140%";
       }, false)
       
     click2.addEventListener("mouseover", function (event) {
         event.target.style.color = "orange";
+
       }, false);
     click2.addEventListener("mouseout", function(event){
         event.target.style.color = "black";
+
       }, false)
       
     click3.addEventListener("mouseover", function (event) {
         event.target.style.color = "orange";
+
       }, false);
     click3.addEventListener("mouseout", function(event){
         event.target.style.color = "black";
+
       }, false)
     click4.addEventListener("mouseover", function (event) {
-        event.target.style.color = "orange";
+
+    	event.target.style.color = "orange";
       }, false);
     click4.addEventListener("mouseout", function(event){
-        event.target.style.color = "black";
+
+    	event.target.style.color = "black";
       }, false)
     click5.addEventListener("mouseover", function (event) {
         event.target.style.color = "orange";

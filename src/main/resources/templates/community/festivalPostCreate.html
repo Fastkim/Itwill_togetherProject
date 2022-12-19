@@ -6,7 +6,8 @@
     <div layout:fragment="content">
         <div class="card my-2">
             <div class="card-header">
-                <h1>포스트 작성 페이지</h1>
+                <span style="font-size: 30px;">포스트 작성 페이지</span>
+                <a th:href="@{ /community/festivalPostList }" class="btn btn-primary" style="float :right;">취소하기</a>
             </div>
             <div class="card-body">
                 <form id="formbtn" method="post" enctype="multipart/form-data">
