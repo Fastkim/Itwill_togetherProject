@@ -91,20 +91,16 @@
     function updatePost(seq){
         if(checkboxes[0].checked === true || checkboxes[1].checked === true){ 
             formbtn.submit();
-            return;
-
-        }else{
+            return;}
+        else{
             Swal.fire({
-                title: '필수 항목들은 전부 기입해주세요!',
-                icon: 'warning',
-                confirmButtonColor: 'orange',
-                confirmButtonText: '확인',
-            }).then((result) => {if (result.value) {}})
-        }
-        
+                  title: '필수 항목들은 전부 기입해주세요!',
+                  icon: 'warning',
+                  confirmButtonColor: 'orange',
+                  confirmButtonText: '확인',
+                }).then((result) => {if (result.value) {}})
+            }        
     }
-    
-
     
     function inputNumberFormat(obj) {
         obj.value = comma(uncomma(obj.value));

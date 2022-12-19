@@ -77,7 +77,7 @@
         </div>
     </nav>
    
-    <div class="container" style="background-size: cover">
+    <div class="container shadow" style="background-size: cover;">
         <div class="row wrap img-fluid">
             <form id="formModify" style="margin-top: 4px;" enctype="multipart/form-data">
                 <div class="card row">
@@ -85,7 +85,7 @@
                     <div class="card-header">
                         <input id="id" name="id" class="form-control" type="hidden" th:value="${post.id}" />
                         
-                        <div class="card" style="width: 20rem;">
+                        <div class="card mx-auto shadow" style="width: 20rem; background-color:orange;">
                             <img th:src="${post.filePath}"
                                 th:if="${post.filePath != null}"
                                 class="card-img-top card-img" name="imgFile"
@@ -155,27 +155,21 @@
             
         <div id="replies"></div>
         
-        <div class="modal fade" id="replyModal" tabindex="-1"
-                aria-labelledby="replyModalLabel" aria-hidden="true">
+        <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="replyModalLabel">댓글 수정</h1>
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-    
                         <input type="hidden" id="modalReplyId" readonly />
                         <textarea id="modalReplyText" class="form-control"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary"
-                            data-bs-dismiss="modal">취소</button>
-                        <button type="button" id="modalBtnDelete"
-                            class="btn btn-outline-danger">삭제</button>
-                        <button type="button" id="modalBtnUpdate"
-                            class="btn btn-outline-success">수정 완료</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+                        <button type="button" id="modalBtnDelete" class="btn btn-outline-danger">삭제</button>
+                        <button type="button" id="modalBtnUpdate" class="btn btn-outline-success">수정 완료</button>
                     </div>
                 </div>
             </div>
