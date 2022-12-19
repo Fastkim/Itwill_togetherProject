@@ -56,7 +56,6 @@
             </div>
         </div>
     </div>
-    </div>
 
 <!-- 페이징 -->
 <div th:if="${!paging.isEmpty()}">
@@ -78,6 +77,7 @@
         </li>
     </ul>
 </div>
+    </div>
 <th:block layout:fragment="script">
     <script>
     const newPost = document.getElementById("newPost");
