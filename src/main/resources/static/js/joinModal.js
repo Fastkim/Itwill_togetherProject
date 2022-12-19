@@ -31,10 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
         axios.post('/api/apply', data)
         .then(response => {
             console.log(response, data);
-            alert('신청완료! 신청 내용은 마이페이지에서 확인 가능합니다.');
-            // 부모 페이지 로딩 코드
-            location.reload();
-            countMember();
+            joinAlert();
         })
         .catch(error => {
             console.log(error)
@@ -43,6 +40,19 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
         alert('모집인원이 완료되어 신청이 불가능합니다.')
     }
+}
+
+function joinAlert(seq) {
+  Swal.fire({
+            text: '신청완료! 신청 내용은 마이페이지에서 확인 가능합니다.',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '확인'
+        }).then((result)=> {
+            // 부모 페이지 로딩 코드
+            location.reload();
+            countMember();
+        }) 
 }
     
 
@@ -55,18 +65,37 @@ window.addEventListener('DOMContentLoaded', () => {
         const joinNickname2 = document.querySelector('#joinNickname').value;
         const recruitPostId = document.querySelector('#id').value;
         
-        const result = confirm('신청취소 하시겠습니까?');
-        if(result) {
+        Swal.fire({
+            text: '신청취소 하시겠습니까?',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: 'gray',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        }).then((result)=> {
+            if(result.value) {
             axios
             .delete(`/api/apply?joinNickname=${joinNickname2}&recruitPostId=${recruitPostId}`)
             .then(response => {
-                alert('신청 취소 완료')
-                location.reload();
+                cancelAlert();
             })
             .catch(err => {console.log(err)})
-        }
-        
+            }
+        }) 
     }
+
+function cancelAlert(seq) {
+      Swal.fire({
+            text: '신청 취소 완료',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: '확인'
+        }).then((result)=> {
+            // 부모 페이지 로딩 코드
+            location.reload();
+        }) 
+}
+    
     
 
 });

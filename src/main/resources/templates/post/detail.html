@@ -126,13 +126,13 @@
                   
                   <div class="modal-body row">
                   <!-- 신청글 제목 -->
-                 <label for="title" class="col-sm-3 col-form-label">제목 </label>
+                 <label for="title" class="col-sm-2 col-form-label">제목 </label>
                   <div class="col-sm-9">      
                   <input type="text" id="modalApplyTitle" class="form-control-plaintext " th:value="${post.title}" readonly/>
                   </div>
                   <!-- 모임날짜 -->
-                  <label for="meetingDate" class="col-sm-3 col-form-label">모임기간</label>
-                  <div class="col-sm-4">
+                  <label for="meetingDate" class="col-sm-2 col-form-label">모임기간</label>
+                  <div class="col-sm-9">
                     <input type="datetime-local" class="form-control-plaintext" 
                     th:value="${post.meetingDate}"  id="modalMeetingDate" name="meetingDate" readonly/> 
                   </div>                                 

@@ -127,7 +127,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     
     modalBtnDelete.addEventListener('click', deleteReply);
-    modalBtnUpdate.addEventListener('click', updateReply);
+    modalBtnUpdate.addEventListener('click', updateReply);  
     
     function deleteReply(event) {
         const replyId = modalReplyId.value; // 삭제할 댓글 아이디
