@@ -1,5 +1,6 @@
 package com.example.project5.domain;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,15 +67,17 @@ public class Member extends BaseTimeEntity {
     
     private boolean social;
     
-    @ElementCollection(fetch = FetchType.LAZY)
-    @Builder.Default
-    private Set<MemberRole> roles=new HashSet<>();
+
+	@ElementCollection(fetch = FetchType.LAZY)
+	@Builder.Default
+	private Set<MemberRole> roles=new HashSet<>();
+	    
+	public Member addRole(MemberRole role) {
+	    roles.add(role);
+	        
+	    return this;
+	}
     
-    public Member addRole(MemberRole role) {
-        roles.add(role);
-        
-        return this;
-    }
     
     public Member update(String nickname, String name, String phone, String email) {
         this.nickname=nickname;
@@ -81,4 +87,5 @@ public class Member extends BaseTimeEntity {
         
         return this;
     }
+
 }
