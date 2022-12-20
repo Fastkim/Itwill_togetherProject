@@ -63,7 +63,7 @@ public class SecurityConfig {
     }
     
 
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-    }
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+//    }
 }
