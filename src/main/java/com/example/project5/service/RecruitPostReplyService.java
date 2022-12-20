@@ -43,7 +43,7 @@ public class RecruitPostReplyService {
     public List<RecruitPostReplyReadDto> readReplies(Integer postId) {
         log.info("readReplies(postId={})", postId);
         
-        List<RecruitPostReply> list=recruitPostReplyRepository.findByRecruitPostIdOrderByIdDesc(postId);
+        List<RecruitPostReply> list=recruitPostReplyRepository.findByRecruitPostIdOrderByCreatedTime(postId);
         
         return list.stream()
                 .map(RecruitPostReplyReadDto::fromEntity)

@@ -44,7 +44,7 @@ public class FreeSharePostReplyService {
     public List<FreeSharePostReplyReadDto> readReplies(Integer postId) {
         log.info("readReplies(postId={})", postId);
         
-        List<FreeSharePostReply> list=freeSharePostReplyRepository.findByFreeSharePostIdOrderByIdDesc(postId);
+        List<FreeSharePostReply> list=freeSharePostReplyRepository.findByFreeSharePostIdOrderByCreatedTime(postId);
         
         return list.stream()
                 .map(FreeSharePostReplyReadDto::fromEntity)
