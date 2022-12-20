@@ -44,26 +44,7 @@ public class SecurityConfig {
         .logout()
         .logoutSuccessUrl("/");
      
-        
-        
-        // 로그인/로그아웃 관련 설정
-//        http.formLogin(Customizer.withDefaults())
-//            .logout() // 로그아웃 관련 설정 시작
-//            .logoutSuccessUrl("/"); // 로그아웃 성공 후에 이동한 URL 설정.
-        
-        
-//        http.authorizeHttpRequests() // 요청에 따른 권한 설정 시작.
-//            .antMatchers("/community/festivalPostCreate", "/community/festivalPostCreate", "/community/festivalPostDetail", "/community/festivalPostModify" ) // "/post", "/api/reply"로 시작하는 모든 경로
-//            .hasRole("ADMIN") // USER 권한을 가지고 있는 사용자만 접근 가능
-//            .anyRequest()
-//            .authenticated(); // 그 이외의 모든 요청
-            
-            
         return http.build();
     }
     
-
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-//    }
 }
