@@ -1,12 +1,23 @@
 package com.example.project5.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.project5.domain.Member;
+import com.example.project5.domain.MemberRole;
 import com.example.project5.dto.MemberRegisterDto;
 import com.example.project5.dto.MemberUpdateDto;
 import com.example.project5.repository.MemberRepository;
@@ -26,11 +37,12 @@ public class MemberService {
         
         Optional<Member> result = memberRepository.findByUsername(username);
         
-        if (result.isPresent()) {
+        if (result.isPresent()) { //아이디 중복체크
             return "nok";
         } else {
             return "ok";
         }
+        
     }
     
     public Member RegisterMember(MemberRegisterDto dto) {
@@ -46,6 +58,24 @@ public class MemberService {
     public Member findByUsername(String username) {
         log.info("findByUsername(username={})", username);
         return memberRepository.findByUsername(username).get();
+    }
+    
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("findByUsername(username={})", username);
+        
+        Optional<Member> member = memberRepository.findByUsername(username);
+        
+        Member memberEntity = member.get();
+        
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        if (("admin").equals(username)) {
+            authorities.add(new SimpleGrantedAuthority(MemberRole.ADMIN.getRole()));
+        } else {
+            authorities.add(new SimpleGrantedAuthority(MemberRole.USER.getRole()));
+        }
+        
+        return new User(memberEntity.getUsername(), memberEntity.getPassword(), authorities);
     }
     
     @Transactional
