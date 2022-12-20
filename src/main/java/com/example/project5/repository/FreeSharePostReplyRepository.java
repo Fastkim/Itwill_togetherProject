@@ -10,4 +10,6 @@ public interface FreeSharePostReplyRepository extends JpaRepository<FreeSharePos
     
     List<FreeSharePostReply> findByFreeSharePostIdOrderByIdDesc(Integer freeSharePostId);
     
+    List<FreeSharePostReply> findByFreeSharePostIdOrderByCreatedTime(Integer freeSharePostId);
+    
 }
