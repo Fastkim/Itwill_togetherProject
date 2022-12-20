@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body" style="margin-top: 20px;">
-                                <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'no' and ${ isFull }=='no' and ${closeDateEnd}=='yes'" >
+                                <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${closeDateEnd} =='yes' " >
                                     <h6 style="color:red;">모집기한이 지나 신청 불가능한 게시물입니다.</h6>
                                 </div>
                             <label for="title" class="col-sm-2 col-form-label" style="color: gray;">제목</label>
@@ -95,7 +95,7 @@
                     <div class="my-2" th:if="${ post.author } == ${ #authentication.name }">
                         <!-- 버튼 위치 -->
                         <input class="btn btn-outline-danger" onclick="deletePost()" type="button" value="삭제"/>
-                        <a class="btn btn-outline-primary" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
+                        <a class="btn btn-outline-primary" th:if="${closeDateEnd}=='no'" th:href="@{ /post/modify?id={id} (id = ${ post.id }) }">수정</a>
                     </div>
                     
                     <!-- 신청 모달창 -->
@@ -107,7 +107,7 @@
                     <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'yes' and ${closeDateEnd}=='no'" >
                         <button type="button" id="btnNoJoin" class="btn btn-outline-danger">신청 취소</button>
                     </div>
-                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'no' and ${ isFull }=='no' and ${closeDateEnd}=='yes'" >
+                    <div class="my-2" th:if="${closeDateEnd}=='yes'" >
                         <h6 style="color:red;">기한이 지나 신청이 불가능합니다.</h6>
                     </div>
                 </div>
