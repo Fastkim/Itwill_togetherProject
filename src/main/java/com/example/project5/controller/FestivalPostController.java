@@ -1,5 +1,6 @@
 package com.example.project5.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -32,9 +33,13 @@ public class FestivalPostController {
     private final FestivalPostService festivalPostService;
     
     @GetMapping("/festivalPostList")
-    public String list(Model model, @RequestParam(value="page", defaultValue = "0")int page) {
+    public String list(Model model, Principal principal, @RequestParam(value="page", defaultValue = "0")int page) {
         log.info("list()");
         //TODO 
+        
+        String username=principal.getName();
+        
+        model.addAttribute("username", username);
         
         Page<FestivalPost> paging=this.festivalPostService.getList(page);
         model.addAttribute("paging",paging);
@@ -44,8 +49,11 @@ public class FestivalPostController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/festivalPostCreate") // GET 방식의 /post/create 요청을 처리하는 메서드.
-    public void create() {
+    public void create(Model model, Principal principal) {
         log.info("create()");
+        String username=principal.getName();
+        
+        model.addAttribute("username", username);
         // 컨트롤러 메서드의 리턴 타입이 void인 경우 뷰의 이름은 요청 주소와 같음.
         // src/main/resources/templates/post/create.html
     }
@@ -63,10 +71,24 @@ public class FestivalPostController {
         return "redirect:/community/festivalPostList";
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping({"/festivalPostDetail", "/festivalPostModify" })
+    
+    @GetMapping("/festivalPostDetail")
     // 컨트롤러 메서드가 2개 이상의 요청 주소를 처리할 때는 mapping에서 요청 주소를 배열로 설정.
-    public void detail(Integer id, Model model) {
+    public void detail(Integer id, Model model, Principal principal) {
+        log.info("detail(id={})", id);  
+        
+        String username=principal.getName();
+        
+        model.addAttribute("username", username);
+        
+        // 요청 파라미터 id를 번호로 갖는 포스트 내용을 검색 -> 뷰에 전달.
+        FestivalPost festivalPost = festivalPostService.read(id);
+        model.addAttribute("festivalPost", festivalPost);
+    }
+    
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping( "/festivalPostModify")
+    public void modify(Integer id, Model model) {
         log.info("detail(id={})", id);  
         
         // 요청 파라미터 id를 번호로 갖는 포스트 내용을 검색 -> 뷰에 전달.
@@ -86,9 +108,11 @@ public class FestivalPostController {
         return "redirect:/community/festivalPostList";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/festivalPostUpdate")
     public String update(FestivalPostUpdateDto dto) throws Exception {
         log.info("update(dto={})", dto);
+        
         
         Integer postId = festivalPostService.update(dto);
         
@@ -96,6 +120,7 @@ public class FestivalPostController {
         return "redirect:/community/festivalPostDetail?id=" + dto.getId();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/festivalPostUpdateImg")
     public String updateImg(FestivalPostUpdateDto dto, 
             @RequestParam("imgFile") MultipartFile fileName) throws Exception {
