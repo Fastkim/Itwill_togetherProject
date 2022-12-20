@@ -68,7 +68,7 @@ layout:decorate="~{ layout/layout.html }">
                     <tbody>
                         <tr th:each="post3 : ${ applyRecruitPostList }">
                             <td th:text="${post3.id}"></td>
-                            <td><a
+                            <td><a style="text-decoration-line: none; color: black;"
                                 th:href="@{ /post/detail?id={id} (id = ${post3.id}) }"
                                 th:text="${post3.title}"></a></td>
                         </tr>
