@@ -83,13 +83,19 @@ public class FestivalPostController {
     public void detail(Integer id, Model model, Principal principal) {
         log.info("detail(id={})", id);  
         
-        String username=principal.getName();
+        if(principal == null) {
+            FestivalPost festivalPost = festivalPostService.read(id);
+            model.addAttribute("festivalPost", festivalPost);
+        } else {
+            String username=principal.getName();
+            
+            model.addAttribute("username", username);
+            
+            // 요청 파라미터 id를 번호로 갖는 포스트 내용을 검색 -> 뷰에 전달.
+            FestivalPost festivalPost = festivalPostService.read(id);
+            model.addAttribute("festivalPost", festivalPost);
+        }
         
-        model.addAttribute("username", username);
-        
-        // 요청 파라미터 id를 번호로 갖는 포스트 내용을 검색 -> 뷰에 전달.
-        FestivalPost festivalPost = festivalPostService.read(id);
-        model.addAttribute("festivalPost", festivalPost);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
