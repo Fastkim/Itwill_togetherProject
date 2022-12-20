@@ -89,6 +89,7 @@ public class RecruitPostController {
             isFull = "yes";
         }
         
+        // now 가 closeDate보다 미래인지 검사 미래면 true 과거면 false
         if(now.isAfter( post.getCloseDate())) {
             closeDateEnd ="yes";
         }
