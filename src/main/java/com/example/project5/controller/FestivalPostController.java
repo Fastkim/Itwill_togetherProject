@@ -37,13 +37,19 @@ public class FestivalPostController {
         log.info("list()");
         //TODO 
         
-        String username=principal.getName();
-        
-        model.addAttribute("username", username);
-        
-        Page<FestivalPost> paging=this.festivalPostService.getList(page);
-        model.addAttribute("paging",paging);
-        
+        if(principal == null) {
+            Page<FestivalPost> paging=this.festivalPostService.getList(page);
+            model.addAttribute("paging",paging);
+        } else {
+            String username=principal.getName();
+            
+            model.addAttribute("username", username);
+            
+            Page<FestivalPost> paging=this.festivalPostService.getList(page);
+            
+            model.addAttribute("paging",paging);
+        }
+
         return "/community/festivalPostList";
     }
     
