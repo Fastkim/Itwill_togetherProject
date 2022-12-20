@@ -37,9 +37,6 @@ public class FestivalPost extends BaseTimeEntity {
     private String content;
     
     @Column(nullable = false)
-    private String author;
-    
-    @Column(nullable = false)
     private String festivalArea;
     
     @Column(nullable = false)

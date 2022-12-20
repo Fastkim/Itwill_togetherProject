@@ -25,7 +25,7 @@ public class FestivalPostCreateDto {
 
     public FestivalPost toEntity() {
         return FestivalPost.builder()
-                .title(title).content(content).author(author)
+                .title(title).content(content)
                 .festivalAgency(festivalAgency).festivalArea(festivalArea)
                 .festivalCharacter(festivalCharacter).festivalInfo(festivalInfo).festivalPlace(festivalPlace)
                 .festivalInquiry(festivalInquiry).festivalPeriod(festivalPeriod).festivalPrice(festivalPrice)
