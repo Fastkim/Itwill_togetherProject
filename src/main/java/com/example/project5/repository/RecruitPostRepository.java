@@ -10,10 +10,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.project5.domain.RecruitPost;
+import com.example.project5.domain.RecruitPostReply;
 
 public interface RecruitPostRepository extends JpaRepository<RecruitPost, Integer> {
 
 	List<RecruitPost> findByOrderByIdDesc();
+	
 	
 	List<RecruitPost> findByAuthorOrderByIdDesc(String author);
 
@@ -46,6 +48,8 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
     
     
     Page<RecruitPost> findByOrderByIdDesc(Pageable pageable);
+    
+    Page<RecruitPost> findByOrderByCreatedTimeDesc(Pageable pageable);
     
     @Query(
 		value="select * from recruitposts where TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') <= TO_CHAR(CLOSE_DATE, 'YYYY/MM/DD HH24:MI:SS')",

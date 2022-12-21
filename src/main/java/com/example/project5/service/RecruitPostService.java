@@ -165,7 +165,7 @@ public class RecruitPostService {
     
     public Page<RecruitPost> getPostList(int page) {
         Pageable pageable = PageRequest.of(page, 15);
-        return this.recruitPosrRepository.findByOrderByIdDesc(pageable);
+        return this.recruitPosrRepository.findByOrderByCreatedTimeDesc(pageable);
     }
     
 }
