@@ -45,15 +45,12 @@ public class FreeSharePostService {
         log.info("create(dto={})",dto);
         FreeSharePost freeSharePost=dto.toEntity();
         String projectPath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
-        
-        log.info(projectPath);
+       
         UUID uuid=UUID.randomUUID();
         String fileName = uuid+"_"+file.getOriginalFilename();
         File saveFile=new File(projectPath, fileName);
         file.transferTo(saveFile);
         freeSharePost.setFileName(fileName);        //생성한 파일이름을 저장해줌.
-        System.out.println(fileName);
-        System.out.println(freeSharePost.toString());
         freeSharePost.setFilePath("/files/" + fileName);
         
         return freeSharePostRepository.save(freeSharePost);
