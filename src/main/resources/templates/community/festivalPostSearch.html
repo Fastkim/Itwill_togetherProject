@@ -7,8 +7,8 @@
     <div layout:fragment="content">
         <div class="card my-2 mt-3 row border border-white">
             <div class="card-header bg-white container-fluid border-white">
-                <h1 class="mt-4" style="float:left;"> 축제 목록  </h1>
-                    <form th:action="@{ /community/festivalPostSearch }">
+                <h1 class="mt-4" style="float:left;"> 축제 목록 </h1>
+                    <form th:action="@{ /community/festivalPostSearch }" >
                         <div class="row mt-4" style="float:right;">
                              <div class="col-3">
                                  <select name="type" class="form-control" style="color: orange; background-color: black; float: center;" >
@@ -28,7 +28,7 @@
                         </div>
                     </form>
                     <div style="float:right; margin-right: 10px; display: flex; margin-top: 30px; font-size:20px;">
-                        <ul style="list-style: none;">
+                        <ul style="list-style: none;" th:if="${ username  == 'admin'}">
                             <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostCreate }" >새글작성</a></li>
                         </ul>
                         <ul style="list-style: none;">
@@ -39,14 +39,15 @@
                         </ul>
                     </div>
                 </div>
-                <hr/>
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                            <div class="col" th:each="festivalPost : ${list}">
+             </div>
+                <hr/>  
+                        <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-left:90px; margin-top:30px;">
+                            <div class="col" th:each="festivalPost , loop:${paging}">
                                 <div class="card mb-3" style="max-width: 540px;">
                                     <div class="row g-0">
                                         <div class="col-md-4">
                                           <img th:src="${ festivalPost.filePath}"  class="img-fluid rounded-start" alt="${ festivalPost.title }"
-                                                th:if="${festivalPost.fileName != null}"
+                                                th:if="${festivalPost.fileName != null}" style="width:300px; height:275px;"
                                                 >
                                         </div>
                                         <div class="col-md-8">
