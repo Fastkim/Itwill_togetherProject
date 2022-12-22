@@ -139,6 +139,8 @@ public class FestivalPostService {
         case "tc": // 제목 또는 내용 검색
             list = festivalPostRepository.searchByKeyword(keyword);
             break;
+        case "a" : // 축제지역명 검색
+            list = festivalPostRepository.findByFestivalAreaIgnoreCaseContainingOrderByIdDesc(keyword);
         }
         
         return list;

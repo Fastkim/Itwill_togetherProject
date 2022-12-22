@@ -16,6 +16,7 @@
                                      <option value="t" style="color: orange;">축제명</option>
                                      <option value="c" style="color: orange;">내용</option>
                                      <option value="tc" style="color: orange;">축제명+내용</option>
+                                     <option value="a" style="color: orange;">축제지역명</option>
                                  </select>
                              </div>
                              <div class="col-6" >
@@ -53,7 +54,7 @@
                                           <div class="card-body">
                                             <h4 class="card-title" th:text="${ festivalPost.title }"></h4>
                                             <p class="card-text" th:text="${ festivalPost.content}" style="display: -webkit-box; width:300px; height:105px; overflow: hidden;"><small class="text-muted"></small></p>
-                                            <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${festivalPost.id}) }" class="btn btn-primary" style="margin-top:10px; color: orange; background-color: black">자세히 보기</a>
+                                            <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${festivalPost.id}) }"  class="btn btn-primary" style="margin-top:10px; color: orange; background-color: black">자세히 보기</a>
                                           </div>
                                         </div>
                                       </div>

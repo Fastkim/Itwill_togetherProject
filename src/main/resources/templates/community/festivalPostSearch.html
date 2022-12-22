@@ -11,17 +11,19 @@
                     <form th:action="@{ /community/festivalPostSearch }">
                         <div class="row mt-4" style="float:right;">
                              <div class="col-3">
-                                 <select name="type" class="form-control">
-                                     <option value="choose">선택</option>
-                                     <option value="c">내용</option>
-                                     <option value="tc">축제명+내용</option>
+                                 <select name="type" class="form-control" style="color: orange; background-color: black; float: center;" >
+                                     <option value="choose" style="color: orange;">선택</option>
+                                     <option value="t" style="color: orange;">축제명</option>
+                                     <option value="c" style="color: orange;">내용</option>
+                                     <option value="tc" style="color: orange;">축제명+내용</option>
+                                     <option value="a" style="color: orange;">축제지역명</option>
                                  </select>
                              </div>
                              <div class="col-6" >
-                                 <input type="text" name="keyword" class="form-control" placeholder="검색어" required autofocus />
+                                 <input type="text" name="keyword" class="form-control" placeholder="검색어" style="color: white; background-color: black" required autofocus />
                              </div>
                              <div class="col-2" >
-                                 <input type="submit" value="검색" class="btn btn-outline-info" />
+                                 <input type="submit" value="검색" class="btn btn-outline-info" style="color: orange; background-color: black" />
                              </div>
                         </div>
                     </form>
@@ -29,8 +31,11 @@
                         <ul style="list-style: none;">
                             <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostCreate }" >새글작성</a></li>
                         </ul>
-                        <ul style="list-style: none; margin-right: 30px;">
+                        <ul style="list-style: none;">
                             <li style="float: left; "><a id="totalList" style="text-decoration-line: none; color: black;" th:href="@{ /community/festivalPostList }">전체목록</a></li>
+                        </ul>
+                        <ul style="list-style: none; margin-right: 30px;">
+                            <li style="float: left;" ><a id="newPost" style="text-decoration-line: none; color: black;" th:href="@{ / }" >메인페이지</a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,10 +51,9 @@
                                         </div>
                                         <div class="col-md-8">
                                           <div class="card-body">
-                                            <h5 class="card-title" th:text="${ festivalPost.title }"></h5>
-                                            <p class="card-text" th:text="${ festivalPost.title }"></p>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                            <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${festivalPost.id}) }" class="btn btn-primary">자세히 보기</a>
+                                            <h4 class="card-title" th:text="${ festivalPost.title }"></h4>
+                                            <p class="card-text" th:text="${ festivalPost.content}" style="display: -webkit-box; width:300px; height:105px; overflow: hidden;"><small class="text-muted"></small></p>
+                                            <a th:href="@{ /community/festivalPostDetail?id={id} (id = ${festivalPost.id}) }"  class="btn btn-primary" style="margin-top:10px; color: orange; background-color: black">자세히 보기</a>
                                           </div>
                                         </div>
                                       </div>
