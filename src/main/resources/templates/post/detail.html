@@ -104,6 +104,9 @@
                         신청
                         </button>
                     </div>
+                    <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'no' and ${ isFull }=='yes' and ${closeDateEnd}=='no'" >
+                        <h6 style="color:red;">신청인원이 마감되었습니다.</h6>
+                    </div>
                     <div class="my-2" th:if="${ post.author } != ${ #authentication.name } and ${ exist } == 'yes' and ${closeDateEnd}=='no'" >
                         <button type="button" id="btnNoJoin" class="btn btn-outline-danger">신청 취소</button>
                     </div>
