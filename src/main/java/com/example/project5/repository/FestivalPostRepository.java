@@ -21,18 +21,22 @@ public interface FestivalPostRepository extends JpaRepository<FestivalPost, Inte
     
     
     // 제목 검색:
-    // select * from POSTS where lower(TITLE) like lower(?) order by ID desc
+    // select * from COMMUNITYS where lower(TITLE) like lower(?) order by ID desc
     List<FestivalPost> findByTitleIgnoreCaseContainingOrderByIdDesc(String title);
     
     // 내용 검색:
-    // select * from POSTS where lower(CONTENT) like lower(?) order by ID desc
+    // select * from COMMUNITYS where lower(CONTENT) like lower(?) order by ID desc
     List<FestivalPost> findByContentIgnoreCaseContainingOrderByIdDesc(String content);
-    
+
     // 제목 + 내용 검색:
-    // select * from POSTS 
+    // select * from COMMUNITYS 
     // where lower(TITLE) like lower(?1) or lower(CONTENT) like lower(?2)
     // order by ID desc
     List<FestivalPost> findByTitleIgnoreCaseContainingOrContentIgnoreCaseContainingOrderByIdDesc(String title, String content);
+    
+    // 축제지역명 검색:
+    // select * from COMMUNITYS where lower(CONTENT) like lower(?) order by ID desc
+    List<FestivalPost> findByFestivalAreaIgnoreCaseContainingOrderByIdDesc(String festivalArea);
     
     // JPQL(Java Persistence Query Language)
     @Query(
