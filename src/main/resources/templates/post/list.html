@@ -5,8 +5,8 @@
 <!--/* layout/layout.html 파일의 "content" 프래그먼트에 삽입될 컨텐트 */-->
 <body>
 <div layout:fragment="content">
-    <div class="card my-2 mt-3 row border border-white">
-        <div class="card-header bg-white container-fluid border-white">
+    <div class="card shadow my-2 mt-3 row border border-white">
+        <div class="card-header shadow bg-white container-fluid border-white">
             <h1 class="mt-4" style="float:left;"> 모집 목록 </h1>
          <form th:action="@{ /post/search }">
          <div class="row mt-4" style="float:right;">
@@ -39,7 +39,7 @@
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
 <!--             <div class="col" th:each="post , loop : ${paging}"> -->
             <div class="col" th:each="post, loop: ${paging}">
-                <div class="my-5 card" style="height: 80%">
+                <div class="my-5 card shadow" style="height: 80%">
                     <!-- image-->
                     <img th:src="${post.filePath}"  class="card-img-top" style="height: 160px;" name="imgFile" />
                     <!-- details-->

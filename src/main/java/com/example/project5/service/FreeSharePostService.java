@@ -60,7 +60,7 @@ public class FreeSharePostService {
         log.info("page-getList(page={})",page);
         List<Sort.Order> sorts=new ArrayList<>();
         sorts.add(Sort.Order.desc("createdTime"));
-        Pageable pageable=PageRequest.of(page, 8, Sort.by(sorts));
+        Pageable pageable=PageRequest.of(page, 9, Sort.by(sorts));
         
         return this.freeSharePostRepository.findAll(pageable);
     }

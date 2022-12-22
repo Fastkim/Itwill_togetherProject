@@ -6,36 +6,36 @@ layout:decorate="~{ layout/layout.html }">
 <body>
     <div layout:fragment="content">
         <div class="card bg-light p-1 m-2">
-            <h1 style="margin-right: 50px; margin-left: 50px; margin-top: 10px;">◎ 개인정보 변경 페이지</h1>
+            <h1 style="margin-right: 30px; margin-left: 30px; margin-top: 10px; text-decoration:underline;"> 개인정보 변경 페이지</h1>
             <div class="card-body">
                 <form id="modify">
                     <div class="my-2">
-                        <input type="hidden" id="id" class="form-control" name="id" th:value="${ member.id }" readonly />
+                        <input type="hidden" id="id" name="id" th:value="${ member.id }" readonly />
                     </div>
                     <div class="my-2">
-                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 회원 아이디 <span style="color:red;">*변경불가*</span></label>
-                        <input style="font-size:20px;" type="text" id="username" class="form-control" name="id" th:value="${ member.username }" readonly />
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:20px;">◎</span> 회원 아이디 <span style="color:red;">*변경불가*</span></label>
+                        <input style="font-size:20px;" type="text" id="username" class=" form-control shadow-lg p-3 mb-5 bg-body rounded" name="id" th:value="${ member.username }" readonly />
                     </div>
                     <div class="my-2">
-                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 닉네임</label>
-                        <input style="font-size:20px;" id="nickname" class="form-control" name="nickname" th:value="${ member.nickname }" />
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:20px;">◎</span> 닉네임</label>
+                        <input style="font-size:20px;" id="nickname" class="form-control shadow-lg p-3 mb-5 bg-body rounded" name="nickname" th:value="${ member.nickname }" autofocus />
                     </div>
                     <div class="my-2">
-                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 이름</label>
-                        <input style="font-size:20px;" id="name" class="form-control" name="name" th:value="${ member.name }" />
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:20px;">◎</span> 이름</label>
+                        <input style="font-size:20px;" id="name" class="form-control shadow-lg p-3 mb-5 bg-body rounded" name="name" th:value="${ member.name }" />
                     </div>
                     <div class="my-2">
-                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 전화 번호</label>
-                        <input style="font-size:20px;" id="phone" class="form-control" name="phone" th:value="${ member.phone }" />
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:20px;">◎</span> 전화 번호</label>
+                        <input style="font-size:20px;" id="phone" class="form-control shadow-lg p-3 mb-5 bg-body rounded" name="phone" th:value="${ member.phone }" />
                     </div>
                     <div class="my-2">
-                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:18px;">◎</span> 이메일</label>
-                        <input style="font-size:20px;" type="email" id="email" class="form-control" name="email" th:value="${ member.email }" />
+                        <label style="font-size:27px;" for="id" class="form-label"><span style="font-size:20px;">◎</span> 이메일</label>
+                        <input style="font-size:20px;" type="email" id="email" class="form-control shadow-lg p-3 mb-5 bg-body rounded" name="email" th:value="${ member.email }" />
                     </div>
                     
                     <div class="my-2">
-                        <input class="btn btn-outline-primary" type="button" style="font-size:150%" onclick="updateInfo()" value="수정완료" />
-                        <!-- <button class="btn btn-success" id="btnUpdate">수정 완료</button> -->
+                        <input class="btn btn-outline-primary" type="button" style="font-size:190%" onclick="updateInfo()" value="수정완료" />
+                        <input class="btn btn-outline-dark" type="button" style="font-size:190%" onclick="back()" value="뒤로가기" />
                     </div> 
                 </form>
             </div>
@@ -43,7 +43,11 @@ layout:decorate="~{ layout/layout.html }">
         
     <script layout:fragment>
 		const formModify = document.querySelector('#modify');
-
+	    function back(){
+	    	formModify.action='/member/mypage';
+            formModify.method='get';
+            formModify.submit();
+	    }
         
 		function updateInfo(seq){
 		    const nickname = document.querySelector('#nickname').value;
