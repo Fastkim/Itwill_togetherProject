@@ -13,10 +13,10 @@ layout:decorate="~{ layout/layout.html }">
             <div class="card-body" style="margin-left: 50px; margin-right: 50px;">
     
                 <br/>
-                <h3><span style="font-size: 77%; color: orange;">◎</span> 나의 지원 게시판 작성목록</h3>
+                <h3 style="font-size: 220%;"><span style="font-size: 77%; color: orange;">◎</span> 내가 만든 모임 목록</h3>
                 <table class="table table-hover">
-                    <thead>
-                        <tr>
+                    <thead class="bg bg-dark rounded">
+                        <tr style="color:orange;">
                             <th>번호</th>
                             <th>제목</th>
                             <th>총인원</th>
@@ -36,11 +36,11 @@ layout:decorate="~{ layout/layout.html }">
                         </tr>
                     </tbody>
                 </table>
-                <br/>
-                <h3><samp style="font-size: 20px; font-weight: bold;"></samp> <span style="font-size: 77%; color: orange;">◎</span> 나의 나눔 게시판 작성목록</h3>
+                <br/><br/><br/>
+                <h3 style="font-size: 220%;"><span style="font-size: 77%; color: orange;">◎</span> 나눔 게시판에 올린 물건 목록</h3>
                 <table class="table table-hover m-2">
-                    <thead>
-                        <tr>
+                    <thead class="bg bg-dark rounded">
+                        <tr style="color:orange;">
                             <th>번호</th>
                             <th>제목</th>
                             <th>작성자</th>
@@ -56,11 +56,11 @@ layout:decorate="~{ layout/layout.html }">
                         </tr>
                     </tbody>
                 </table>
-                <br/>
-                <h3><span style="font-size: 77%; color: orange;">◎</span> 나의 지원 내역</h3>
+                <br/><br/><br/>
+                <h3 style="font-size: 220%;"><span style="font-size: 77%; color: orange;">◎</span> 내가 지원한 모임 내역</h3>
                 <table class="table table-hover">
-                    <thead>
-                        <tr>
+                    <thead class="bg bg-dark rounded">
+                        <tr style="color:orange;">
                             <th>포스트 번호</th>
                             <th>지원한 포스트</th>
                         </tr>
@@ -75,11 +75,11 @@ layout:decorate="~{ layout/layout.html }">
                     </tbody>
                 </table>
             </div>
-            <br/>
+            <br/><br/><br/>
             <div class="card-body">
                 <ul style="list-style: none;">
                     <li class="nav-item active p-2" style="float: left; text-align: right; margin-left: 20px;">
-                        <a id="point" style="font-size: 34px; text-decoration-line: 1px soild; color: orange;" th:href="@{ /member/update }"> 개인정보 변경</a>
+                        <a id="point" style="font-size: 39px; text-decoration-line: 1px soild; color: orange;" th:href="@{ /member/update }"> 개인정보 변경</a>
                     </li>
                 </ul>
             </div>

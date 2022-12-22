@@ -80,32 +80,32 @@
                     
                     <div class="card-body">
                         <div class="my-2">
-                            <label for="title" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 제목</label> 
+                            <span>◎ </span><label for="title" class="form-label" style="font-size:150%; text-decoration: underline;"> 제목</label> 
                             <input id="title" name="title" class="form-control" style="font-size:140%" th:value="${post.title}"  />
                         </div>
                         <div class="my-2">
-                            <label for="author" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 담당자</label> 
+                            <span>◎ </span><label for="author" class="form-label" style="font-size:150%; text-decoration: underline;"> 담당자</label> 
                             <input id="author" class="form-control" style="font-size:140%" th:value="${post.author}" readonly />
                         </div>
                         <div class="my-2">
-                            <label for="content" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 모집내용</label> 
-                            <textarea id="content" name="content" class="form-control" style="font-size:140%" th:text="${post.content}"  ></textarea>
+                            <span>◎ </span> <label for="content" class="form-label" style="font-size:150%; text-decoration: underline;"> 모집내용</label> 
+                            <textarea id="content" name="content" class="form-control" style="font-size:140%" th:text="${post.content}" ></textarea>
                         </div>
                         <div class="my-2">
-                            <label for="price" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 가격</label> 
+                            <span>◎ </span><label for="price" class="form-label" style="font-size:150%; text-decoration: underline;"> 가격</label> 
                             <input type="text" maxlength="10" onkeyup="inputNumberFormat(this)" style="font-size:140%" name="price" id="price" class="form-control" th:value="${post.price}" />
                         </div>
                         <th:block>
                             <div class="my-2" th:if="${post.transaction}==parcel">
-                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
+                                <span>◎ </span><label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;"> 거래방법</label> 
                                 <input id="transaction" class="form-control" value="택배가능" style="font-size:140%" readonly />
                             </div>
                             <div class="my-2" th:if="${post.transaction}==direct">
-                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
+                                <span>◎ </span><label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">` 거래방법</label> 
                                 <input id="transaction" class="form-control" value="직접거래 가능" style="font-size:140%" readonly />
                             </div>
                             <div class="my-2" th:unless="${post.transaction}==direct or ${post.transaction}==parcel">
-                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
+                                <span>◎ </span><label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;"> 거래방법</label> 
                                 <input id="transaction" class="form-control" value="택배 가능, 직접거래 가능" style="font-size:140%" readonly />
                             </div>
                         </th:block>

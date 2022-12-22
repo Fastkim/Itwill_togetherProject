@@ -78,7 +78,7 @@
                     <div class="card-header">
                         <input id="id" name="id" class="form-control" type="hidden" th:value="${post.id}" />
                         
-                        <div class="card mx-auto shadow" style="width: 20rem; background-color:orange;">
+                        <div class="card mx-auto shadow" style="width: 20rem;">
                             <img th:src="${post.filePath}"
                                 th:if="${post.filePath != null}"
                                 class="card-img-top card-img" name="imgFile"
@@ -88,33 +88,33 @@
                     
                     <div class="card-body">
                         <div class="my-2">
-                            <label for="title" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 제목</label> 
-                            <input id="title" class="form-control" style="font-size:140%" th:value="${post.title}" readonly />
+                            <span>◎</span> <label for="title" class="form-label" style="font-size:150%; text-decoration: underline;"> 제목</label> 
+                            <input id="title" class="form-control shadow-lg p-3 mb-5 bg-body rounded" style="font-size:140%" th:value="${post.title}" readonly />
                         </div>
                         <div class="my-2">
-                            <label for="author" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 담당자</label> 
-                            <input id="author" class="form-control" style="font-size:140%" th:value="${post.author}" readonly />
+                            <span>◎</span> <label for="author" class="form-label" style="font-size:150%; text-decoration: underline;"> 담당자</label> 
+                            <input id="author" class="form-control shadow-lg p-3 mb-5 bg-body rounded" style="font-size:140%" th:value="${post.author}" readonly />
                         </div>
                         <div class="my-2">
-                            <label for="content" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 모집내용</label> 
-                            <textarea id="content" class="form-control" style="font-size:140%" th:text="${post.content}" readonly ></textarea>
+                            <span>◎</span> <label for="content" class="form-label" style="font-size:150%; text-decoration: underline;"> 모집내용</label> 
+                            <textarea id="content" class="form-control shadow-lg p-3 mb-5 bg-body rounded" style="font-size:140%" th:text="${post.content}" readonly ></textarea>
                         </div>
                         <div class="my-2">
-                            <label for="price" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 가격</label> 
-                            <input type="text" style="font-size:140%" maxlength="10" onkeyup="inputNumberFormat(this)" id="price" class="form-control" name="price" th:value="${post.price}" readonly />
+                            <span>◎</span> <label for="price" class="form-label" style="font-size:150%; text-decoration: underline;"> 가격</label> 
+                            <input type="text" style="font-size:140%" maxlength="10" onkeyup="inputNumberFormat(this)" id="price" class="form-control shadow-lg p-3 mb-5 bg-body rounded" name="price" th:value="${post.price}" readonly />
                         </div>
                         <th:block>
                             <div class="my-2" th:if="${post.transaction}==parcel">
-                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
-                                <input id="transaction" style="font-size:140%" class="form-control" value="택배가능" readonly />
+                                <span>◎</span> <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;"> 거래방법</label> 
+                                <input id="transaction" style="font-size:140%" class="form-control shadow-lg p-3 mb-5 bg-body rounded" value="택배가능" readonly />
                             </div>
                             <div class="my-2" th:if="${post.transaction}==direct">
-                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
-                                <input id="transaction" style="font-size:140%" class="form-control" value="직접거래 가능" readonly />
+                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;"> 거래방법</label> 
+                                <input id="transaction" style="font-size:140%" class="form-control shadow-lg p-3 mb-5 bg-body rounded" value="직접거래 가능" readonly />
                             </div>
                             <div class="my-2" th:unless="${post.transaction}==direct or ${post.transaction}==parcel">
-                                <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;">◎ 거래방법</label> 
-                                <input id="transaction" style="font-size:140%" class="form-control" value="택배 가능, 직접거래 가능" readonly />
+                                <span>◎</span> <label for="transaction" class="form-label" style="font-size:150%; text-decoration: underline;"> 거래방법</label> 
+                                <input id="transaction" style="font-size:140%" class="form-control shadow-lg p-3 mb-5 bg-body rounded" value="택배 가능, 직접거래 가능" readonly />
                             </div>
                         </th:block>
                     </div>

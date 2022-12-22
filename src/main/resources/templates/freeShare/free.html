@@ -77,7 +77,7 @@
     <div class="container" style = "background-size: cover">
         <div class="row wrap img-fluid">
     
-            <div class="card col-md-3" th:each="post, loop:${paging}">
+            <div class="card col-md-3 shadow m-3" th:each="post, loop:${paging}">
                 <div class="card-header">
                     <img class="card-img-top img-thumbnail w-100 rounded"
                         th:src="${post.filePath}" alt="첨부이미지.."
@@ -88,7 +88,9 @@
                 <div class="card-body">
                     <h3 class="card-title" th:text="${post.title}"></h3>
                     <p class="card-text"  th:text="${post.content}"></p>
-                    <label style="font-weight: bold; font-size: 123%"> [판매가격] </label>
+                </div>
+                 <div class="card-body">
+                    <label style="font-size: 120%;"> [판매 가격] </label>
                     <p type="text" maxlength="10" onkeyup="inputNumberFormat(this)" class="card-text" th:text="${post.price}+원"></p>
                     </br> 
                     <input type="hidden" th:value="${post.id}" id="id" />
