@@ -52,7 +52,8 @@ public interface RecruitPostRepository extends JpaRepository<RecruitPost, Intege
     Page<RecruitPost> findByOrderByCreatedTimeDesc(Pageable pageable);
     
     @Query(
-		value="select * from recruitposts where TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') <= TO_CHAR(CLOSE_DATE, 'YYYY/MM/DD HH24:MI:SS')",
+		value="select * from recruitposts where TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') <= TO_CHAR(CLOSE_DATE, 'YYYY/MM/DD HH24:MI:SS')"
+				+ "order by CREATED_TIME desc",
 		nativeQuery = true)
     Page<RecruitPost> findWhereCompareWithSysdate(Pageable pageable);
     
