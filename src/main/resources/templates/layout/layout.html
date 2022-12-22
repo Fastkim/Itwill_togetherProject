@@ -130,8 +130,7 @@
                     <th:block sec:authorize="isAuthenticated()">
                         <li id="menu6" class="nav-item" style="margin-right: 10px;">
                             <a th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:100%;">◎
-                                <span style="color:#FBECD8;" sec:authentication="name"></span>
-                                마이페이지 </a>
+                                <span style="color:#FBECD8;" sec:authentication="name"></span>님, 마이페이지 </a>
                         </li>
                         <li style="margin-right: 10px;">
                             <a id="menu7" style="text-decoration:none; color: orange; font-size:100%;" th:href="@{/logout}">◎ 로그아웃</a>

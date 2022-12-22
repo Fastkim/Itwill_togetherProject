@@ -81,20 +81,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul style="list-style :none;" class="navbar-nav" >
                     <th:block sec:authorize="isAnonymous()">
-                        <li class="nav-item"  style="margin-right: 33px;">
-                            <a id="menu6" style="text-decoration:none; color: orange; font-size:16px;" th:href="@{ /login }">◎ 로그인</a>
+                        <li class="nav-item"  style="margin-right: 10px;">
+                            <a id="menu6" style="text-decoration:none; color: orange; font-size:100%;" th:href="@{ /login }">◎ 로그인</a>
                         </li>
-                        <li class="nav-item" style="margin-right: 5px;">
-                            <a id="menu7" style="text-decoration:none; color: orange; font-size:16px;" th:href="@{/member/signup}">◎ 회원가입</a>
+                        <li class="nav-item">
+                            <a id="menu7" style="text-decoration:none; color: orange; font-size:100%;" th:href="@{/member/signup}">◎ 회원가입</a>
                         </li>
                     </th:block>
                     <th:block sec:authorize="isAuthenticated()">
-                        <li id="menu6" class="nav-item" style="margin-right: 33px;">
-                            <a th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:16px;">◎
+                        <li id="menu6" class="nav-item" style="margin-right: 10px;">
+                            <a th:href="@{ /member/mypage }" style="text-decoration:none; color: orange; font-size:100%;">◎
                                 <span sec:authentication="name" style="color: #FBECD8;"></span>님, 마이페이지 </a>
                         </li>
-                        <li style="margin-right: 5px;">
-                            <a id="menu7" style="text-decoration:none; color: orange; font-size:16px;" th:href="@{/logout}">◎ 로그아웃</a>
+                        <li style="margin-right: 10px;">
+                            <a id="menu7" style="text-decoration:none; color: orange; font-size:100%;" th:href="@{/logout}">◎ 로그아웃</a>
                         </li>
                     </th:block>
                 </ul>
