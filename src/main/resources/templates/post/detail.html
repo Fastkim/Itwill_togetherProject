@@ -41,8 +41,19 @@
                         <textarea style="font-size: 22px;" id="content" name="content"
                             class="form-control-plaintext" th:text="${post.content}" rows="20" readonly></textarea>
                     </div>
-                </div>
-
+            </div>
+            <div class="card m-4 row g-5" >
+                <div style="margin: 4px;">
+	                <div class="mb-3 my-1 row" >
+	                    <label for="totalMember"
+	                        class="col-sm-2 col-form-label">카테고리</label>
+	                    <div class="col-sm-4">
+	                        <input type="text" class="form-control-plaintext"
+	                            id="category" name="category" th:value="${post.category}" readonly/>
+	                    </div>
+                	</div>
+             	</div>
+             </div>
             <!-- 3번째 카드 -->
             <div class="card m-4 row g-5" >
                 <div style="margin: 4px;">

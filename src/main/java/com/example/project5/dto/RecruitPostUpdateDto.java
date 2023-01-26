@@ -19,6 +19,7 @@ public class RecruitPostUpdateDto {
     private Integer totalMember;
     private String filePath;
     private String fileName;
+    private String category;
     private double lat;
     private double lng;
     

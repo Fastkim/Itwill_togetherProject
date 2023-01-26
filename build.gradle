@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8' // 자바 버전 호환성. 
+sourceCompatibility = '1.8' // ��諛� 踰��� �명����. 
 
 configurations {
     compileOnly {
@@ -22,13 +22,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // Tymeleaf에 layout 기능을 추가하기 위해 추가.
+    // Tymeleaf�� layout 湲곕�μ�� 異�媛���湲� ���� 異�媛�.
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
     
     // spring Security 
     implementation 'org.springframework.boot:spring-boot-starter-security'
     
-    // thylea에 Sprgin Security 확장 기능
+    // thylea�� Sprgin Security ���� 湲곕��
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     
     compileOnly 'org.projectlombok:lombok'
@@ -39,15 +39,16 @@ dependencies {
     //spring Security Test
     implementation 'org.springframework.security:spring-security-test'
     
-    //채팅
+    //梨���
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     //sockjs
     implementation 'org.webjars:sockjs-client:1.5.1'
     // stomp
     implementation 'org.webjars:stomp-websocket:2.3.4'
     
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     
-    
+    implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
 }
 
 tasks.named('test') {
