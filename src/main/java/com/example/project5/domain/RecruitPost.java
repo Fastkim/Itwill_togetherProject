@@ -1,7 +1,7 @@
 package com.example.project5.domain;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
-
-import org.hibernate.annotations.Formula;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +47,8 @@ public class RecruitPost extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime meetingDate;
     
+    private String category; /*카테고리값 저장컬럼*/
+    
     @Column(nullable = false)
     private Integer totalMember; // 총 인원 수
     
@@ -67,7 +67,11 @@ public class RecruitPost extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime closeDate; // 마감 날짜
     
+    @Column(insertable = false, updatable = false, columnDefinition = "date default LOCALTIMESTAMP")
+    private Date createDate;
+    
     private final String postGroup="recruitPost";
+    
     
     public RecruitPost updateRecruitPost(String title, String content, String place, 
             Integer totalMember,LocalDateTime closeDate, double lat, double lng) {
@@ -97,6 +101,23 @@ public class RecruitPost extends BaseTimeEntity {
         return this;
     }
     
+    public RecruitPost updateRecruitPost(String title, String content, String place, 
+            Integer totalMember,LocalDateTime closeDate, double lat, double lng, String category) {
+        this.title=title;
+        this.content=content;
+        this.place=place;
+        this.totalMember=totalMember;
+//        this.filePath=filePath;
+//        this.fileName = fileName;
+        this.closeDate=closeDate;
+        this.lat = lat;
+        this.lng = lng;
+        this.category = category;
+         
+        return this;
+    }
+    
+    
     // joinMember이 null 일때 기본값을 0으로 설정
     @PrePersist
     public void prePersist() {
@@ -107,7 +128,7 @@ public class RecruitPost extends BaseTimeEntity {
     	this.joinMember = joinMember;
     	return this;
     }
-    
 
+    
 
 }

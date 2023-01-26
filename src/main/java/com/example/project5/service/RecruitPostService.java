@@ -3,6 +3,7 @@ package com.example.project5.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.project5.domain.Member;
 import com.example.project5.domain.RecruitPost;
 import com.example.project5.dto.RecruitPostCreateDto;
 import com.example.project5.dto.RecruitPostUpdateDto;
@@ -94,6 +96,7 @@ public class RecruitPostService {
         RecruitPost recruitPost = dto.toEntity();
         recruitPost = recruitPosrRepository.save(recruitPost);
         
+        
         return recruitPost;
     }
     
@@ -127,7 +130,8 @@ public class RecruitPostService {
         RecruitPost entity = recruitPosrRepository.findById(dto.getId()).get();
         
             entity.updateRecruitPost(dto.getTitle(), dto.getContent(), dto.getPlace(), 
-                    dto.getTotalMember(), dto.getCloseDate(), dto.getLat(), dto.getLng());
+                    dto.getTotalMember(), dto.getCloseDate(), dto.getLat(), dto.getLng(),
+                    dto.getCategory());
         
         
         return entity.getId();
@@ -164,5 +168,7 @@ public class RecruitPostService {
         Pageable pageable = PageRequest.of(page, 15);
         return this.recruitPosrRepository.findByOrderByCreatedTimeDesc(pageable);
     }
+    
+
     
 }

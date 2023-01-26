@@ -5,10 +5,13 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,7 +68,8 @@ public class RecruitPostController {
         RecruitPost entity = recruitPostService.create(dto, fileName);
 
         attrs.addFlashAttribute("createId", entity.getId());
-
+        
+        
         return "redirect:/post/list";
     } 
 
