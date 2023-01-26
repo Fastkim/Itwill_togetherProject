@@ -38,9 +38,14 @@ public class ChatRoom {
     private String message;
 
     private Integer unread;
+    
+    private String leaveUser;
 
-    public ChatRoom(Long id, String roomId) {
-        this.id = id;
-        this.roomId = roomId; 
+    public ChatRoom(String roomId, Member member, String leaveUser, Integer unread) {
+        this.roomId = roomId;
+        this.member = member;
+        this.leaveUser = leaveUser;
+        this.unread = unread;
     }
+
 }
